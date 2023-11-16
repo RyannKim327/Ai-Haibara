@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.text.TextWatcher;
+import android.text.Editable;
 
 public class AI extends LinearLayout {
 	ScrollView sc;
@@ -119,6 +121,16 @@ public class AI extends LinearLayout {
 					}
 				}, 100);
 			}
+		});
+		
+		e.addTextChangedListener(new TextWatcher(){
+			@Override
+			public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4) {}
+			@Override
+			public void onTextChanged(CharSequence p1, int p2, int p3, int p4) {
+			}
+			@Override
+			public void afterTextChanged(Editable p1) {}
 		});
 		
 		v.setLayoutParams(new LayoutParams(25, 5));
