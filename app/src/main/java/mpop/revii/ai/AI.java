@@ -131,11 +131,7 @@ public class AI extends LinearLayout {
 			@Override
 			public void onTextChanged(CharSequence p1, int p2, int p3, int p4) {
 				String text = e.getText().toString().trim();
-				if(text.isEmpty() && replied){
-					iv.setEnabled(false);
-				}else{
-					iv.setEnabled(true);
-				}
+				iv.setEnabled(!text.isEmpty() && replied);
 			}
 			@Override
 			public void afterTextChanged(Editable p1) {}
