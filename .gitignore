@@ -1,2 +1,4 @@
 /build
 .autogit
+.idea
+.gradle
