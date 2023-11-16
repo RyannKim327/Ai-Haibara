@@ -169,14 +169,10 @@ public class AI extends LinearLayout {
 		LinearLayout base = new LinearLayout(ctx);
 		final Markdown chat = new Markdown(ctx);
 		TextView from = new TextView(ctx);
-		float f = 15, f2 = 0;
-		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
-			f = 0;
-			f2 = 15;
-		}
+		float f = 13;
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
-				f2, f2, f, f,
-				f, f, f2, f2
+				f, f, f, f,
+				f, f, f, f
 		}, null, null));
 
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
@@ -207,7 +203,7 @@ public class AI extends LinearLayout {
 		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
 		
 		chat.setPadding(8, 10, 8, 10);
-		chat.setBackgroundDrawable(sd);
+		chat.setBackground(sd);
 		chat.setTextSize(15);
 		chat.setTypeface(Typeface.SERIF);
 		chat.setText(msg);
