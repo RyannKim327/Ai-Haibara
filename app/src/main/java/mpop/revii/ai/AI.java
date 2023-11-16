@@ -27,6 +27,7 @@ public class AI extends LinearLayout {
 	EditText e;
 	ImageButton iv;
 	SharedPreferences sp;
+	String welcome = "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\\n\\nCredits:\\n* John Paul Caigas\\n* Mark Kevin Manalo\\n* Earl Shine Sawir\\n* John Jeremy Antiguo\\n* Lester Navarra\\n* Eljohn Mago\\n* Salvador\\n* John Roy Lapida Calimlim\\n* Ronald Torrejos Limpiado\\n* Jerson Carin\\n* Rovie Francisco\\n* Hercai\\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `your name`*** and your name will be changed.";
 	
 	public AI(final Context ctx, AttributeSet attr){
 		super(ctx, attr);
@@ -54,7 +55,7 @@ public class AI extends LinearLayout {
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
-		sc2.addView(chat(ctx, "Welcome bot:", "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `your name`*** and your name will be changed."));
+		sc2.addView(chat(ctx, "Welcome bot:", welcome));
 		
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.LTGRAY);
@@ -97,11 +98,12 @@ public class AI extends LinearLayout {
 					String name = txt.substring(11);
 					sp.edit().putString("mpop.revii.ai.NAME", name).apply();
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
-					sc2.addView(chat(ctx, "Name changer", "Name changed to " + name));
+					sc2.addView(chat(ctx, "Name changer", String.format("Name changed to `%s`", name)));
 					e.setText("");
 				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
 					e.setText("");
 					sc2.removeAllViews();
+					sc2.addView(chat(ctx, "Welcome bot:", welcome));
 				}else{
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
 					http h = new http(ctx);
