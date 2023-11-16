@@ -16,6 +16,7 @@ public class http extends AsyncTask {
 	public http(Context x){
 		ctx = x;
 	}
+	
 	@Override
 	protected String doInBackground(Object[] p1) {
 		try {
@@ -35,10 +36,12 @@ public class http extends AsyncTask {
 			return "{\"reply\": '" + e.getMessage().replace("\"hercai.onrender.com\"", "hostname") + "'}";
 		}
 	}
+	
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 	}
+	
 	@Override
 	protected void onPostExecute(Object result) {
 		super.onPostExecute(result);

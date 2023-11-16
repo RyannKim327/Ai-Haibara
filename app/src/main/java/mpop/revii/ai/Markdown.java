@@ -7,6 +7,7 @@ public class Markdown extends TextView {
 	public Markdown(Context ctx){
 		super(ctx);
 	}
+	
 	public void setText(String txt){
 		String[] text = txt.split("\n");
 		String result = "";
@@ -36,9 +37,9 @@ public class Markdown extends TextView {
 				}
 			}
 		}
-		
 		setText(Html.fromHtml(result));
 	}
+	
 	private String start(String markdown) {
 		String html = markdown;
 
