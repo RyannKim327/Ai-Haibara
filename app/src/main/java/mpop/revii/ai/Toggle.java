@@ -15,7 +15,8 @@ public class Toggle extends ImageView {
 			setImageResource(AI.setResources(ctx, "ic_launcher", "drawable"));
 		}catch(Exception e){
 			setImageResource(android.R.drawable.ic_dialog_email);
-		}setOnClickListener(new OnClickListener(){
+		}
+		setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View p1) {
 				Intent i = new Intent("mpop.revii.ai.TOGGLE");

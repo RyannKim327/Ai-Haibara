@@ -8,17 +8,5 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
 
-	<mpop.revii.ai.Toggle
-		android:background="@drawable/bg"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="bottom|right"/>
-
-	<TextView
-		
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="bottom|right"/>
-
 </FrameLayout>
 
