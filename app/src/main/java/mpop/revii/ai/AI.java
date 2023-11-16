@@ -20,8 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.text.Spannable;
-import android.text.Html;
 
 public class AI extends LinearLayout {
 	ScrollView sc;
@@ -53,16 +51,16 @@ public class AI extends LinearLayout {
 		View v = new View(ctx);
 		View v2 = new View(ctx);
 		
-		sc.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
+		sc.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 
-		sc2.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
+		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
 		sc2.addView(chat(ctx, "Welcome bot:", "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `your name`*** and your name will be changed."));
 		
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.LTGRAY);
 		
-		setBackgroundDrawable(sd);
+		setBackground(sd);
 		setOrientation(LinearLayout.VERTICAL);
 		setPadding(5, 10, 5, 10);
 		setVisibility(View.VISIBLE);
@@ -79,7 +77,7 @@ public class AI extends LinearLayout {
 		
 		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		e.setHint("Post your question here");
-		e.setBackgroundDrawable(sd2);
+		e.setBackground(sd2);
 		e.setTextColor(Color.BLACK);
 		e.setHintTextColor(Color.DKGRAY);
 		e.setPadding(8, 5, 8, 5);
@@ -99,7 +97,7 @@ public class AI extends LinearLayout {
 				String txt = e.getText().toString();
 				if(txt.toLowerCase().startsWith("set name to ")){
 					String name = txt.substring(11);
-					sp.edit().putString("mpop.revii.ai.NAME", name).commit();
+					sp.edit().putString("mpop.revii.ai.NAME", name).apply();
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
 					sc2.addView(chat(ctx, "Name changer", "Name changed to " + name));
 					e.setText("");
