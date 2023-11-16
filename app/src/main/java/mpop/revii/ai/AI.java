@@ -53,7 +53,7 @@ public class AI extends LinearLayout {
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
-		sc2.addView(chat(ctx, "Welcome bot:", "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `your name`*** and your name will be changed."));
+		sc2.addView(chat(ctx, "Welcome bot:", "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `your name`*** and your name will be changed."));
 		
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.LTGRAY);
