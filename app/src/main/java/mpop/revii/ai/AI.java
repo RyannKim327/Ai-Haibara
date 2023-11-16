@@ -206,4 +206,26 @@ public class AI extends LinearLayout {
 	public static int setResources(Context ctx, String name, String type){
 		return ctx.getResources().getIdentifier(name, type, ctx.getPackageName());
 	}
+	public static Toast show(Context ctx, String msg){
+		Toast toast;
+		float f = 25;
+		ShapeDrawable drawable = new ShapeDrawable(new RoundRectShape(new float[]{
+			f, f, f, f,
+			f, f, f, f
+		}, null, null));
+		TextView tv = new TextView(ctx);
+
+		drawable.getPaint().setColor("#FF0085EE");
+
+		tv.setText(msg);
+		tv.setTypeface(Typeface.SERIF);
+		tv.setTextSize(15);
+		tv.setTextColor(Color.WHITE);
+		tv.setBackground(drawable);
+		tv.setPadding(10, 5, 10, 5);
+		toast.setView(tv);
+		toast.setDuration(Toast.LENGTH_LONG);
+		toast.show();
+		return toast;
+	}
 }
