@@ -169,10 +169,10 @@ public class AI extends LinearLayout {
 		LinearLayout base = new LinearLayout(ctx);
 		final Markdown chat = new Markdown(ctx);
 		TextView from = new TextView(ctx);
-		float f = 13, f2 = -10, f3 = f;
+		float f = 13, f2 = -20, f3 = f;
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
 			f2 = f;
-			f3 = -10;
+			f3 = -20;
 		}
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 			f, f, f, f,
