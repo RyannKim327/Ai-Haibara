@@ -207,7 +207,7 @@ public class AI extends LinearLayout {
 		return ctx.getResources().getIdentifier(name, type, ctx.getPackageName());
 	}
 	public static Toast show(Context ctx, String msg){
-		Toast toast;
+		Toast toast = new Toast(ctx);
 		float f = 25;
 		ShapeDrawable drawable = new ShapeDrawable(new RoundRectShape(new float[]{
 			f, f, f, f,
@@ -215,7 +215,7 @@ public class AI extends LinearLayout {
 		}, null, null));
 		TextView tv = new TextView(ctx);
 
-		drawable.getPaint().setColor("#FF0085EE");
+		drawable.getPaint().setColor(Color.parseColor("#FF0085EE"));
 
 		tv.setText(msg);
 		tv.setTypeface(Typeface.SERIF);
