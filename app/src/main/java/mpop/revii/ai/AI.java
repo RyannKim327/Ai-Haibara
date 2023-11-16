@@ -120,7 +120,7 @@ public class AI extends LinearLayout {
 		});
 		
 		v.setLayoutParams(new LayoutParams(25, 5));
-		v2.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, 2));
+		v2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 2));
 		v2.setBackgroundColor(Color.LTGRAY);
 		
 		ctx.registerReceiver(new BroadcastReceiver(){
@@ -178,7 +178,7 @@ public class AI extends LinearLayout {
 		}
 
 		base.setOrientation(LinearLayout.VERTICAL);
-		base.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+		base.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		
 		from.setText(String.format(" %s ",send));
 		from.setPadding(10, 10, 10, 10);
