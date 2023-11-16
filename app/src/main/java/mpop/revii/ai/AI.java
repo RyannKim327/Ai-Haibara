@@ -24,8 +24,6 @@ import android.text.Spannable;
 import android.text.Html;
 
 public class AI extends LinearLayout {
-	
-	http h;
 	ScrollView sc;
 	LinearLayout sc2;
 	EditText e;
@@ -104,7 +102,7 @@ public class AI extends LinearLayout {
 					sc2.removeAllViews();
 				}else{
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
-					h = new http(ctx);
+					http h = new http(ctx);
 					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", "RyannKim327") + "\nMessage: " + e.getText().toString());
 					e.setText("");
 				}
