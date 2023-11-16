@@ -30,11 +30,9 @@ public class AI extends LinearLayout {
 	
 	public AI(final Context ctx, AttributeSet attr){
 		super(ctx, attr);
-		
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
 		
 		float f = 15f;
-		
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 				f, f, f, f,
@@ -44,6 +42,7 @@ public class AI extends LinearLayout {
 				f, f, f, f,
 				f, f, f ,f
 		}, null, null));
+
 		LinearLayout input = new LinearLayout(ctx);
 		e = new EditText(ctx);
 		iv = new ImageButton(ctx);
@@ -149,10 +148,14 @@ public class AI extends LinearLayout {
 		LinearLayout base = new LinearLayout(ctx);
 		final Markdown chat = new Markdown(ctx);
 		TextView from = new TextView(ctx);
-		float f = 15;
+		float f = 15, f2 = 0;
+		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
+			f = 0;
+			f2 = 15;
+		}
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
-				f, f, f, f,
-				f, f, f ,f
+				f2, f2, f, f,
+				f2, f2, f ,f
 		}, null, null));
 		
 		base.setOrientation(LinearLayout.VERTICAL);
