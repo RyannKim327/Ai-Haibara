@@ -37,8 +37,14 @@ public class AI extends LinearLayout {
 		
 		float f = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
-		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f, f, f, f, f ,f}, null, null));
-		ShapeDrawable sd2 = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f, f, f, f, f ,f}, null, null));
+		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
+				f, f, f, f,
+				f, f, f ,f
+		}, null, null));
+		ShapeDrawable sd2 = new ShapeDrawable(new RoundRectShape(new float[]{
+				f, f, f, f,
+				f, f, f ,f
+		}, null, null));
 		LinearLayout input = new LinearLayout(ctx);
 		e = new EditText(ctx);
 		iv = new ImageButton(ctx);
@@ -145,7 +151,10 @@ public class AI extends LinearLayout {
 		final Markdown chat = new Markdown(ctx);
 		TextView from = new TextView(ctx);
 		float f = 15;
-		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f, f, f, f, f ,f}, null, null));
+		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
+				f, f, f, f,
+				f, f, f ,f
+		}, null, null));
 		
 		base.setOrientation(LinearLayout.VERTICAL);
 		base.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
@@ -169,7 +178,7 @@ public class AI extends LinearLayout {
 			chat.setTextColor(Color.WHITE);
 		}
 		
-		from.setText(" " + send + " ");
+		from.setText(String.format(" %s ",send));
 		from.setPadding(10, 10, 10, 10);
 		from.setTextSize(10);
 		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
