@@ -109,6 +109,7 @@ public class AI extends LinearLayout {
 					http h = new http(ctx);
 					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", "RyannKim327") + "\nMessage: " + e.getText().toString());
 					e.setText("");
+					iv.setEnabled(false);
 				}
 				new Handler().postDelayed(new Runnable(){
 					@Override
@@ -127,6 +128,7 @@ public class AI extends LinearLayout {
 			@Override
 			public void onReceive(Context p1, Intent p2) {
 				sc2.addView(chat(ctx, "AI:", p2.getStringExtra("DATA")));
+				iv.setEnabled(true);
 				new Handler().postDelayed(new Runnable(){
 					@Override
 					public void run() {
