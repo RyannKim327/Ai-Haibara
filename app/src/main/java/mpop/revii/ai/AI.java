@@ -31,16 +31,15 @@ public class AI extends LinearLayout {
 	public AI(final Context ctx, AttributeSet attr){
 		super(ctx, attr);
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
-		
 		float f = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 				f, f, f, f,
-				f, f, f ,f
+				f, f, f, f
 		}, null, null));
 		ShapeDrawable sd2 = new ShapeDrawable(new RoundRectShape(new float[]{
 				f, f, f, f,
-				f, f, f ,f
+				f, f, f, f
 		}, null, null));
 
 		LinearLayout input = new LinearLayout(ctx);
@@ -90,7 +89,6 @@ public class AI extends LinearLayout {
 			iv.setImageResource(android.R.drawable.ic_menu_send);
 		}
 		iv.setBackgroundColor(Color.TRANSPARENT);
-		
 		iv.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View p1) {
@@ -155,12 +153,9 @@ public class AI extends LinearLayout {
 		}
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 				f2, f2, f, f,
-				f2, f2, f ,f
+				f2, f2, f, f
 		}, null, null));
-		
-		base.setOrientation(LinearLayout.VERTICAL);
-		base.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-		
+
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
 			base.setGravity(Gravity.RIGHT);
 			base.setPadding(75, 5, 5, 5);
@@ -179,6 +174,9 @@ public class AI extends LinearLayout {
 			sd.getPaint().setColor(Color.parseColor("#303030"));
 			chat.setTextColor(Color.WHITE);
 		}
+
+		base.setOrientation(LinearLayout.VERTICAL);
+		base.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		
 		from.setText(String.format(" %s ",send));
 		from.setPadding(10, 10, 10, 10);
