@@ -222,7 +222,7 @@ public class AI extends LinearLayout {
 		tv.setTextSize(15);
 		tv.setTextColor(Color.WHITE);
 		tv.setBackground(drawable);
-		tv.setPadding(10, 5, 10, 5);
+		tv.setPadding(13, 5, 13, 5);
 		toast.setView(tv);
 		toast.setDuration(Toast.LENGTH_LONG);
 		toast.show();
