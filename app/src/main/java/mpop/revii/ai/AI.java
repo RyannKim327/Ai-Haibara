@@ -175,6 +175,8 @@ public class AI extends LinearLayout {
 				f, f, f, f
 		}, null, null));
 
+		sd.getPaint().setShadowLayer(3f, 5f, 5f, Color.parseColor("#ffffff"));
+
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
 			base.setGravity(Gravity.RIGHT);
 			base.setPadding(75, 5, 5, 5);
