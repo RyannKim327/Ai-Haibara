@@ -30,7 +30,8 @@ public class AI extends LinearLayout {
 	ImageButton iv;
 	SharedPreferences sp;
 	String welcome = "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `your name`*** and your name will be changed, you may also use `cls` or `clear` to clear the entire chatbox.";
-	
+	boolean replied = true;
+
 	public AI(final Context ctx, AttributeSet attr){
 		super(ctx, attr);
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
@@ -113,6 +114,7 @@ public class AI extends LinearLayout {
 					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", "RyannKim327") + "\nMessage: " + e.getText().toString());
 					e.setText("");
 					iv.setEnabled(false);
+					replied = false;
 				}
 				new Handler().postDelayed(new Runnable(){
 					@Override
@@ -128,6 +130,12 @@ public class AI extends LinearLayout {
 			public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4) {}
 			@Override
 			public void onTextChanged(CharSequence p1, int p2, int p3, int p4) {
+				String text = e.getText().toString().trim();
+				if(text.isEmpty() && replied){
+					iv.setEnabled(false);
+				}else{
+					iv.setEnabled(true);
+				}
 			}
 			@Override
 			public void afterTextChanged(Editable p1) {}
@@ -142,6 +150,7 @@ public class AI extends LinearLayout {
 			public void onReceive(Context p1, Intent p2) {
 				sc2.addView(chat(ctx, "AI:", p2.getStringExtra("DATA")));
 				iv.setEnabled(true);
+				replied = true;
 				new Handler().postDelayed(new Runnable(){
 					@Override
 					public void run() {
