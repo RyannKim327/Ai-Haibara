@@ -192,7 +192,7 @@ public class AI extends LinearLayout {
 			@Override
 			public boolean onLongClick(View p1) {
 				((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(chat.getText().toString());
-				Toast.makeText(ctx, "Text copied to clipboard", 1).show();
+				Toast.makeText(ctx, "Text copied to clipboard", Toast.LENGTH_LONG).show();
 				return false;
 			}
 		});
