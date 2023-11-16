@@ -155,7 +155,7 @@ public class AI extends LinearLayout {
 		}
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 				f2, f2, f, f,
-				f2, f2, f, f
+				f2, f, f, f
 		}, null, null));
 
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
