@@ -39,12 +39,12 @@ public class AI extends LinearLayout {
 		float f = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
-				f, f, f, f,
-				f, f, f, f
+			f, f, f, f,
+			f, f, f, f
 		}, null, null));
 		ShapeDrawable sd2 = new ShapeDrawable(new RoundRectShape(new float[]{
-				f, f, f, f,
-				f, f, f, f
+			f, f, f, f,
+			f, f, f, f
 		}, null, null));
 
 		LinearLayout input = new LinearLayout(ctx);
@@ -175,8 +175,8 @@ public class AI extends LinearLayout {
 			f3 = 0;
 		}
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
-				f, f, f, f,
-				f3, f3, f2, f2
+			f, f, f, f,
+			f3, f3, f2, f2
 		}, null, null));
 
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
