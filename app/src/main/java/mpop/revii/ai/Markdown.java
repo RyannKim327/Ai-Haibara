@@ -1,8 +1,6 @@
 package mpop.revii.ai;
 import android.content.Context;
 import android.text.Html;
-import android.text.Spanned;
-import android.util.AttributeSet;
 import android.widget.TextView;
 
 public class Markdown extends TextView {
