@@ -12,6 +12,7 @@
 * John Roy Lapida Calimlim > Idea and features, Mentor
 * Salvador > Markdown idea [Head], Mentor
 * John Jeremy Antiguo > Tester, Mentor
+* Ronald Torrejos Limpiado >
 * Earl Shine Sawir
 * Lester Navarra
-* 
+* Eljohn Mago
