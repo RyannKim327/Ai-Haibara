@@ -87,8 +87,8 @@ public class AI extends LinearLayout {
 		e.setHintTextColor(Color.DKGRAY);
 		e.setPadding(8, 5, 8, 5);
 		
-		iv.setLayoutParams(new LayoutParams(40, 40));
-		iv.setPadding(5, 10, 5, 10);
+		iv.setLayoutParams(new LayoutParams(50, 50));
+		// iv.setPadding(5, 10, 5, 10);
 		try{
 			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
 		}catch(Exception e){

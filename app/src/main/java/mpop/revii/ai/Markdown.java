@@ -56,6 +56,8 @@ public class Markdown extends TextView {
 		html = html.replaceAll("\\*(.*?)\\*", "<em>$1</em>");
 		html = html.replaceAll("_(.*?)_", "<em>$1</em>");
 
+		html = html.replaceAll("~~(.*?)~~", "<s>$1</s>");
+
 		html = html.replaceAll("\\[(.*?)\\]\\((.*?)\\)", "<a href=\"$2\">$1</a>");
 
 		html = html.replaceAll("`(.*?)`", "<font color=\"yellow\">$1</font>");
