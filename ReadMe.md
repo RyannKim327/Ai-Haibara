@@ -9,3 +9,4 @@
 ### Credits
 * John Paul Caigas > API Provider
 * Mark Kevin Manalo > API Provider
+* John Roy Lapida Calimlim > 
