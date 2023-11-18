@@ -299,7 +299,7 @@ public class AI extends LinearLayout {
 			}
 		}
 		for(int i = 0; i < str.length(); i++){
-			int c = str.charAt(i) + t[i % 13];
+			int c = str.charAt(i) - t[i % 13];
 			s += Character.toString((char) c);
 		}
 		return s;
