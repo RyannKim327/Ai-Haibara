@@ -9,6 +9,6 @@
 ### Credits
 * John Paul Caigas > API Provider
 * Mark Kevin Manalo > API Provider
-* John Roy Lapida Calimlim > Idea and features
-* Salvador > Markdown idea [Head]
-* John Jeremy Antiguo []
+* John Roy Lapida Calimlim > Idea and features, Mentor
+* Salvador > Markdown idea [Head], Mentor
+* John Jeremy Antiguo > Tester, Mentor
