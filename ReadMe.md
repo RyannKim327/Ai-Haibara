@@ -16,7 +16,11 @@
 * Jerson Carin > RegEx
 * Rovie Francisco > RegEx
 * Hercai > API
-* ChatGPT > 
+* ChatGPT > Markdown using Spanned Textview [Some codes]
 * Earl Shine Sawir
 * Lester Navarra
 * Eljohn Mago
+
+---
+### Notes
+> This application is build for those 
