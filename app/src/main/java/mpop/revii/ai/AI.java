@@ -24,6 +24,7 @@ import android.text.TextWatcher;
 import android.text.Editable;
 
 public class AI extends LinearLayout {
+	
 	ScrollView sc;
 	LinearLayout sc2;
 	EditText e;
@@ -31,7 +32,7 @@ public class AI extends LinearLayout {
 	SharedPreferences sp;
 	String welcome = "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `<your name>`*** and your name will be changed, you may also use ***`cls`*** or ***`clear`*** to clear the entire chatbox. And to change the thread's text sizes, use ***set text size to `<number>`***, the base text size would be your name or username on the top of each chat.";
 	boolean replied = true;
-
+	
 	public AI(final Context ctx, AttributeSet attr){
 		super(ctx, attr);
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
