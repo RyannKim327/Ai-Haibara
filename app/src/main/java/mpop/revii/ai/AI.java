@@ -116,7 +116,7 @@ public class AI extends LinearLayout {
 						i.putExtra("mpop.revii.ai.DATA_SIZE", size);
 						ctx.sendBroadcast(i);
 						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
-						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
+						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%d`", size)));
 					}
 					e.setText("");
 				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
