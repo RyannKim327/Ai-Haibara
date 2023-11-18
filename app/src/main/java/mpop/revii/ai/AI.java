@@ -76,19 +76,17 @@ public class AI extends LinearLayout {
 		});
 		
 		input.setOrientation(LinearLayout.HORIZONTAL);
-		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 75));
 		input.setGravity(Gravity.BOTTOM);
 		input.setPadding(5, 5, 5, 5);
 		
-		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.8f));
+		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 0.9f));
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
 		e.setTextColor(Color.BLACK);
 		e.setHintTextColor(Color.DKGRAY);
 		e.setPadding(8, 5, 8, 5);
-		
-		// iv.setLayoutParams(new LayoutParams(50, 50));
-		// iv.setPadding(5, 10, 5, 10);
+
 		try{
 			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
 		}catch(Exception e){
@@ -151,7 +149,7 @@ public class AI extends LinearLayout {
 			public void afterTextChanged(Editable p1) {}
 		});
 		
-		v.setLayoutParams(new LayoutParams(25, 5));
+		v.setLayoutParams(new LayoutParams(25, 1));
 		v2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 2));
 		v2.setBackgroundColor(Color.LTGRAY);
 		
