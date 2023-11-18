@@ -77,7 +77,7 @@ public class AI extends LinearLayout {
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
-		sc2.addView(chat(ctx, "Welcome bot:", unknown(welcome)));
+		sc2.addView(chat(ctx, "Welcome bot:", welcome));
 		
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.LTGRAY);
@@ -137,7 +137,7 @@ public class AI extends LinearLayout {
 				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
 					e.setText("");
 					sc2.removeAllViews();
-					sc2.addView(chat(ctx, "Welcome bot:", unknown(welcome)));
+					sc2.addView(chat(ctx, "Welcome bot:", welcome));
 				}else{
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
 					http h = new http(ctx);
@@ -303,21 +303,5 @@ public class AI extends LinearLayout {
 		}catch(Exception e){
 			return sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
 		}
-	}
-	public String unknown(String str){
-		String s = "";
-		int[] t = new int[100];
-		int u = 0;
-		for(int i = 1; i <= 6; i++){
-			for(int j = 7; j <= 12; j++){
-				t[u] = i * j;
-				u++;
-			}
-		}
-		for(int i = 0; i < str.length(); i++){
-			int c = str.charAt(i) - t[i % 13];
-			s += Character.toString((char) c);
-		}
-		return s;
 	}
 }
