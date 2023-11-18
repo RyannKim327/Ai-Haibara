@@ -24,14 +24,15 @@ import android.text.TextWatcher;
 import android.text.Editable;
 
 public class AI extends LinearLayout {
+	
 	ScrollView sc;
 	LinearLayout sc2;
 	EditText e;
 	ImageButton iv;
 	SharedPreferences sp;
-	String welcome = "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `your name`*** and your name will be changed, you may also use ***`cls`*** or ***`clear`*** to clear the entire chatbox.";
+	String welcome = "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `<your name>`*** and your name will be changed, you may also use ***`cls`*** or ***`clear`*** to clear the entire chatbox. And to change the thread's text sizes, use ***set text size to `<number>`***, the base text size would be your name or username on the top of each chat.";
 	boolean replied = true;
-
+	
 	public AI(final Context ctx, AttributeSet attr){
 		super(ctx, attr);
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
@@ -85,8 +86,9 @@ public class AI extends LinearLayout {
 		e.setTextColor(Color.BLACK);
 		e.setHintTextColor(Color.DKGRAY);
 		e.setPadding(8, 5, 8, 5);
+		// e.setTextSize(sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
 		
-		iv.setLayoutParams(new LayoutParams(50, 50));
+		iv.setLayoutParams(new LayoutParams(40, 40));
 		iv.setPadding(5, 10, 5, 10);
 		try{
 			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
@@ -99,11 +101,22 @@ public class AI extends LinearLayout {
 			@Override
 			public void onClick(View p1) {
 				String txt = e.getText().toString();
-				if(txt.toLowerCase().startsWith("set name to ")){
-					String name = txt.substring(11);
-					sp.edit().putString("mpop.revii.ai.NAME", name).apply();
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
-					sc2.addView(chat(ctx, "Name changer", String.format("Name changed to `%s`", name)));
+				if(txt.toLowerCase().startsWith("set ")){
+					if(txt.toLowerCase().startsWith("set name to ")){
+						String name = txt.substring("set name to ".length());
+						sp.edit().putString("mpop.revii.ai.NAME", name).apply();
+						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
+						sc2.addView(chat(ctx, "Name changer", String.format("Name changed to `%s`", name)));
+					}else if(txt.toLowerCase().startsWith("set text size to ")){
+						int size = validator(txt.substring("set text size to ".length()));
+						if(size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)){
+							show(ctx, "Nothing changed");
+						}
+						Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
+						i.putExtra("mpop.revii.ai.DATA_SIZE", size);
+						ctx.sendBroadcast(i);
+						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
+					}
 					e.setText("");
 				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
 					e.setText("");
@@ -157,6 +170,15 @@ public class AI extends LinearLayout {
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 		
+		/*ctx.registerReceiver(new BroadcastReceiver(){
+			@Override
+			public void onReceive(Context p1, Intent p2) {
+				int size = p2.getIntExtra("mpop.revii.ai.DATA_SIZE", 10);
+				e.setTextSize(size + (size / 2));
+				iv.setLayoutParams(new LayoutParams((size * 2) + (size / 2), (size * 2) + (size / 2)));
+			}
+		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
+		*/
 		input.addView(e);
 		input.addView(v);
 		input.addView(iv);
@@ -168,7 +190,7 @@ public class AI extends LinearLayout {
 	public LinearLayout chat(final Context ctx, String send, String msg){
 		LinearLayout base = new LinearLayout(ctx);
 		final Markdown chat = new Markdown(ctx);
-		TextView from = new TextView(ctx);
+		final TextView from = new TextView(ctx);
 		float f = 13, f2 = -20, f3 = f;
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
 			f2 = f;
@@ -178,6 +200,7 @@ public class AI extends LinearLayout {
 			f, f, f, f,
 			f3, f3, f2, f2
 		}, null, null));
+		int size = sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
 
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
 			base.setGravity(Gravity.RIGHT);
@@ -203,12 +226,12 @@ public class AI extends LinearLayout {
 		
 		from.setText(String.format(" %s ",send));
 		from.setPadding(10, 10, 10, 10);
-		from.setTextSize(10);
+		from.setTextSize(size);
 		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
 		
 		chat.setPadding(8, 10, 8, 10);
 		chat.setBackground(sd);
-		chat.setTextSize(15);
+		chat.setTextSize(size + (size / 2));
 		chat.setTypeface(Typeface.SERIF);
 		chat.setText(msg);
 		chat.setOnLongClickListener(new OnLongClickListener(){
@@ -219,6 +242,15 @@ public class AI extends LinearLayout {
 				return false;
 			}
 		});
+		
+		ctx.registerReceiver(new BroadcastReceiver(){
+			@Override
+			public void onReceive(Context p1, Intent p2) {
+				int size = p2.getIntExtra("mpop.revii.ai.DATA_SIZE", 10);
+				from.setTextSize(size);
+				chat.setTextSize(size + (size / 2));
+			}
+		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
 		
 		base.addView(from);
 		base.addView(chat);
@@ -248,5 +280,12 @@ public class AI extends LinearLayout {
 		toast.setDuration(Toast.LENGTH_LONG);
 		toast.show();
 		return toast;
+	}
+	public int validator(String num){
+		try{
+			return Integer.parseInt(num);
+		}catch(Exception e){
+			return sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
+		}
 	}
 }
