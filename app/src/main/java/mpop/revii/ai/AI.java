@@ -31,7 +31,7 @@ public class AI extends LinearLayout {
 	EditText e;
 	ImageButton iv;
 	SharedPreferences sp;
-	String welcome = "Omuvz8.zu5w~*q{0|'|qs~,yyx6{'x{yuqq>4zh{n*o{|74wzzm5*lx2x<{(lrlzuu2~}5jznnt>nrXymmsHl>6bov)Zlz0Uuvzdw4+Yo}4a}pv)Wlzo|pB5Li{v+_vyy6kv~q{fy6.Z|8_lznw,O~}}cv3*Wqw6fv}i{|lh|:2Yov)Wls}l>6kvs~jnz~j~<4`}u([y,Zq}zy5Jiusxxw}n@8gvvjvo,b{z(Usx|wqvr?'Rn|~{|0Uucv3*]{yw4\vukr}n{j~<4^}jirfy`vuy6yl(|yxq.szuzz(rw{xs}w}y'|x*ts0hu5*twsz4_8vsznko.wzk(}rp,y{}5i}}~zz<0X8v})~z,qxs}}5w~|+zo}w@6~ulu+ysu}}5123}p.~s{8v(iF{2wzEh345,o~v4y(wkxq.{8wl(lrlzuuv@6|(vk,o|6l(345lq|t@B?'w{*568pu{yg234+}0u{y'|qo+q|{{8xoi}lz<0Sz8v(lrlzuu2~}5{p{olp52{'{rp:0{8?12|o,u6~m)~z,nLzzyFi456:0|{8wh{n*q2z'xwp.rw4y(wkxq.4zyvjwp,}~2~}5{wy*zr.usw~8xoi}8";
+	String welcome = "Omuvz8.zu5w~*q{0|'|qs~,yyx6{'x{yuqq>4zh{n*o{|74wzzm5*lx2x<{(lrlzuu2~}5jznnt>nrXymmsHl>6bov)Zlz0Uuvzdw4+Yo}4a}pv)Wlzo|pB5Li{v+_vyy6kv~q{fy6.Z|8_lznw,O~}}cv3*Wqw6fv}i{|lh|:2Yov)Wls}l>6kvs~jnz~j~<4`}u([y,Zq}zy5Jiusxxw}n@8gvvjvo,b{z(Usx|wqvr?'Rn|~{|0Uucv3*]{yw4\\vukr}n{j~<4^}jirfy`vuy6yl(|yxq.szuzz(rw{xs}w}y'|x*ts0hu5*twsz4_8vsznko.wzk(}rp,y{}5i}}~zz<0X8v})~z,qxs}}5w~|+zo}w@6~ulu+ysu}}5123}p.~s{8v(iF{2wzEh345,o~v4y(wkxq.{8wl(lrlzuuv@6|(vk,o|6l(345lq|t@B?'w{*568pu{yg234+}0u{y'|qo+q|{{8xoi}lz<0Sz8v(lrlzuu2~}5{p{olp52{'{rp:0{8?12|o,u6~m)~z,nLzzyFi456:0|{8wh{n*q2z'xwp.rw4y(wkxq.4zyvjwp,}~2~}5{wy*zr.usw~8xoi}8";
 	boolean replied = true;
 	
 	public AI(final Context ctx, AttributeSet attr){
