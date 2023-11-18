@@ -106,7 +106,7 @@ public class AI extends LinearLayout {
 						String name = txt.substring("set name to ".length());
 						sp.edit().putString("mpop.revii.ai.NAME", name).apply();
 						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
-						sc2.addView(chat(ctx, "Name changer", String.format("Name changed to `%s`", name)));
+						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
 					}else if(txt.toLowerCase().startsWith("set text size to ")){
 						int size = validator(txt.substring("set text size to ".length()));
 						if(size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)){
@@ -116,6 +116,7 @@ public class AI extends LinearLayout {
 						i.putExtra("mpop.revii.ai.DATA_SIZE", size);
 						ctx.sendBroadcast(i);
 						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
+						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
 					}
 					e.setText("");
 				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
