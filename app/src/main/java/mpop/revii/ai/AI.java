@@ -61,7 +61,7 @@ public class AI extends LinearLayout {
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
-		sc2.addView(chat(ctx, "Welcome bot:", welcome));
+		sc2.addView(chat(ctx, "Welcome bot:", unknown(welcome)));
 		
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.LTGRAY);
@@ -121,7 +121,7 @@ public class AI extends LinearLayout {
 				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
 					e.setText("");
 					sc2.removeAllViews();
-					sc2.addView(chat(ctx, "Welcome bot:", welcome));
+					sc2.addView(chat(ctx, "Welcome bot:", unknown(welcome)));
 				}else{
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
 					http h = new http(ctx);
