@@ -31,7 +31,7 @@ public class AI extends LinearLayout {
 	EditText e;
 	ImageButton iv;
 	SharedPreferences sp;
-	String welcome = "Hello, thank you for using this kind of project, please don't abuse, also don't change the credits.\n\nCredits:\n* John Paul Caigas\n* Mark Kevin Manalo\n* Earl Shine Sawir\n* John Jeremy Antiguo\n* Lester Navarra\n* Eljohn Mago\n* Salvador\n* John Roy Lapida Calimlim\n* Ronald Torrejos Limpiado\n* Jerson Carin\n* Rovie Francisco\n* Hercai\nThere are some changes implemented to the program, which I already removed the toggle button. For you to change your name, kindly message ***set name to `<your name>`*** and your name will be changed, you may also use ***`cls`*** or ***`clear`*** to clear the entire chatbox. And to change the thread's text sizes, use ***set text size to `<number>`***, the base text size would be your name or username on the top of each chat.";
+	String welcome = "Omuvz8.zu5w~*q{0|'|qs~,yyx6{'x{yuqq>4zh{n*o{|74wzzm5*lx2x<{(lrlzuu2~}5jznnt>nrXymmsHl>6bov)Zlz0Uuvzdw4+Yo}4a}pv)Wlzo|pB5Li{v+_vyy6kv~q{fy6.Z|8_lznw,O~}}cv3*Wqw6fv}i{|lh|:2Yov)Wls}l>6kvs~jnz~j~<4`}u([y,Zq}zy5Jiusxxw}n@8gvvjvo,b{z(Usx|wqvr?'Rn|~{|0Uucv3*]{yw4\vukr}n{j~<4^}jirfy`vuy6yl(|yxq.szuzz(rw{xs}w}y'|x*ts0hu5*twsz4_8vsznko.wzk(}rp,y{}5i}}~zz<0X8v})~z,qxs}}5w~|+zo}w@6~ulu+ysu}}5123}p.~s{8v(iF{2wzEh345,o~v4y(wkxq.{8wl(lrlzuuv@6|(vk,o|6l(345lq|t@B?'w{*568pu{yg234+}0u{y'|qo+q|{{8xoi}lz<0Sz8v(lrlzuu2~}5{p{olp52{'{rp:0{8?12|o,u6~m)~z,nLzzyFi456:0|{8wh{n*q2z'xwp.rw4y(wkxq.4zyvjwp,}~2~}5{wy*zr.usw~8xoi}8";
 	boolean replied = true;
 	
 	public AI(final Context ctx, AttributeSet attr){
@@ -287,5 +287,21 @@ public class AI extends LinearLayout {
 		}catch(Exception e){
 			return sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
 		}
+	}
+	public String unknown(String str){
+		String s = "";
+		int[] t = new int[100];
+		int u = 0;
+		for(int i = 1; i <= 6; i++){
+			for(int j = 7; j <= 12; j++){
+				t[u] = i * j;
+				u++;
+			}
+		}
+		for(int i = 0; i < str.length(); i++){
+			int c = str.charAt(i) + t[i % 13];
+			s += Character.toString((char) c);
+		}
+		return s;
 	}
 }
