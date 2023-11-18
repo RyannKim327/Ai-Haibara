@@ -13,6 +13,8 @@
 * Salvador > Markdown idea [Head], Mentor
 * John Jeremy Antiguo > Tester, Mentor
 * Ronald Torrejos Limpiado > Java Mentor
+* Jerson Carin > RegEx
+* Rovie Francisco > RegEx
 * Earl Shine Sawir
 * Lester Navarra
 * Eljohn Mago
