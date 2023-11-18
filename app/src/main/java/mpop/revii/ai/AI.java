@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -76,17 +77,18 @@ public class AI extends LinearLayout {
 		});
 		
 		input.setOrientation(LinearLayout.HORIZONTAL);
-		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 75));
+		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		input.setGravity(Gravity.BOTTOM);
 		input.setPadding(5, 5, 5, 5);
 		
-		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 0.9f));
+		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
 		e.setTextColor(Color.BLACK);
 		e.setHintTextColor(Color.DKGRAY);
 		e.setPadding(8, 5, 8, 5);
 
+		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		try{
 			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
 		}catch(Exception e){
