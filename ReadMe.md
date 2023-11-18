@@ -15,7 +15,8 @@
 * Ronald Torrejos Limpiado > Java Mentor
 * Jerson Carin > RegEx
 * Rovie Francisco > RegEx
+* Hercai > API
+* ChatGPT > 
 * Earl Shine Sawir
 * Lester Navarra
 * Eljohn Mago
-* Hercai > API
