@@ -7,8 +7,9 @@
 
 ---
 ### Credits
-* John Paul Caigas > API Provider
+* John Paul Caigas > API Provider, Mentor
 * Mark Kevin Manalo > API Provider
+* Earl Shine Sawir > Mentor in JS
 * John Roy Lapida Calimlim > Idea and features, Mentor
 * Salvador > Markdown idea [Head], Mentor
 * John Jeremy Antiguo > Tester, Mentor
