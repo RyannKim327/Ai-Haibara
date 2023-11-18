@@ -86,7 +86,6 @@ public class AI extends LinearLayout {
 		e.setTextColor(Color.BLACK);
 		e.setHintTextColor(Color.DKGRAY);
 		e.setPadding(8, 5, 8, 5);
-		// e.setTextSize(sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
 		
 		iv.setLayoutParams(new LayoutParams(40, 40));
 		iv.setPadding(5, 10, 5, 10);
