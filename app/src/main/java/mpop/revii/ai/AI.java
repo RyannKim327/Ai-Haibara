@@ -295,6 +295,7 @@ public class AI extends LinearLayout {
 		for(int i = 1; i <= 6; i++){
 			for(int j = 7; j <= 12; j++){
 				t[u] = i * j;
+				u++;
 			}
 		}
 		for(int i = 0; i < x.length; i++){
