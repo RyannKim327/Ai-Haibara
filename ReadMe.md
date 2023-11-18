@@ -23,4 +23,4 @@
 
 ---
 ### Notes
-> This application is build for 
+> This application is build just to be a feature, and later on, this would be a simple application which uses
