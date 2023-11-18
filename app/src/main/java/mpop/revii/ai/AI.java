@@ -302,6 +302,6 @@ public class AI extends LinearLayout {
 			s += Character.toString((char) v);
 		}
 
-		return s;
+		return s.toString();
 	}
 }
