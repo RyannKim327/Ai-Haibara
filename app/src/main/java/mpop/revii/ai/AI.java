@@ -80,7 +80,7 @@ public class AI extends LinearLayout {
 		input.setGravity(Gravity.BOTTOM);
 		input.setPadding(5, 5, 5, 5);
 		
-		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.8f));
+		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, 0.8f));
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
 		e.setTextColor(Color.BLACK);
