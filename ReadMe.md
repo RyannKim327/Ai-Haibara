@@ -23,4 +23,4 @@
 
 ---
 ### Notes
-> This application is build just to be a feature, and later on, this would be a simple application which is available to the public. Any kind of changes regarding to the credits are ***prohibitted*** which we need to have some respect from the creator upto the people behind this project.
+> This application is build just to be a feature, and later on, this would be a simple application which is available to the public. Any kind of changes regarding to the credits are ***prohibited*** which we need to have some respect from the creator upto the people behind this project.
