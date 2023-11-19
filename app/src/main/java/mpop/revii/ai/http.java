@@ -21,7 +21,7 @@ public class http extends AsyncTask {
 	@Override
 	protected String doInBackground(Object[] p1) {
 		try {
-			url = "https://hercai.onrender.com/v3-beta/hercai?question="+ URLEncoder.encode(p1[0].toString(), "UTF-8");
+			url = "https://hercai.onrender.com/v3-beta/hercai?question=" + URLEncoder.encode(p1[0].toString(), "UTF-8");
 			URL u = new URL(url);
 			URLConnection conn = u.openConnection();
 			conn.setDoInput(true);
