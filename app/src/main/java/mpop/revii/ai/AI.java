@@ -91,9 +91,9 @@ public class AI extends LinearLayout {
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
 		iv.setEnabled(false);
-		show(ctx, AI.setResources(ctx, "sample", "drawable"));
+		show(ctx, String.valueOf(AI.setResources(ctx, "sample", "drawable")));
 		try{
-			iv.setImageResource(String.valueOf(AI.setResources(ctx, "send", "drawable")));
+			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
 		}catch(Exception e){
 			iv.setImageResource(android.R.drawable.ic_menu_send);
 		}
