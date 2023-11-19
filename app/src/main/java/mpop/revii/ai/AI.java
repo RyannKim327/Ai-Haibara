@@ -169,16 +169,7 @@ public class AI extends LinearLayout {
 				}, 100);
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
-		
-		/*ctx.registerReceiver(new BroadcastReceiver(){
-			@Override
-			public void onReceive(Context p1, Intent p2) {
-				int size = p2.getIntExtra("mpop.revii.ai.DATA_SIZE", 10);
-				e.setTextSize(size + (size / 2));
-				iv.setLayoutParams(new LayoutParams((size * 2) + (size / 2), (size * 2) + (size / 2)));
-			}
-		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
-		*/
+
 		input.addView(e);
 		input.addView(v);
 		input.addView(iv);
