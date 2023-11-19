@@ -91,7 +91,7 @@ public class AI extends LinearLayout {
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
 		iv.setEnabled(false);
-		show()
+		show(AI.setResources(ctx));
 		try{
 			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
 		}catch(Exception e){
