@@ -25,7 +25,8 @@ public class Markdown extends TextView {
 			}
 			if(x){
 				if(txt.startsWith("&gt; ") || txt.startsWith("> ")){
-					txt = txt.replaceAll("&gt; (.*?)", "&emsp;\"$1\"").replace("> (.*?)", "&emsp;\"$1\"");
+					txt = txt.replaceAll("&gt; (.*)", "&emsp;\"$1\"");
+					txt = txt.replace("> (.*)", "&emsp;\"$1\"");
 				}
 				result += start(txt);
 			}else{
