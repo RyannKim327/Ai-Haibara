@@ -14,7 +14,7 @@ public class Markdown extends TextView {
 		String result = "";
 		boolean x = true;
 		for(int i = 0; i < text.length; i++){
-			txt = text[i].replace("<", "&lt;").replace(">", "&gt;");
+			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
 			if(txt.startsWith("```")){
 				x = !x;
 				if(!x){
@@ -31,9 +31,7 @@ public class Markdown extends TextView {
 				}
 			}
 			if(i < text.length - 1){
-				if(txt.startsWith("* ") && !txt.endsWith("*")){
-					
-				}else{
+				if(!txt.startsWith("* ")){
 					result += "<br>";
 				}
 			}
@@ -44,6 +42,8 @@ public class Markdown extends TextView {
 	private String start(String markdown) {
 		String html = markdown;
 
+		html = html.replaceAll("\\> (.*?)", "<blockquote>$1</blockquote>");
+		
 		html = html.replaceAll("###### (.*)", "<h6>$1</h6>");
 		html = html.replaceAll("##### (.*)", "<h5>$1</h5>");
 		html = html.replaceAll("#### (.*)", "<h4>$1</h4>");
@@ -68,8 +68,7 @@ public class Markdown extends TextView {
 		
 		html = html.replaceAll("`", "");
 		
-		html = html.replaceAll("\\* (.*)", "&ensp;<li>&ensp;$1</li>");
-		html = html.replaceAll("\\> (.*?)", "<blockquote>$1</blockquote>");
+		html = html.replaceAll("\\* (.*)", "&ensp;•&ensp;$1<br>");
 		
 		return html;
 	}
