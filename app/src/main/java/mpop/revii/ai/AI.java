@@ -124,9 +124,9 @@ public class AI extends LinearLayout {
 					sc2.removeAllViews();
 					sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
 				}else{
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", "RyannKim327"), txt));
+					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME",mpop(creator)), txt));
 					http h = new http(ctx);
-					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", "RyannKim327") + "\nMessage: " + e.getText().toString());
+					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME",mpop(creator)) + "\nMessage: " + e.getText().toString());
 					e.setText("");
 					iv.setEnabled(false);
 					replied = false;
@@ -184,7 +184,7 @@ public class AI extends LinearLayout {
 		final Markdown chat = new Markdown(ctx);
 		final TextView from = new TextView(ctx);
 		float f = 13, f2 = -20, f3 = f;
-		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
+		if(send.equals(sp.getString("mpop.revii.ai.NAME", mpop(creator)))){
 			f2 = f;
 			f3 = -20;
 		}
@@ -194,7 +194,7 @@ public class AI extends LinearLayout {
 		}, null, null));
 		int size = sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
 
-		if(send.equals(sp.getString("mpop.revii.ai.NAME", "RyannKim327"))){
+		if(send.equals(sp.getString("mpop.revii.ai.NAME",mpop(creator)))){
 			base.setGravity(Gravity.RIGHT);
 			base.setPadding(75, 5, 5, 5);
 			
