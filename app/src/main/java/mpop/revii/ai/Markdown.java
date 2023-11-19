@@ -1,4 +1,5 @@
 package mpop.revii.ai;
+
 import android.content.Context;
 import android.text.Html;
 import android.widget.TextView;

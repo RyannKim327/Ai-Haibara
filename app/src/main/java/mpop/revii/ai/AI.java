@@ -194,7 +194,7 @@ public class AI extends LinearLayout {
 		}, null, null));
 		int size = sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
 
-		if(send.equals(sp.getString("mpop.revii.ai.NAME",mpop(creator)))){
+		if(send.equals(sp.getString("mpop.revii.ai.NAME", mpop(creator)))){
 			base.setGravity(Gravity.RIGHT);
 			base.setPadding(75, 5, 5, 5);
 			
