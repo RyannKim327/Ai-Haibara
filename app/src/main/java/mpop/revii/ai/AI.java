@@ -93,7 +93,7 @@ public class AI extends LinearLayout {
 		iv.setEnabled(false);
 		show(ctx, AI.setResources(ctx, "sample", "drawable"));
 		try{
-			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
+			iv.setImageResource(String.valueOf(AI.setResources(ctx, "send", "drawable")));
 		}catch(Exception e){
 			iv.setImageResource(android.R.drawable.ic_menu_send);
 		}
