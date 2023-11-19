@@ -70,6 +70,8 @@ public class Markdown extends TextView {
 		html = html.replaceAll("  ", "&emsp;");
 		
 		html = html.replaceAll("`", "");
+
+		html = html.replaceAll("\\-\\-\\-", "<hr>");
 		
 		html = html.replaceAll("\\* (.*)", "&ensp;•&ensp;$1<br>");
 		
