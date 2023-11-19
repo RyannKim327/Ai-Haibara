@@ -49,9 +49,10 @@ public class http extends AsyncTask {
 			JSONObject obj = new JSONObject(result.toString());
 			Intent i = new Intent("mpop.revii.ai.DATA");
 			if(obj.getString("reply").equalsIgnoreCase(url)){
-
+				i.putExtra("DATA", "Something went wrong");
 			}else{
 				i.putExtra("DATA", obj.getString("reply"));
+			}
 			ctx.sendBroadcast(i);
 		} catch (JSONException e) {
 			Intent i = new Intent("mpop.revii.ai.DATA");
