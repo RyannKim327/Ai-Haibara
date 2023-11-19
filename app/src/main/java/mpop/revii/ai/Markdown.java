@@ -24,12 +24,16 @@ public class Markdown extends TextView {
 				}
 			}
 			if(x){
+				if(txt.startsWith("&gt; ") || txt.startsWith("> ")){
+					txt = txt.replace("&gt; ", "&emsp;").replace("> ", "&emsp;");
+				}
 				result += start(txt);
 			}else{
 				if(!txt.startsWith("```")){
 					result += txt.replaceAll("\t", "&emsp;").replaceAll("    ", "&emsp;").replaceAll("  ", "&emsp;");
 				}
 			}
+			
 			if(i < text.length - 1){
 				if(!txt.startsWith("* ")){
 					result += "<br>";
@@ -42,8 +46,6 @@ public class Markdown extends TextView {
 	private String start(String markdown) {
 		String html = markdown;
 
-		html = html.replaceAll("\\> (.*?)", "<blockquote>$1</blockquote>");
-		
 		html = html.replaceAll("###### (.*)", "<h6>$1</h6>");
 		html = html.replaceAll("##### (.*)", "<h5>$1</h5>");
 		html = html.replaceAll("#### (.*)", "<h4>$1</h4>");
