@@ -169,7 +169,7 @@ public class AI extends LinearLayout {
 				}, 100);
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
-
+		
 		input.addView(e);
 		input.addView(v);
 		input.addView(iv);
