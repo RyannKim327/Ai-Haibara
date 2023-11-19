@@ -89,13 +89,14 @@ public class AI extends LinearLayout {
 		e.setPadding(8, 5, 8, 5);
 
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
+		iv.setBackgroundColor(Color.TRANSPARENT);
+		iv.setEnabled(false);
+		show()
 		try{
 			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
 		}catch(Exception e){
 			iv.setImageResource(android.R.drawable.ic_menu_send);
 		}
-		iv.setBackgroundColor(Color.TRANSPARENT);
-		iv.setEnabled(false);
 		iv.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View p1) {
@@ -169,7 +170,7 @@ public class AI extends LinearLayout {
 				}, 100);
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
-		
+
 		input.addView(e);
 		input.addView(v);
 		input.addView(iv);
