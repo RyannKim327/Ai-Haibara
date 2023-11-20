@@ -201,7 +201,7 @@ public class AI extends LinearLayout {
 			chat.setGravity(Gravity.LEFT);
 			chat.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			
-			sd.getPaint().setColor(Color.parseColor("#FF0085EE"));
+			sd.getPaint().setColor(Color.parseColor("#006AFF"));
 		}else{
 			base.setPadding(5, 5, 75, 5);
 			base.setGravity(Gravity.LEFT);
