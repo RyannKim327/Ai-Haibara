@@ -64,7 +64,7 @@ public class AI extends LinearLayout {
 		sc2.setOrientation(LinearLayout.VERTICAL);
 		sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
 		
-		sd.getPaint().setColor(Color.DKGRAY);
+		sd.getPaint().setColor(Color.parseColor(""));
 		sd2.getPaint().setColor(Color.LTGRAY);
 		
 		setBackground(sd);
