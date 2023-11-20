@@ -39,15 +39,15 @@ public class AI extends LinearLayout {
 		super(ctx, attr);
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
 		
-		float f = 0f, f2 = 0f;
+		float f = 0f, f2 = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 			f, f, f, f,
 			f, f, f, f
 		}, null, null));
 		ShapeDrawable sd2 = new ShapeDrawable(new RoundRectShape(new float[]{
-			f, f, f, f,
-			f, f, f, f
+			f2, f2, f2, f2,
+			f2, f2, f2, f2
 		}, null, null));
 
 		LinearLayout input = new LinearLayout(ctx);
