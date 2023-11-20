@@ -66,7 +66,7 @@ public class AI extends LinearLayout {
 		sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
 		
 		sd.getPaint().setColor(Color.DKGRAY);
-		sd2.getPaint().setColor(Color.LTGRAY);
+		sd2.getPaint().setColor(Color.parseColor("#75AAAAAA"));
 		
 		setBackground(sd);
 		setOrientation(LinearLayout.VERTICAL);
@@ -82,7 +82,7 @@ public class AI extends LinearLayout {
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
 		e.setTextColor(Color.WHITE);
-		e.setHintTextColor(Color.parseColor("#606060"));
+		e.setHintTextColor(Color.parseColor("#FFFFFF"));
 		e.setPadding(8, 5, 8, 5);
 
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
