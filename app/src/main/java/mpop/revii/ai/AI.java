@@ -113,7 +113,7 @@ public class AI extends LinearLayout {
 						i.putExtra("mpop.revii.ai.DATA_SIZE", size);
 						ctx.sendBroadcast(i);
 						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
-						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Text sized changed to `%d`", size)));
+						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Text size changed to `%d`", size)));
 					}
 					e.setText("");
 				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
@@ -181,7 +181,7 @@ public class AI extends LinearLayout {
 		LinearLayout base = new LinearLayout(ctx);
 		final Markdown chat = new Markdown(ctx);
 		final TextView from = new TextView(ctx);
-		float f = 13, f2 = -20, f3 = f;
+		float f = 18, f2 = -20, f3 = f;
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", mpop(creator)))){
 			f2 = f;
 			f3 = -20;
@@ -219,7 +219,7 @@ public class AI extends LinearLayout {
 		from.setTextSize(size);
 		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
 		
-		chat.setPadding(8, 10, 8, 10);
+		chat.setPadding(15, 10, 15, 10);
 		chat.setBackground(sd);
 		chat.setTextSize(size + (size / 2));
 		chat.setTypeface(Typeface.SERIF);
