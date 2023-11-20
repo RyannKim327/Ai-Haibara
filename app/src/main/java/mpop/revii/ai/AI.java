@@ -59,6 +59,7 @@ public class AI extends LinearLayout {
 		View v2 = new View(ctx);
 		
 		sc.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
+		sc.setPadding(5, 10, 5, 10);
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
