@@ -84,6 +84,7 @@ public class AI extends LinearLayout {
 		e.setTextColor(Color.WHITE);
 		e.setHintTextColor(Color.parseColor("#FFFFFF"));
 		e.setPadding(8, 5, 8, 5);
+		e.setMaxLines(8);
 
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
