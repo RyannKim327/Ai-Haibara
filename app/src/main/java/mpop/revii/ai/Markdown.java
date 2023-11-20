@@ -18,7 +18,7 @@ public class Markdown extends TextView {
 			if(txt.startsWith("```")){
 				x = !x;
 				if(!x){
-					result += "<font color=\"#aaaaaa\">";
+					result += "<font color=\"#dedede\">";
 				}else{
 					result += "</font>";
 				}
