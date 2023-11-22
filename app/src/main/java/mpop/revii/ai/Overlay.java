@@ -34,7 +34,7 @@ public class Overlay extends Service {
 				boolean data = intent.getBooleanExtra("mpop.revii.ai.TOGGLE_AI", false);
 				if(data){
 					stopSelf();
-					AI.show(this, "Overlay closed");
+					AI.show(Overlay.this, "Overlay closed");
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
