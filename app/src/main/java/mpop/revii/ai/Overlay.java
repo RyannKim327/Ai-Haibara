@@ -2,6 +2,7 @@ package mpop.revii.ai;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.view.Gravity;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ public class Overlay extends Service {
 		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
 		params.width = WindowManager.LayoutParams.MATCH_PARENT;
 		params.gravity = Gravity.CENTER;
+		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.
 		manager.addView(ai, params);
 	}
 
