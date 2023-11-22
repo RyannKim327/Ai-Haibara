@@ -6,15 +6,15 @@ import android.os.IBinder;
 
 public class Overlay extends Service {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        setTheme(android.R.style.Theme_DeviceDefault);
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		setTheme(android.R.style.Theme_DeviceDefault);
 
-    }
+	}
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
 }
