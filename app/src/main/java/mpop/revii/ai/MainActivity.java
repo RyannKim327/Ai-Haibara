@@ -18,6 +18,8 @@ public class MainActivity extends Activity {
 			NotificationChannel notip = new NotificationChannel("mpop.revii.notif", "MPOP AI", NotificationManager.IMPORTANCE_DEFAULT);
 			NotificationManager manage = getSystemService(NotificationManager.class);
 			manage.createNotificationChannel(notip);
+			Notification.Builder notif = new Notification.Builder(this);
+
 		}
 	}
 }
