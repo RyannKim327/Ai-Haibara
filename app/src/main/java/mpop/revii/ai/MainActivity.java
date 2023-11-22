@@ -16,8 +16,8 @@ public class MainActivity extends Activity {
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(R.layout.activity_main);
-		Intent i = new Intent(this, Overlay.class);
-		i.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
-		startService(i);
+		// Intent i = new Intent(this, Overlay.class);
+		// i.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+		// startService(i);
 	}
 }
