@@ -7,13 +7,14 @@ import android.view.WindowManager;
 
 public class Overlay extends Service {
 	WindowManager manager;
-	WindowManager.LayoutParams;
+	WindowManager.LayoutParams params;
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
 		AI ai = new AI(this);
-		manager.addView(ai);
+		manager = new WindowManager();
+		manager.addView(ai, params);
 	}
 
 	@Override
