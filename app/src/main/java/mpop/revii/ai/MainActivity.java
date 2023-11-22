@@ -9,11 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends Activity {
-	Overlay o;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		o = new Overlay();
         getActionBar().setIcon(AI.setResources(this, "ic_launcher", "drawable"));
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
@@ -27,7 +25,9 @@ public class MainActivity extends Activity {
 			notif.setContentText("Click to subscribe");
 
 		}
-		startService(new Intent(o.class));
+		Intent i = new Intent(this, Overlay.class);
+		i.setFlags(Intent.)
+		startService(i);
 	}
 
 	@Override
