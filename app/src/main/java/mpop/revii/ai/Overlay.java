@@ -12,8 +12,8 @@ public class Overlay extends Service {
 	public void onCreate() {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
-		AI ai = new AI();
-		manager.addView();
+		AI ai = new AI(this);
+		manager.addView(ai);
 	}
 
 	@Override
