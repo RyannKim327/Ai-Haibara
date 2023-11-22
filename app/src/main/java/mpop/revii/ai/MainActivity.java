@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class MainActivity extends Activity {
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
 			notif.setContentText("Click to subscribe");
 
 		}
-		startService(o);
+		startService(new Intent(o.class));
 	}
 
 	@Override
