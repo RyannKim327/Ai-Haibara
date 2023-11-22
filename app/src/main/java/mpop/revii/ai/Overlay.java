@@ -21,7 +21,7 @@ public class Overlay extends Service {
 		params.width = WindowManager.LayoutParams.MATCH_PARENT;
 		params.gravity = Gravity.CENTER;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-		params.flags
+		params.flags = WindowManager.LayoutParams.FLA
 		manager.addView(ai, params);
 	}
 
