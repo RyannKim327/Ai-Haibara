@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(R.layout.activity_main);
 		NotificationManager notip = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-		notip
+		Notification notif = new Notification();
+		no
 	}
 }
