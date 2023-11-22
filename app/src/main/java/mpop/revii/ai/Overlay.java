@@ -43,13 +43,6 @@ public class Overlay extends Service {
 					stopSelf();
 					AI.show(Overlay.this, "Overlay closed");
 					manager.removeView(ai);
-					Notification.Builder notif = new Notification.Builder(Overlay.this);
-					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-						NotificationManager manager = getSystemService(NotificationManager.class);
-						notif.setContentTitle("Bebe ang AI");
-						notif.setContentText("Click to subscribe");
-						manager.notify(1, notif.build());
-					}
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
