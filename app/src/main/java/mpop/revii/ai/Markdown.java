@@ -17,11 +17,7 @@ public class Markdown extends TextView {
 			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
 			if(txt.startsWith("```")){
 				x = !x;
-				if(!x){
-					result += "<font color=\"#dedede\">";
-				}else{
-					result += "</font>";
-				}
+				result += x ? "</font>" : "<font color=\"#dedede\">";
 			}
 			if(x){
 				if(txt.startsWith("&gt; ") || txt.startsWith("> ")){
