@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(R.layout.activity_main);
-		NotificationChannel notip = new NotificationChannel("channel.id", "MPOP AI", NotificationManager.IMPORTANCE_DEFAULT)
+		NotificationChannel notip = new NotificationChannel("mpop.revii.notif", "MPOP AI", NotificationManager.IMPORTANCE_DEFAULT);
+		
 	}
 }
