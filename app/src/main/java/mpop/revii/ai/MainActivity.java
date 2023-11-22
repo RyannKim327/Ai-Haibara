@@ -2,6 +2,7 @@ package mpop.revii.ai;
  
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Bundle;
 
@@ -15,6 +16,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		NotificationManager notip = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 		Notification notif = new Notification();
-		no
+		notip.
 	}
 }
