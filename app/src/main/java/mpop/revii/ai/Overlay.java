@@ -3,9 +3,11 @@ package mpop.revii.ai;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.view.WindowManager;
 
 public class Overlay extends Service {
-
+	WindowManager manager;
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
