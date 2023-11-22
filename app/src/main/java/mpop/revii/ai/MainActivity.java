@@ -19,7 +19,9 @@ public class MainActivity extends Activity {
 			// NotificationManager manage = getSystemService(NotificationManager.class);
 			// manage.createNotificationChannel(notip);
 			Notification.Builder notif = new Notification.Builder(this, "mpop.revii.ai.notif");
-			notif.set
+			notif.setContentTitle("Bebe ang AI");
+			notif.setContentText("Click to subscribe");
+			notif.setContentIntent();
 
 		}
 	}
