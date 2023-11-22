@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.os.Bundle;
 
 public class MainActivity extends Activity { 
@@ -21,6 +22,7 @@ public class MainActivity extends Activity {
 			Notification.Builder notif = new Notification.Builder(this, "mpop.revii.ai.notif");
 			notif.setContentTitle("Bebe ang AI");
 			notif.setContentText("Click to subscribe");
+			PendingIntent i = new PendingIntent();
 			notif.setContentIntent();
 
 		}
