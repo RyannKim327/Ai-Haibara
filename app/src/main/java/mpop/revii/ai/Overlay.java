@@ -21,9 +21,9 @@ public class Overlay extends Service {
 		AI ai = new AI(this);
 		manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		params = new WindowManager.LayoutParams();
-		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+		params.height = WindowManager.LayoutParams.WRAP_CONTENT | 300;
 		params.width = WindowManager.LayoutParams.MATCH_PARENT;
-		params.gravity = Gravity.CENTER;
+		params.gravity = Gravity.TOP;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
 		params.format = PixelFormat.TRANSLUCENT;
@@ -34,6 +34,7 @@ public class Overlay extends Service {
 				boolean data = intent.getBooleanExtra("mpop.revii.ai.TOGGLE_AI", false);
 				if(data){
 					stopSelf();
+					AI.show(this, "Overlay closed");
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
