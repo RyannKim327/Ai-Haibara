@@ -1,6 +1,8 @@
 package mpop.revii.ai;
  
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.os.Bundle;
 
 public class MainActivity extends Activity { 
@@ -11,6 +13,7 @@ public class MainActivity extends Activity {
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(R.layout.activity_main);
-		
+		NotificationManager notip = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+		notip.
 	}
 }
