@@ -26,12 +26,13 @@ public class MainActivity extends Activity {
 
 		}
 		Intent i = new Intent(this, Overlay.class);
-		i.setFlags(Intent.)
+		i.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
 		startService(i);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
+		
 	}
 }
