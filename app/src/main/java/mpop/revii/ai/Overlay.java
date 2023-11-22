@@ -26,11 +26,14 @@ public class Overlay extends Service {
 		manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		params = new WindowManager.LayoutParams();
 		params.height = WindowManager.LayoutParams.WRAP_CONTENT | 300;
-		params.width = WindowManager.LayoutParams.MATCH_PARENT;
+		params.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		params.gravity = Gravity.TOP;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
 		params.format = PixelFormat.TRANSLUCENT;
+
+		ai.setAlpha(0.5f);
+
 		manager.addView(ai, params);
 		registerReceiver(new BroadcastReceiver() {
 			@Override

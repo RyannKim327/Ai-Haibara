@@ -1,5 +1,6 @@
 package mpop.revii.ai;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -43,18 +44,19 @@ public class AI extends LinearLayout {
 		super(ctx, attr);
 		ai(ctx);
 	}
-	public void ai(final Context ctx){
+	@SuppressLint("UnspecifiedRegisterReceiverFlag")
+	public void ai(final Context ctx) {
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
-		
+
 		float f = 0f, f2 = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
-			f, f, f, f,
-			f, f, f, f
+				f, f, f, f,
+				f, f, f, f
 		}, null, null));
 		ShapeDrawable sd2 = new ShapeDrawable(new RoundRectShape(new float[]{
-			f2, f2, f2, f2,
-			f2, f2, f2, f2
+				f2, f2, f2, f2,
+				f2, f2, f2, f2
 		}, null, null));
 
 		LinearLayout input = new LinearLayout(ctx);
@@ -64,27 +66,27 @@ public class AI extends LinearLayout {
 		sc2 = new LinearLayout(ctx);
 		View v = new View(ctx);
 		View v2 = new View(ctx);
-		
+
 		sc.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc.setPadding(5, 10, 5, 10);
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
 		sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
-		
+
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.parseColor("#75AAAAAA"));
-		
+
 		setBackground(sd);
 		setOrientation(LinearLayout.VERTICAL);
 		setPadding(5, 10, 5, 10);
 		setVisibility(View.VISIBLE);
-		
+
 		input.setOrientation(LinearLayout.HORIZONTAL);
 		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		input.setGravity(Gravity.BOTTOM);
 		input.setPadding(5, 5, 5, 5);
-		
+
 		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
@@ -96,24 +98,24 @@ public class AI extends LinearLayout {
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
 		iv.setEnabled(false);
-		if(AI.setResources(ctx, "send", "drawable") == 0){
+		if (AI.setResources(ctx, "send", "drawable") == 0) {
 			iv.setImageResource(android.R.drawable.ic_menu_send);
-		}else{
+		} else {
 			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
 		}
-		iv.setOnClickListener(new OnClickListener(){
+		iv.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View p1) {
 				String txt = e.getText().toString();
-				if(txt.toLowerCase().startsWith("set ")){
-					if(txt.toLowerCase().startsWith("set name to ")){
+				if (txt.toLowerCase().startsWith("set ")) {
+					if (txt.toLowerCase().startsWith("set name to ")) {
 						String name = txt.substring("set name to ".length());
 						sp.edit().putString("mpop.revii.ai.NAME", name).apply();
 						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", mpop(creator)), txt));
 						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
-					}else if(txt.toLowerCase().startsWith("set text size to ")){
+					} else if (txt.toLowerCase().startsWith("set text size to ")) {
 						int size = validator(txt.substring("set text size to ".length()));
-						if(size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)){
+						if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
 							show(ctx, "Nothing changed");
 						}
 						Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
@@ -123,23 +125,23 @@ public class AI extends LinearLayout {
 						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Text size changed to `%d`", size)));
 					}
 					e.setText("");
-				}else if(txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")){
+				} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
 					e.setText("");
 					sc2.removeAllViews();
 					sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
-				}else if(txt.equalsIgnoreCase("stop")){
+				} else if (txt.equalsIgnoreCase("stop")) {
 					Intent i = new Intent("mpop.revii.ai.OVERLAY");
 					i.putExtra("mpop.revii.ai.TOGGLE_AI", true);
 					ctx.sendBroadcast(i);
-				}else{
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME",mpop(creator)), txt));
+				} else {
+					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", mpop(creator)), txt));
 					http h = new http(ctx);
-					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME",mpop(creator)) + "\nMessage: " + e.getText().toString());
+					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", mpop(creator)) + "\nMessage: " + e.getText().toString());
 					e.setText("");
 					iv.setEnabled(false);
 					replied = false;
 				}
-				new Handler().postDelayed(new Runnable(){
+				new Handler().postDelayed(new Runnable() {
 					@Override
 					public void run() {
 						sc.fullScroll(View.FOCUS_DOWN);
@@ -147,30 +149,34 @@ public class AI extends LinearLayout {
 				}, 100);
 			}
 		});
-		
-		e.addTextChangedListener(new TextWatcher(){
+
+		e.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4) {}
+			public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4) {
+			}
+
 			@Override
 			public void onTextChanged(CharSequence p1, int p2, int p3, int p4) {
 				String text = e.getText().toString().trim();
 				iv.setEnabled(!text.isEmpty() && replied);
 			}
+
 			@Override
-			public void afterTextChanged(Editable p1) {}
+			public void afterTextChanged(Editable p1) {
+			}
 		});
-		
+
 		v.setLayoutParams(new LayoutParams(25, 1));
 		v2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 2));
 		v2.setBackgroundColor(Color.LTGRAY);
-		
-		ctx.registerReceiver(new BroadcastReceiver(){
+
+		ctx.registerReceiver(new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context p1, Intent p2) {
 				sc2.addView(chat(ctx, "AI:", p2.getStringExtra("DATA")));
 				iv.setEnabled(true);
 				replied = true;
-				new Handler().postDelayed(new Runnable(){
+				new Handler().postDelayed(new Runnable() {
 					@Override
 					public void run() {
 						sc.fullScroll(View.FOCUS_DOWN);
@@ -188,6 +194,7 @@ public class AI extends LinearLayout {
 		addView(input);
 	}
 	
+	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	public LinearLayout chat(final Context ctx, String send, String msg){
 		LinearLayout base = new LinearLayout(ctx);
 		final Markdown chat = new Markdown(ctx);
