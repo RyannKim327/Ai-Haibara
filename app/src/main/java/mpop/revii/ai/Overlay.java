@@ -7,12 +7,12 @@ import android.view.WindowManager;
 
 public class Overlay extends Service {
 	WindowManager manager;
-	
+	WindowManager.LayoutParams;
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
-
+		
 	}
 
 	@Override
