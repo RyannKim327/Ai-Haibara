@@ -29,7 +29,7 @@ public class Overlay extends Service {
 		params.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		params.gravity = Gravity.TOP;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
+		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 		params.format = PixelFormat.TRANSLUCENT;
 
 		ai.setAlpha(0.75f);
