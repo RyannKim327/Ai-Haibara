@@ -1,5 +1,7 @@
 package mpop.revii.ai;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -36,6 +38,11 @@ public class Overlay extends Service {
 					stopSelf();
 					AI.show(Overlay.this, "Overlay closed");
 					manager.removeView(ai);
+					Notification.Builder notif = new Notification.Builder(Overlay.this);
+					NotificationManager manager = getSystemService(NotificationManager.class);
+					notif.setContentTitle("Bebe ang AI");
+					notif.setContentText("Click to subscribe");
+					manager.cr
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
