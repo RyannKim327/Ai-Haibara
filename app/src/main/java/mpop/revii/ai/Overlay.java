@@ -1,5 +1,6 @@
 package mpop.revii.ai;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -16,6 +17,7 @@ import android.view.WindowManager;
 public class Overlay extends Service {
 	WindowManager manager;
 	WindowManager.LayoutParams params;
+	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -39,10 +41,12 @@ public class Overlay extends Service {
 					AI.show(Overlay.this, "Overlay closed");
 					manager.removeView(ai);
 					Notification.Builder notif = new Notification.Builder(Overlay.this);
-					NotificationManager manager = getSystemService(NotificationManager.class);
-					notif.setContentTitle("Bebe ang AI");
-					notif.setContentText("Click to subscribe");
-					manager.notify(1, notif.build());
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+						NotificationManager manager = getSystemService(NotificationManager.class);
+						notif.setContentTitle("Bebe ang AI");
+						notif.setContentText("Click to subscribe");
+						manager.notify(1, notif.build());
+					}
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
