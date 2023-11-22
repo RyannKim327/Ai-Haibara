@@ -16,7 +16,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 			NotificationChannel notip = new NotificationChannel("mpop.revii.notif", "MPOP AI", NotificationManager.IMPORTANCE_DEFAULT);
-			NotificationManager manage = getSystemService(NotificationManager)
+			NotificationManager manage = getSystemService(NotificationManager.class);
+			manage.createNotificationChannel(notip);
 		}
 	}
 }
