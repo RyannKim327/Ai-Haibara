@@ -2,6 +2,7 @@ package mpop.revii.ai;
 
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
 import android.view.Gravity;
@@ -22,7 +23,7 @@ public class Overlay extends Service {
 		params.gravity = Gravity.CENTER;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
-		params.
+		params.format = PixelFormat.TRANSLUCENT;
 		manager.addView(ai, params);
 	}
 
