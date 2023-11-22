@@ -42,7 +42,7 @@ public class Overlay extends Service {
 					NotificationManager manager = getSystemService(NotificationManager.class);
 					notif.setContentTitle("Bebe ang AI");
 					notif.setContentText("Click to subscribe");
-					manager.cr
+					manager.notify(1, notif.build());
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
