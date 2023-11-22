@@ -32,7 +32,7 @@ public class Overlay extends Service {
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
 		params.format = PixelFormat.TRANSLUCENT;
 
-		ai.setAlpha(0.5f);
+		ai.setAlpha(0.75f);
 
 		manager.addView(ai, params);
 		registerReceiver(new BroadcastReceiver() {
@@ -47,7 +47,6 @@ public class Overlay extends Service {
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
 	}
-
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
