@@ -14,6 +14,6 @@ public class MainActivity extends Activity {
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(R.layout.activity_main);
-		NotificationChannel notip = new NotificationChannel()
+		NotificationChannel notip = new NotificationChannel("channel.id")
 	}
 }
