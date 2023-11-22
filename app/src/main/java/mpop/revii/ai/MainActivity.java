@@ -33,6 +33,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		
+		Intent i = new Intent(this, Overlay.class);
+		i.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+		stopService(i);
 	}
 }
