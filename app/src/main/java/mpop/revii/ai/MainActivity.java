@@ -16,12 +16,6 @@ public class MainActivity extends Activity {
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(R.layout.activity_main);
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-			Notification.Builder notif = new Notification.Builder(this, "mpop.revii.ai.notif");
-			notif.setContentTitle("Bebe ang AI");
-			notif.setContentText("Click to subscribe");
-
-		}
 		Intent i = new Intent(this, Overlay.class);
 		i.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
 		startService(i);
