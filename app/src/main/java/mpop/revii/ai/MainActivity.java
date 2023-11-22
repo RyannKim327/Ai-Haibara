@@ -17,9 +17,6 @@ public class MainActivity extends Activity {
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(R.layout.activity_main);
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-			// NotificationChannel notip = new NotificationChannel("mpop.revii.notif", "MPOP AI", NotificationManager.IMPORTANCE_DEFAULT);
-			// NotificationManager manage = getSystemService(NotificationManager.class);
-			// manage.createNotificationChannel(notip);
 			Notification.Builder notif = new Notification.Builder(this, "mpop.revii.ai.notif");
 			notif.setContentTitle("Bebe ang AI");
 			notif.setContentText("Click to subscribe");
@@ -28,13 +25,5 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(this, Overlay.class);
 		i.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
 		startService(i);
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		Intent i = new Intent(this, Overlay.class);
-		i.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
-		stopService(i);
 	}
 }

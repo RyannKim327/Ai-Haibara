@@ -1,7 +1,10 @@
 package mpop.revii.ai;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
@@ -25,6 +28,15 @@ public class Overlay extends Service {
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
 		params.format = PixelFormat.TRANSLUCENT;
 		manager.addView(ai, params);
+		registerReceiver(new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				boolean data = intent.getBooleanExtra("mpop.revii.ai.TOGGLE_AI", false);
+				if(data){
+					stopSelf();
+				}
+			}
+		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
 	}
 
 	@Override

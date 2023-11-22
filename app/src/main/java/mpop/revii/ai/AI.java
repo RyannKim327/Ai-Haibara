@@ -127,6 +127,10 @@ public class AI extends LinearLayout {
 					e.setText("");
 					sc2.removeAllViews();
 					sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
+				}else if(txt.equalsIgnoreCase("stop")){
+					Intent i = new Intent("mpop.revii.ai.OVERLAY");
+					i.putExtra("mpop.revii.ai.TOGGLE_AI", true);
+					ctx.sendBroadcast(i);
 				}else{
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME",mpop(creator)), txt));
 					http h = new http(ctx);
