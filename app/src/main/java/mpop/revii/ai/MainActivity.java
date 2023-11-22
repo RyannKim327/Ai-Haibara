@@ -7,10 +7,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.os.Bundle;
 
-public class MainActivity extends Activity { 
+public class MainActivity extends Activity {
+	Overlay o;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		o = new Overlay();
         getActionBar().setIcon(AI.setResources(this, "ic_launcher", "drawable"));
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
@@ -22,9 +24,13 @@ public class MainActivity extends Activity {
 			Notification.Builder notif = new Notification.Builder(this, "mpop.revii.ai.notif");
 			notif.setContentTitle("Bebe ang AI");
 			notif.setContentText("Click to subscribe");
-			PendingIntent i = new PendingIntent();
-			notif.setContentIntent();
 
 		}
+		startService(o);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
 	}
 }
