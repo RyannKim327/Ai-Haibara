@@ -18,7 +18,7 @@ public class Overlay extends Service {
 	public void onCreate() {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
-		AI ai = new AI(this);
+		final AI ai = new AI(this);
 		manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		params = new WindowManager.LayoutParams();
 		params.height = WindowManager.LayoutParams.WRAP_CONTENT | 300;
@@ -35,6 +35,7 @@ public class Overlay extends Service {
 				if(data){
 					stopSelf();
 					AI.show(Overlay.this, "Overlay closed");
+					manager.removeView(ai);
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
