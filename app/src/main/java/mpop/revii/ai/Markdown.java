@@ -11,7 +11,7 @@ public class Markdown extends TextView {
 	}
 
 	public Markdown(Context ctx, AttributeSet attr){
-		suprt(ctx, attr);
+		super(ctx, attr);
 	}
 	
 	public void setText(String txt){
