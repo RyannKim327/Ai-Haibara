@@ -301,7 +301,7 @@ public class AI extends LinearLayout {
 		}
 	}
 
-	public String mpop(int[] x){
+	public static String mpop(int[] x){
 		String s = "";
 		int[] t = new int[100];
 		int u = 0;
