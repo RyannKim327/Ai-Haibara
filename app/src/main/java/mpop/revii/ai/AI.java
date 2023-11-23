@@ -238,16 +238,15 @@ public class AI extends LinearLayout {
 		chat.setTextSize(size + (size / 2));
 		chat.setTypeface(Typeface.SERIF);
 		chat.setText(msg);
-		chat.setOnLongClickListener(new OnLongClickListener(){
-			@Override
-			public boolean onLongClick(View p1) {
-				((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(chat.getText().toString());
-				AI.show(ctx, "Text copied to clipboard");
-				return false;
-			}
-		});
-
 		chat.setTextIsSelectable(true);
+		// chat.setOnLongClickListener(new OnLongClickListener(){
+		// 	@Override
+		// 	public boolean onLongClick(View p1) {
+		// 		((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(chat.getText().toString());
+		// 		AI.show(ctx, "Text copied to clipboard");
+		// 		return false;
+		// 	}
+		// });
 
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
