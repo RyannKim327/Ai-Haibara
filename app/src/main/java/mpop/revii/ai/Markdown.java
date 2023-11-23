@@ -2,11 +2,16 @@ package mpop.revii.ai;
 
 import android.content.Context;
 import android.text.Html;
+import android.util.AttributeSet;
 import android.widget.TextView;
 
 public class Markdown extends TextView {
 	public Markdown(Context ctx){
 		super(ctx);
+	}
+
+	public Markdown(Context ctx, AttributeSet attr){
+		suprt(ctx, attr);
 	}
 	
 	public void setText(String txt){
