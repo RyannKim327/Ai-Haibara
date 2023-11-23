@@ -21,6 +21,9 @@ public class Markdown extends TextView {
 		for(int i = 0; i < text.length; i++){
 			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
 			if(txt.startsWith("```")){
+				if(!txt.equals("```")){
+					result += txt.substring("```".length()) + " code <br>";
+				}
 				x = !x;
 				result += x ? "</font>" : "<font color=\"#dedede\">";
 			}
