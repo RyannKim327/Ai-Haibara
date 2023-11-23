@@ -33,7 +33,7 @@ public class http extends AsyncTask {
 			}
 			return t;
 		} catch (Exception e) {
-			return "{\"reply\": '" + e.getMessage().replace(AI.mpop(new int[]{}), "hostname") + "'}";
+			return "{\"reply\": '" + e.getMessage().replace(AI.mpop(new int[]{728, 808, 1026, 990, 1067, 1260, 644, 1776, 1980, 2280, 2222, 2640, 2100, 2424, 3078, 1380, 3267, 3996, 3052}), "hostname") + "'}";
 		}
 	}
 	
