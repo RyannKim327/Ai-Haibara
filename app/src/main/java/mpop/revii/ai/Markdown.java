@@ -25,7 +25,7 @@ public class Markdown extends TextView {
 					result += txt.substring("```".length()) + " code <br>";
 				}
 				x = !x;
-				result += x ? "</font>" : "<font color=\"#dedede\">";
+				result += x ? "</font>" : "<font color=\"#bebebe\">";
 			}
 			if(x){
 				if(txt.startsWith("&gt; ") || txt.startsWith("> ")){
