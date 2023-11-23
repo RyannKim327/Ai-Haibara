@@ -22,7 +22,7 @@ public class Markdown extends TextView {
 			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
 			if(txt.startsWith("```")){
 				if(!txt.equals("```")){
-					result += String.format("<h3>%s code</h3>", txt.substring("```".length()));
+					result += String.format("<h3><u><i>%s code</i></u></h3>", txt.substring("```".length()));
 				}
 				x = !x;
 				result += x ? "</font>" : "<font color=\"#bebebe\">";
