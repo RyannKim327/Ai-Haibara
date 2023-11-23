@@ -246,7 +246,9 @@ public class AI extends LinearLayout {
 				return false;
 			}
 		});
-		
+
+		chat.setTextIsSelectable(true);
+
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
 			public void onReceive(Context p1, Intent p2) {
