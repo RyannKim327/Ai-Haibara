@@ -32,6 +32,9 @@ public class Overlay extends Service {
 		manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		params = new WindowManager.LayoutParams();
 
+		managerImg = (WindowManager) getSystemService(WINDOW_SERVICE);
+		paramsImg = new WindowManager.LayoutParams();
+
 		head();
 	}
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
