@@ -89,7 +89,8 @@ public class Overlay extends Service {
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
 
-						if(paramsImg.x == Math.round(x + (motionEvent.getRawX() - X)) && paramsImg.y == Math.round(y + (motionEvent.getRawY() - Y))){
+						if(((paramsImg.x + 10) >= Math.round(x + (motionEvent.getRawX() - X)) || (paramsImg.x - 10) <= Math.round(x + (motionEvent.getRawX() - X))) &&
+								((paramsImg.y + 10) >= Math.round(y + (motionEvent.getRawY() - Y)) || (paramsImg.y - 10) <= Math.round(y + (motionEvent.getRawY() - Y)))){
 							if(!show) {
 								posX = paramsImg.x;
 								posY = paramsImg.y;
