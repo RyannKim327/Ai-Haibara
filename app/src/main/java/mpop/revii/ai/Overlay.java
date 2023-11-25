@@ -14,11 +14,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class Overlay extends Service {
-	WindowManager manager;
-	WindowManager.LayoutParams params;
+	WindowManager managerImg, manager;
+	WindowManager.LayoutParams paramsImg, params;
 	ImageView img;
 	AI ai;
-	LinearLayout layout;
 	boolean show = false;
 	int posX = 0, posY = 0;
 
@@ -27,7 +26,6 @@ public class Overlay extends Service {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
 
-		layout = new LinearLayout(this);
 		ai = new AI(this);
 		img = new ImageView(this);
 
@@ -35,14 +33,12 @@ public class Overlay extends Service {
 		params = new WindowManager.LayoutParams();
 
 		head();
-		layout.addView(img);
-		manager.addView(layout, params);
 	}
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	void showUI(){
 
-		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-		params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+		params.height = WindowManager.LayoutParams.MATCH_PARENT;
+		params.width = WindowManager.LayoutParams.MATCH_PARENT;
 		params.gravity = Gravity.TOP;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
@@ -65,6 +61,7 @@ public class Overlay extends Service {
 
 		params.x = 0;
 		params.y = 0;
+		manager.addView(img, params);
 
 		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
