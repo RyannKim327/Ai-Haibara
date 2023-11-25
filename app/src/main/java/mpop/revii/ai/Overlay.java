@@ -46,18 +46,6 @@ public class Overlay extends Service {
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 		params.format = PixelFormat.TRANSLUCENT;
 
-		registerReceiver(new BroadcastReceiver() {
-			@SuppressLint("UnspecifiedRegisterReceiverFlag")
-			@Override
-			public void onReceive(Context context, Intent intent) {
-			boolean data = intent.getBooleanExtra("mpop.revii.ai.TOGGLE_AI", false);
-			if(data){
-				stopSelf();
-				AI.show(Overlay.this, "Overlay closed");
-				manager.removeView(ai);
-			}
-			}
-		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
 		manager.addView(ai, params);
 	}
 
@@ -116,11 +104,9 @@ public class Overlay extends Service {
 					manager.updateViewLayout(img, params);
 					showUI();
 				}else{
-					Intent i = new Intent("mpop.revii.ai.OVERLAY");
-					i.putExtra("mpop.revii.ai.TOGGLE_AI", true);
-					sendBroadcast(i);
 					params.x = posX;
 					params.y = posX;
+					manager.removeView(ai);
 				}
 				show = !show;
 			}
