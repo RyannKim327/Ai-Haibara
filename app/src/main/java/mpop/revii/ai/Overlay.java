@@ -88,15 +88,15 @@ public class Overlay extends Service {
 						// y = params.y;
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
-						boolean moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
+						final boolean moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
 						paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
-						if(!moved){
-							if(!show) {
-								new Handler().postDelayed(new Runnable() {
-									@Override
-									public void run() {
+						new Handler().postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								if(!moved){
+									if(!show) {
 										posX = paramsImg.x;
 										posY = paramsImg.y;
 										paramsImg.x = 0;
@@ -104,21 +104,15 @@ public class Overlay extends Service {
 										managerImg.updateViewLayout(img, paramsImg);
 										showUI();
 									}
-								}, 250);
-							}else{
-								new Handler().postDelayed(new Runnable() {
-									@Override
-									public void run() {
-										paramsImg.x = posX;
-										paramsImg.y = posX;
-										manager.removeView(ai);
-										managerImg.updateViewLayout(img, paramsImg);
-									}
-								}, 250);
-
+								}else {
+									paramsImg.x = posX;
+									paramsImg.y = posX;
+									manager.removeView(ai);
+									managerImg.updateViewLayout(img, paramsImg);
+								}
+								show = !show;
 							}
-							show = !show;
-						}
+						}, 100);
 						return true;
 				}
 				return false;
