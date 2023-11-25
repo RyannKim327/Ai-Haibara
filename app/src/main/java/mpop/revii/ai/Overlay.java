@@ -109,7 +109,6 @@ public class Overlay extends Service {
 						show = !show;
 						return true;
 				}
-				AI.show(Overlay.this, String.valueOf(moved));
 				return false;
 			}
 		});
