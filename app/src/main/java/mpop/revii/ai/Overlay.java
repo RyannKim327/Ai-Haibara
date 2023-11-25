@@ -69,6 +69,25 @@ public class Overlay extends Service {
 		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
 
+		img.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(!show) {
+					posX = paramsImg.x;
+					posY = paramsImg.y;
+					paramsImg.x = 0;
+					paramsImg.y = 0;
+					managerImg.updateViewLayout(img, paramsImg);
+					showUI();
+				}else{
+					paramsImg.x = posX;
+					paramsImg.y = posX;
+					manager.removeView(ai);
+				}
+				show = !show;
+			}
+		});
+
 		img.setOnTouchListener(new View.OnTouchListener() {
 			private int x, y;
 			private float X, Y;
@@ -92,21 +111,6 @@ public class Overlay extends Service {
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
 						return true;
-					case MotionEvent.ACTION_BUTTON_PRESS:
-						if(!show) {
-							posX = paramsImg.x;
-							posY = paramsImg.y;
-							paramsImg.x = 0;
-							paramsImg.y = 0;
-							managerImg.updateViewLayout(img, paramsImg);
-							showUI();
-						}else{
-							paramsImg.x = posX;
-							paramsImg.y = posX;
-							manager.removeView(ai);
-						}
-						show = !show;
-					break;
 				}
 				return false;
 			}
