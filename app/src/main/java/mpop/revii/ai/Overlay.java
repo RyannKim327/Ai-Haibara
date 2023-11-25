@@ -69,31 +69,13 @@ public class Overlay extends Service {
 		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
 
-		img.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if(!show) {
-					posX = paramsImg.x;
-					posY = paramsImg.y;
-					paramsImg.x = 0;
-					paramsImg.y = 0;
-					managerImg.updateViewLayout(img, paramsImg);
-					showUI();
-				}else{
-					paramsImg.x = posX;
-					paramsImg.y = posX;
-					manager.removeView(ai);
-				}
-				show = !show;
-			}
-		});
-
 		img.setOnTouchListener(new View.OnTouchListener() {
 			private int x, y;
 			private float X, Y;
 
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
+				boolean moved = false;
 				switch (motionEvent.getAction()) {
 					case MotionEvent.ACTION_DOWN:
 					case MotionEvent.ACTION_UP:
@@ -110,7 +92,23 @@ public class Overlay extends Service {
 						paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
-						return false;
+						moved = true;
+						return true;
+				}
+				if(moved){
+					if(!show) {
+						posX = paramsImg.x;
+						posY = paramsImg.y;
+						paramsImg.x = 0;
+						paramsImg.y = 0;
+						managerImg.updateViewLayout(img, paramsImg);
+						showUI();
+					}else{
+						paramsImg.x = posX;
+						paramsImg.y = posX;
+						manager.removeView(ai);
+					}
+					show = !show;
 				}
 				return false;
 			}
