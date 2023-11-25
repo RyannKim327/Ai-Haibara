@@ -106,10 +106,16 @@ public class Overlay extends Service {
 									}
 								}, 250);
 							}else{
-								paramsImg.x = posX;
-								paramsImg.y = posX;
-								manager.removeView(ai);
-								managerImg.updateViewLayout(img, paramsImg);
+								new Handler().postDelayed(new Runnable() {
+									@Override
+									public void run() {
+										paramsImg.x = posX;
+										paramsImg.y = posX;
+										manager.removeView(ai);
+										managerImg.updateViewLayout(img, paramsImg);
+									}
+								}, 250);
+
 							}
 							show = !show;
 						}
