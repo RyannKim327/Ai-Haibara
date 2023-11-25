@@ -88,27 +88,9 @@ public class Overlay extends Service {
 						// y = params.y;
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
-
-						if(((paramsImg.x + 10) >= Math.round(x + (motionEvent.getRawX() - X)) || (paramsImg.x - 10) <= Math.round(x + (motionEvent.getRawX() - X))) &&
-								((paramsImg.y + 10) >= Math.round(y + (motionEvent.getRawY() - Y)) || (paramsImg.y - 10) <= Math.round(y + (motionEvent.getRawY() - Y)))){
-							if(!show) {
-								posX = paramsImg.x;
-								posY = paramsImg.y;
-								paramsImg.x = 0;
-								paramsImg.y = 0;
-								managerImg.updateViewLayout(img, paramsImg);
-								showUI();
-							}else{
-								paramsImg.x = posX;
-								paramsImg.y = posX;
-								manager.removeView(ai);
-							}
-							show = !show;
-						}else{
-							paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
-							paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
-							managerImg.updateViewLayout(img, paramsImg);
-						}
+						paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
+						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
+						managerImg.updateViewLayout(img, paramsImg);
 						return true;
 				}
 				return false;
