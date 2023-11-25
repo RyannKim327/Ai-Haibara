@@ -90,10 +90,10 @@ public class Overlay extends Service {
 						Y = motionEvent.getRawY();
 						return true;
 					case MotionEvent.ACTION_MOVE:
-						x = params.x;
-						y = params.y;
-						X = motionEvent.getRawX();
-						Y = motionEvent.getRawY();
+						// x = params.x;
+						// y = params.y;
+						// X = motionEvent.getRawX();
+						// Y = motionEvent.getRawY();
 
 						params.x += Math.round(x + (motionEvent.getRawX() - X));
 						params.y += Math.round(y + (motionEvent.getRawY() - Y));
