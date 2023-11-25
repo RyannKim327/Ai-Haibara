@@ -110,7 +110,7 @@ public class Overlay extends Service {
 						paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
-						return true;
+						return false;
 				}
 				return false;
 			}
