@@ -10,6 +10,8 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
@@ -17,13 +19,25 @@ public class Overlay extends Service {
 	WindowManager manager;
 	WindowManager.LayoutParams params;
 	ImageView img;
+	AI ai;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
+
+		ai = new AI(this);
+		img = new ImageView(this);
+
 		manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		params = new WindowManager.LayoutParams();
+
+		head();
+	}
+	@SuppressLint("UnspecifiedRegisterReceiverFlag")
+	void showUI(){
+		ai.setAlpha(0.75f);
+
 		params.height = WindowManager.LayoutParams.WRAP_CONTENT | 300;
 		params.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		params.gravity = Gravity.TOP;
@@ -31,12 +45,6 @@ public class Overlay extends Service {
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 		params.format = PixelFormat.TRANSLUCENT;
 
-		showUI(params);
-	}
-	@SuppressLint("UnspecifiedRegisterReceiverFlag")
-	void showUI(WindowManager.LayoutParams params){
-		final AI ai = new AI(this);
-		ai.setAlpha(0.75f);
 		registerReceiver(new BroadcastReceiver() {
 			@SuppressLint("UnspecifiedRegisterReceiverFlag")
 			@Override
@@ -52,9 +60,33 @@ public class Overlay extends Service {
 		manager.addView(ai, params);
 	}
 
-	void hideUI(){
+	@SuppressLint("ClickableViewAccessibility")
+	void head(){
+		params.height = 50;
+		params.width = 50;
+		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+		params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+		params.format = PixelFormat.TRANSLUCENT;
 
+		params.gravity = Gravity.TOP | Gravity.START;
+
+		params.x = 0;
+		params.y = 0;
+
+
+		img.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View view, MotionEvent motionEvent) {
+				return false;
+			}
+		});
 	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		return super.onStartCommand(intent, flags, startId);
+	}
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
