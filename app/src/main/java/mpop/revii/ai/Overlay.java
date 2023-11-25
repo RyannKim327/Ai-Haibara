@@ -95,22 +95,22 @@ public class Overlay extends Service {
 						new Handler().postDelayed(new Runnable() {
 							@Override
 							public void run() {
-								if(!moved){
-									if(!show) {
+								if (!moved) {
+									if (!show) {
 										posX = paramsImg.x;
 										posY = paramsImg.y;
 										paramsImg.x = 0;
 										paramsImg.y = 0;
 										managerImg.updateViewLayout(img, paramsImg);
 										showUI();
+									} else {
+										paramsImg.x = posX;
+										paramsImg.y = posX;
+										manager.removeView(ai);
+										managerImg.updateViewLayout(img, paramsImg);
 									}
-								}else {
-									paramsImg.x = posX;
-									paramsImg.y = posX;
-									manager.removeView(ai);
-									managerImg.updateViewLayout(img, paramsImg);
+									show = !show;
 								}
-								show = !show;
 							}
 						}, 100);
 						return true;
