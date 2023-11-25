@@ -83,6 +83,7 @@ public class Overlay extends Service {
 						y = paramsImg.y;
 						X = motionEvent.getRawX();
 						Y = motionEvent.getRawY();
+						moved = true;
 						return true;
 					case MotionEvent.ACTION_MOVE:
 						// x = params.x;
