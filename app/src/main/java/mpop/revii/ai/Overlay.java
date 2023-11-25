@@ -86,7 +86,19 @@ public class Overlay extends Service {
 						// Y = motionEvent.getRawY();
 
 						if(params.x == Math.round(x + (motionEvent.getRawX() - X)) && params.y == Math.round(y + (motionEvent.getRawY() - Y))){
-
+							if(show) {
+								posX = params.x;
+								posY = params.y;
+								params.x = 0;
+								params.y = 0;
+								manager.updateViewLayout(img, params);
+								showUI();
+							}else{
+								params.x = posX;
+								params.y = posX;
+								manager.removeView(ai);
+							}
+							show = !show;
 						}else{
 							params.x = Math.round(x + (motionEvent.getRawX() - X));
 							params.y = Math.round(y + (motionEvent.getRawY() - Y));
