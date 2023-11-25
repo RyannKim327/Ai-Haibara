@@ -11,12 +11,15 @@ import android.os.Build;
 import android.os.IBinder;
 import android.view.Gravity;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 public class Overlay extends Service {
 	WindowManager manager;
 	WindowManager.LayoutParams params;
-	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 
+	ImageView img;
+
+	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	@Override
 	public void onCreate() {
 		super.onCreate();
