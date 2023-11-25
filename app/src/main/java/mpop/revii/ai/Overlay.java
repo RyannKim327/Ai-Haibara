@@ -104,7 +104,7 @@ public class Overlay extends Service {
 										paramsImg.y = 0;
 										managerImg.updateViewLayout(img, paramsImg);
 									}
-								}, 1000);
+								}, 250);
 							}else{
 								paramsImg.x = posX;
 								paramsImg.y = posX;
