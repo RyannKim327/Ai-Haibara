@@ -74,6 +74,8 @@ public class Overlay extends Service {
 		params.y = 0;
 		manager.addView(img, params);
 
+		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
+
 		img.setOnTouchListener(new View.OnTouchListener() {
 			private int x, y;
 			private float X, Y;
