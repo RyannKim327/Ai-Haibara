@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class Overlay extends Service {
 	WindowManager manager;
@@ -51,8 +52,8 @@ public class Overlay extends Service {
 
 	@SuppressLint("ClickableViewAccessibility")
 	void head(){
-		params.height = 75;
-		params.width = 75;
+		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+		params.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 		params.format = PixelFormat.TRANSLUCENT;
@@ -63,6 +64,7 @@ public class Overlay extends Service {
 		params.y = 0;
 		manager.addView(img, params);
 
+		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
 
 		img.setOnTouchListener(new View.OnTouchListener() {
