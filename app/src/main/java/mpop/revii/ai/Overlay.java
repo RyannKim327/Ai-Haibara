@@ -72,6 +72,7 @@ public class Overlay extends Service {
 		img.setOnTouchListener(new View.OnTouchListener() {
 			private int x, y;
 			private float X, Y;
+			private boolean moved = false;
 
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -82,13 +83,15 @@ public class Overlay extends Service {
 						y = paramsImg.y;
 						X = motionEvent.getRawX();
 						Y = motionEvent.getRawY();
+						moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
+						
 						return true;
 					case MotionEvent.ACTION_MOVE:
 						// x = params.x;
 						// y = params.y;
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
-						final boolean moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
+						moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
 						paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
