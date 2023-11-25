@@ -61,7 +61,7 @@ public class Overlay extends Service {
 
 		paramsImg.x = 0;
 		paramsImg.y = 0;
-		manager.addView(img, paramsImg);
+		managerImg.addView(img, paramsImg);
 
 		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
@@ -75,8 +75,8 @@ public class Overlay extends Service {
 				switch (motionEvent.getAction()) {
 					case MotionEvent.ACTION_DOWN:
 					case MotionEvent.ACTION_UP:
-						x = params.x;
-						y = params.y;
+						x = paramsImg.x;
+						y = paramsImg.y;
 						X = motionEvent.getRawX();
 						Y = motionEvent.getRawY();
 						return true;
@@ -92,7 +92,7 @@ public class Overlay extends Service {
 								posY = paramsImg.y;
 								paramsImg.x = 0;
 								paramsImg.y = 0;
-								manager.updateViewLayout(img, paramsImg);
+								managerImg.updateViewLayout(img, paramsImg);
 								showUI();
 							}else{
 								paramsImg.x = posX;
@@ -101,9 +101,9 @@ public class Overlay extends Service {
 							}
 							show = !show;
 						}else{
-							params.x = Math.round(x + (motionEvent.getRawX() - X));
-							params.y = Math.round(y + (motionEvent.getRawY() - Y));
-							managerImg.updateViewLayout(img, params);
+							paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
+							paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
+							managerImg.updateViewLayout(img, paramsImg);
 						}
 						return true;
 				}
