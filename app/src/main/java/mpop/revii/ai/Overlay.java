@@ -94,7 +94,6 @@ public class Overlay extends Service {
 						managerImg.updateViewLayout(img, paramsImg);
 						if(!moved){
 							if(!show) {
-								showUI();
 								new Handler().postDelayed(new Runnable() {
 									@Override
 									public void run() {
@@ -103,6 +102,7 @@ public class Overlay extends Service {
 										paramsImg.x = 0;
 										paramsImg.y = 0;
 										managerImg.updateViewLayout(img, paramsImg);
+										showUI();
 									}
 								}, 250);
 							}else{
