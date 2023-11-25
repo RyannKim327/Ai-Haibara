@@ -51,17 +51,17 @@ public class Overlay extends Service {
 
 	@SuppressLint("ClickableViewAccessibility")
 	void head(){
-		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
-		params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-		params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-		params.format = PixelFormat.TRANSLUCENT;
+		paramsImg.height = WindowManager.LayoutParams.WRAP_CONTENT;
+		paramsImg.width = WindowManager.LayoutParams.WRAP_CONTENT;
+		paramsImg.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+		paramsImg.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+		paramsImg.format = PixelFormat.TRANSLUCENT;
 
-		params.gravity = Gravity.TOP | Gravity.START;
+		paramsImg.gravity = Gravity.TOP | Gravity.START;
 
-		params.x = 0;
-		params.y = 0;
-		manager.addView(img, params);
+		paramsImg.x = 0;
+		paramsImg.y = 0;
+		manager.addView(img, paramsImg);
 
 		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
@@ -86,24 +86,24 @@ public class Overlay extends Service {
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
 
-						if(params.x == Math.round(x + (motionEvent.getRawX() - X)) && params.y == Math.round(y + (motionEvent.getRawY() - Y))){
+						if(paramsImg.x == Math.round(x + (motionEvent.getRawX() - X)) && paramsImg.y == Math.round(y + (motionEvent.getRawY() - Y))){
 							if(!show) {
-								posX = params.x;
-								posY = params.y;
-								params.x = 0;
-								params.y = 0;
-								manager.updateViewLayout(img, params);
+								posX = paramsImg.x;
+								posY = paramsImg.y;
+								paramsImg.x = 0;
+								paramsImg.y = 0;
+								manager.updateViewLayout(img, paramsImg);
 								showUI();
 							}else{
-								params.x = posX;
-								params.y = posX;
-								layout.removeView(ai);
+								paramsImg.x = posX;
+								paramsImg.y = posX;
+								manager.removeView(ai);
 							}
 							show = !show;
 						}else{
 							params.x = Math.round(x + (motionEvent.getRawX() - X));
 							params.y = Math.round(y + (motionEvent.getRawY() - Y));
-							manager.updateViewLayout(img, params);
+							managerImg.updateViewLayout(img, params);
 						}
 						return true;
 				}
