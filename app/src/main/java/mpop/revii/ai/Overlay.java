@@ -16,15 +16,12 @@ import android.widget.ImageView;
 public class Overlay extends Service {
 	WindowManager manager;
 	WindowManager.LayoutParams params;
-
 	ImageView img;
 
-	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
-		final AI ai = new AI(this);
 		manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		params = new WindowManager.LayoutParams();
 		params.height = WindowManager.LayoutParams.WRAP_CONTENT | 300;
@@ -34,20 +31,29 @@ public class Overlay extends Service {
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 		params.format = PixelFormat.TRANSLUCENT;
 
+		showUI(params);
+	}
+	@SuppressLint("UnspecifiedRegisterReceiverFlag")
+	void showUI(WindowManager.LayoutParams params){
+		final AI ai = new AI(this);
 		ai.setAlpha(0.75f);
-
-		manager.addView(ai, params);
 		registerReceiver(new BroadcastReceiver() {
+			@SuppressLint("UnspecifiedRegisterReceiverFlag")
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				boolean data = intent.getBooleanExtra("mpop.revii.ai.TOGGLE_AI", false);
-				if(data){
-					stopSelf();
-					AI.show(Overlay.this, "Overlay closed");
-					manager.removeView(ai);
-				}
+			boolean data = intent.getBooleanExtra("mpop.revii.ai.TOGGLE_AI", false);
+			if(data){
+				stopSelf();
+				AI.show(Overlay.this, "Overlay closed");
+				manager.removeView(ai);
+			}
 			}
 		}, new IntentFilter("mpop.revii.ai.OVERLAY"));
+		manager.addView(ai, params);
+	}
+
+	void hideUI(){
+
 	}
 	@Override
 	public IBinder onBind(Intent intent) {
