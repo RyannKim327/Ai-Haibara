@@ -8,12 +8,20 @@ import android.widget.TextView;
 public class Markdown extends TextView {
 	public Markdown(Context ctx){
 		super(ctx);
+		setup();
 	}
 
 	public Markdown(Context ctx, AttributeSet attr){
 		super(ctx, attr);
+		setup()
 	}
-	
+
+	void setup(){
+		setClickable(true);
+		setTextIsSelectable(true);
+		setLinksClickable(true);
+	}
+
 	public void setText(String txt){
 		String[] text = txt.split("\n");
 		String result = "";
