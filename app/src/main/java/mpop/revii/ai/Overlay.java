@@ -83,7 +83,6 @@ public class Overlay extends Service {
 						y = paramsImg.y;
 						X = motionEvent.getRawX();
 						Y = motionEvent.getRawY();
-						moved = true;
 						return true;
 					case MotionEvent.ACTION_MOVE:
 						// x = params.x;
@@ -95,21 +94,20 @@ public class Overlay extends Service {
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
 						return moved;
-				}
-				if(!moved){
-					if(!show) {
-						posX = paramsImg.x;
-						posY = paramsImg.y;
-						paramsImg.x = 0;
-						paramsImg.y = 0;
-						managerImg.updateViewLayout(img, paramsImg);
-						showUI();
-					}else{
-						paramsImg.x = posX;
-						paramsImg.y = posX;
-						manager.removeView(ai);
-					}
-					show = !show;
+					default:
+						if(!show) {
+							posX = paramsImg.x;
+							posY = paramsImg.y;
+							paramsImg.x = 0;
+							paramsImg.y = 0;
+							managerImg.updateViewLayout(img, paramsImg);
+							showUI();
+						}else{
+							paramsImg.x = posX;
+							paramsImg.y = posX;
+							manager.removeView(ai);
+						}
+						show = !show;
 				}
 				AI.show(Overlay.this, String.valueOf(moved));
 				return false;
