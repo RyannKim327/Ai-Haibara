@@ -41,7 +41,7 @@ public class Overlay extends Service {
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	void showUI(){
 
-		params.height = manager.getDefaultDisplay().getHeight() - 100;
+		params.height = manager.getDefaultDisplay().getHeight() - 150;
 		params.width = WindowManager.LayoutParams.MATCH_PARENT;
 		params.gravity = Gravity.BOTTOM;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
@@ -55,8 +55,8 @@ public class Overlay extends Service {
 
 	@SuppressLint("ClickableViewAccessibility")
 	void head(){
-		paramsImg.height = WindowManager.LayoutParams.WRAP_CONTENT;
-		paramsImg.width = WindowManager.LayoutParams.WRAP_CONTENT;
+		paramsImg.height = 100;
+		paramsImg.width = 100;
 		paramsImg.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		paramsImg.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 		paramsImg.format = PixelFormat.TRANSLUCENT;
@@ -67,7 +67,6 @@ public class Overlay extends Service {
 		paramsImg.y = 0;
 		managerImg.addView(img, paramsImg);
 
-		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
 
 		img.setOnTouchListener(new View.OnTouchListener() {
