@@ -41,10 +41,9 @@ public class Overlay extends Service {
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	void showUI(){
 
-		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+		params.height = manager.getDefaultDisplay().getHeight() - 100;
 		params.width = WindowManager.LayoutParams.MATCH_PARENT;
-		params.gravity = Gravity.TOP;
-		params.verticalMargin = 90;
+		params.gravity = Gravity.BOTTOM;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 		params.format = PixelFormat.TRANSLUCENT;
