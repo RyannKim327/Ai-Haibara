@@ -16,6 +16,7 @@ public class Overlay extends Service {
 	WindowManager manager;
 	WindowManager.LayoutParams params;
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
