@@ -105,6 +105,7 @@ public class Overlay extends Service {
 								paramsImg.x = posX;
 								paramsImg.y = posX;
 								manager.removeView(ai);
+								managerImg.updateViewLayout(img, paramsImg);
 							}
 						}
 						show = !show;
