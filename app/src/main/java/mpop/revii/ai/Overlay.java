@@ -18,6 +18,7 @@ public class Overlay extends Service {
 	WindowManager.LayoutParams params;
 	ImageView img;
 	AI ai;
+	LinearLayout layout;
 	boolean show = false;
 	int posX = 0, posY = 0;
 
@@ -26,6 +27,7 @@ public class Overlay extends Service {
 		super.onCreate();
 		setTheme(android.R.style.Theme_DeviceDefault);
 
+		layout = new LinearLayout(this);
 		ai = new AI(this);
 		img = new ImageView(this);
 
@@ -61,7 +63,7 @@ public class Overlay extends Service {
 
 		params.x = 0;
 		params.y = 0;
-		manager.addView(img, params);
+		manager.addView(layout, params);
 
 		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
@@ -97,7 +99,7 @@ public class Overlay extends Service {
 							}else{
 								params.x = posX;
 								params.y = posX;
-								manager.removeView(ai);
+								layout.removeView(ai);
 							}
 							show = !show;
 						}else{
@@ -108,24 +110,6 @@ public class Overlay extends Service {
 						return true;
 				}
 				return false;
-			}
-		});
-		img.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if(show) {
-					posX = params.x;
-					posY = params.y;
-					params.x = 0;
-					params.y = 0;
-					manager.updateViewLayout(img, params);
-					showUI();
-				}else{
-					params.x = posX;
-					params.y = posX;
-					manager.removeView(ai);
-				}
-				show = !show;
 			}
 		});
 	}
