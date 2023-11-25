@@ -83,14 +83,20 @@ public class Overlay extends Service {
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
 				switch (motionEvent.getAction()) {
+					case MotionEvent.ACTION_DOWN:
+						x = params.x;
+						y = params.y;
+						X = motionEvent.getRawX();
+						Y = motionEvent.getRawY();
+						return true;
 					case MotionEvent.ACTION_MOVE:
 						x = params.x;
 						y = params.y;
 						X = motionEvent.getRawX();
 						Y = motionEvent.getRawY();
 
-						params.x += X;
-						params.y += Y;
+						params.x += Math.round(x + (motionEvent.getRawX() - X));
+						params.y += Math.round(y + (motionEvent.getRawY() - Y));
 						manager.updateViewLayout(img, params);
 						return true;
 				}
