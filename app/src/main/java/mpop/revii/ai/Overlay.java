@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -95,12 +96,17 @@ public class Overlay extends Service {
 						managerImg.updateViewLayout(img, paramsImg);
 						if(!moved){
 							if(!show) {
-								posX = paramsImg.x;
-								posY = paramsImg.y;
-								paramsImg.x = 0;
-								paramsImg.y = 0;
-								managerImg.updateViewLayout(img, paramsImg);
 								showUI();
+								new Handler().postDelayed(new Runnable() {
+									@Override
+									public void run() {
+										posX = paramsImg.x;
+										posY = paramsImg.y;
+										paramsImg.x = 0;
+										paramsImg.y = 0;
+										managerImg.updateViewLayout(img, paramsImg);
+									}
+								}, 100);
 							}else{
 								paramsImg.x = posX;
 								paramsImg.y = posX;
