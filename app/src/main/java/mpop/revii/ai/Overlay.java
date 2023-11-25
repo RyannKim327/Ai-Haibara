@@ -40,7 +40,7 @@ public class Overlay extends Service {
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	void showUI(){
 
-		params.height = WindowManager.LayoutParams.MATCH_PARENT;
+		params.height = WindowManager.LayoutParams.WRAP_CONTENT;
 		params.width = WindowManager.LayoutParams.MATCH_PARENT;
 		params.gravity = Gravity.TOP;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
