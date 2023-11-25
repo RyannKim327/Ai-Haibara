@@ -72,11 +72,19 @@ public class Overlay extends Service {
 
 		params.x = 0;
 		params.y = 0;
-
+		manager.addView(img, params);
 
 		img.setOnTouchListener(new View.OnTouchListener() {
+			private int x, y;
+			private float X, Y;
+
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
+				x = params.x;
+				y = params.y;
+				X = motionEvent.getRawX();
+				Y = motionEvent.getRawY();
+				
 				return false;
 			}
 		});
