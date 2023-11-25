@@ -89,13 +89,13 @@ public class Overlay extends Service {
 						// y = params.y;
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
+						moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
 						paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
-						moved = true;
 						return true;
 				}
-				if(moved){
+				if(!moved){
 					if(!show) {
 						posX = paramsImg.x;
 						posY = paramsImg.y;
