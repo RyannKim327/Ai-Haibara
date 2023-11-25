@@ -85,9 +85,13 @@ public class Overlay extends Service {
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
 
-						params.x = Math.round(x + (motionEvent.getRawX() - X));
-						params.y = Math.round(y + (motionEvent.getRawY() - Y));
-						manager.updateViewLayout(img, params);
+						if(params.x == Math.round(x + (motionEvent.getRawX() - X)) && params.y == Math.round(y + (motionEvent.getRawY() - Y))){
+
+						}else{
+							params.x = Math.round(x + (motionEvent.getRawX() - X));
+							params.y = Math.round(y + (motionEvent.getRawY() - Y));
+							manager.updateViewLayout(img, params);
+						}
 						return true;
 				}
 				return false;
