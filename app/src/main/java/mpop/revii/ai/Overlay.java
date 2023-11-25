@@ -20,6 +20,7 @@ public class Overlay extends Service {
 	WindowManager.LayoutParams params;
 	ImageView img;
 	AI ai;
+	boolean show = false;
 
 	@Override
 	public void onCreate() {
@@ -102,6 +103,22 @@ public class Overlay extends Service {
 						return true;
 				}
 				return false;
+			}
+		});
+		img.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(show) {
+					params.x = 0;
+					params.y = 0;
+					manager.updateViewLayout(img, params);
+					showUI();
+				}else{
+					Intent i = new Intent("mpop.revii.ai.OVERLAY");
+					i.putExtra("mpop.revii.ai.TOGGLE_AI", true);
+					sendBroadcast(i);
+				}
+				show = !show;
 			}
 		});
 	}
