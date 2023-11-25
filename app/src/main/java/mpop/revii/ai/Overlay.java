@@ -75,7 +75,6 @@ public class Overlay extends Service {
 
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
-				boolean moved = false;
 				switch (motionEvent.getAction()) {
 					case MotionEvent.ACTION_DOWN:
 					case MotionEvent.ACTION_UP:
@@ -89,25 +88,26 @@ public class Overlay extends Service {
 						// y = params.y;
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
-						moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
+						boolean moved = paramsImg.x != Math.round(x + (motionEvent.getRawX() - X)) || paramsImg.y != Math.round(y + (motionEvent.getRawY() - Y));
 						paramsImg.x = Math.round(x + (motionEvent.getRawX() - X));
 						paramsImg.y = Math.round(y + (motionEvent.getRawY() - Y));
 						managerImg.updateViewLayout(img, paramsImg);
-						return moved;
-					default:
-						if(!show) {
-							posX = paramsImg.x;
-							posY = paramsImg.y;
-							paramsImg.x = 0;
-							paramsImg.y = 0;
-							managerImg.updateViewLayout(img, paramsImg);
-							showUI();
-						}else{
-							paramsImg.x = posX;
-							paramsImg.y = posX;
-							manager.removeView(ai);
+						if(!moved){
+							if(!show) {
+								posX = paramsImg.x;
+								posY = paramsImg.y;
+								paramsImg.x = 0;
+								paramsImg.y = 0;
+								managerImg.updateViewLayout(img, paramsImg);
+								showUI();
+							}else{
+								paramsImg.x = posX;
+								paramsImg.y = posX;
+								manager.removeView(ai);
+							}
 						}
 						show = !show;
+						return true;
 				}
 				AI.show(Overlay.this, String.valueOf(moved));
 				return false;
