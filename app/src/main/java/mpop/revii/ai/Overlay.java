@@ -62,8 +62,8 @@ public class Overlay extends Service {
 
 	@SuppressLint("ClickableViewAccessibility")
 	void head(){
-		params.height = 50;
-		params.width = 50;
+		params.height = 75;
+		params.width = 75;
 		params.type = (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 		params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 		params.format = PixelFormat.TRANSLUCENT;
