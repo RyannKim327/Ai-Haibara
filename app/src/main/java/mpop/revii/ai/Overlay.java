@@ -35,6 +35,8 @@ public class Overlay extends Service {
 		params = new WindowManager.LayoutParams();
 
 		head();
+		layout.addView(img);
+		manager.addView(layout, params);
 	}
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	void showUI(){
@@ -63,7 +65,6 @@ public class Overlay extends Service {
 
 		params.x = 0;
 		params.y = 0;
-		manager.addView(layout, params);
 
 		img.setLayoutParams(new LinearLayout.LayoutParams(75, 75));
 		img.setImageResource(AI.setResources(this, "ic_launcher", "drawable"));
