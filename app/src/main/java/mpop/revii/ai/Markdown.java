@@ -13,7 +13,7 @@ public class Markdown extends TextView {
 
 	public Markdown(Context ctx, AttributeSet attr){
 		super(ctx, attr);
-		setup()
+		setup();
 	}
 
 	void setup(){
