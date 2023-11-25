@@ -96,8 +96,8 @@ public class Overlay extends Service {
 						// X = motionEvent.getRawX();
 						// Y = motionEvent.getRawY();
 
-						params.x += Math.round(x + (motionEvent.getRawX() - X));
-						params.y += Math.round(y + (motionEvent.getRawY() - Y));
+						params.x = Math.round(x + (motionEvent.getRawX() - X));
+						params.y = Math.round(y + (motionEvent.getRawY() - Y));
 						manager.updateViewLayout(img, params);
 						return true;
 				}
