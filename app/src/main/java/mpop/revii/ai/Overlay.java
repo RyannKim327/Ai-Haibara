@@ -21,6 +21,7 @@ public class Overlay extends Service {
 	ImageView img;
 	AI ai;
 	boolean show = false;
+	int posX = 0, posY = 0;
 
 	@Override
 	public void onCreate() {
@@ -109,6 +110,8 @@ public class Overlay extends Service {
 			@Override
 			public void onClick(View view) {
 				if(show) {
+					posX = params.x;
+					posY = params.y;
 					params.x = 0;
 					params.y = 0;
 					manager.updateViewLayout(img, params);
@@ -117,6 +120,8 @@ public class Overlay extends Service {
 					Intent i = new Intent("mpop.revii.ai.OVERLAY");
 					i.putExtra("mpop.revii.ai.TOGGLE_AI", true);
 					sendBroadcast(i);
+					params.x = posX;
+					params.y = posX;
 				}
 				show = !show;
 			}
