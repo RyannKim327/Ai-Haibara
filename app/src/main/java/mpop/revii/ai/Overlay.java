@@ -113,7 +113,7 @@ public class Overlay extends Service {
 								}
 							}
 						}, 100);
-						return true;
+							return true;
 				}
 				return false;
 			}
