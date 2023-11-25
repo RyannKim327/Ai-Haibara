@@ -84,6 +84,7 @@ public class Overlay extends Service {
 			public boolean onTouch(View view, MotionEvent motionEvent) {
 				switch (motionEvent.getAction()) {
 					case MotionEvent.ACTION_DOWN:
+					case MotionEvent.ACTION_UP:
 						x = params.x;
 						y = params.y;
 						X = motionEvent.getRawX();
