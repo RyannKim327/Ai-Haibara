@@ -30,7 +30,12 @@ public class Markdown extends TextView {
 			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
 			if(txt.startsWith("```")){
 				if(!txt.equals("```")){
-					result += String.format("<h3><u><i>%s code</i></u></h3>", txt.substring("```".length()));
+					char[] c = txt.substring("```".length()).toCharArray();
+					String code = String.valueOf(c[0]).toUpperCase();
+					for(int i2 = 0; i2 < c.length; i2++){
+						code += String.valueOf(c[i2]);
+					}
+					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
 				result += x ? "</font>" : "<font color=\"#bebebe\">";

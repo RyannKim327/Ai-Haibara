@@ -1,5 +1,9 @@
 {
-	"dark": {
-	  
-    }
+	"bg": "#303030",
+	"mark": "#ffff00",
+	"code": "#dedede",
+	"ai_bg": "#757575",
+	"ai_color": "#ffffff",
+	"you_bg": "#006AFF",
+	"you_color": "#ffffff"
 }
