@@ -112,7 +112,7 @@ public class AI extends LinearLayout {
 					String name = txt.substring("set name to ".length());
 					sp.edit().putString("mpop.revii.ai.NAME", name).apply();
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-					sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
+					sc2.addView(chat(ctx, "Preferences [Name]", String.format("Name changed to `%s`", name)));
 				} else if (txt.toLowerCase().startsWith("set text size to ")) {
 					int size = util.validator(txt.substring("set text size to ".length()), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
 					if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
@@ -122,13 +122,13 @@ public class AI extends LinearLayout {
 					i.putExtra("mpop.revii.ai.DATA_SIZE", size);
 					ctx.sendBroadcast(i);
 					sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
-					sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Text size changed to `%d`", size)));
+					sc2.addView(chat(ctx, "Preferences [Name]", String.format("Text size changed to `%d`", size)));
 				}
 				e.setText("");
 			} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
 				e.setText("");
 				sc2.removeAllViews();
-				sc2.addView(chat(ctx, "Welcome bot:", util.mpop(welcome)));
+				sc2.addView(chat(ctx, "AI [Welcome]", util.mpop(welcome)));
 			} else {
 				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 				http h = new http(ctx);
@@ -215,18 +215,19 @@ public class AI extends LinearLayout {
 			chat.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			
 			sd.getPaint().setColor(Color.parseColor("#006AFF"));
+			from.setText(String.format(" :%s ",send));
 		}else{
 			base.setPadding(5, 5, 75, 5);
 			base.setGravity(Gravity.LEFT);
 			
 			sd.getPaint().setColor(Color.parseColor("#303030"));
 			chat.setTextColor(Color.WHITE);
+			from.setText(String.format(" %s: ",send));
 		}
 
 		base.setOrientation(LinearLayout.VERTICAL);
 		base.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		
-		from.setText(String.format(" %s ",send));
+
 		from.setPadding(10, 10, 10, 10);
 		from.setTextSize(size);
 		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
