@@ -5,6 +5,11 @@ import android.text.Html;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+
 public class Markdown extends TextView {
 	public Markdown(Context ctx){
 		super(ctx);
@@ -93,5 +98,13 @@ public class Markdown extends TextView {
 		html = html.replaceAll("\\* (.*)", "&ensp;•&ensp;$1<br>");
 		
 		return html;
+	}
+	public static JSONObject getColors() {
+		try {
+			File file = new File("file://android_asset/a.json");
+			return new JSONObject(file);
+		}catch(Exception e){
+			return  null;
+		}
 	}
 }
