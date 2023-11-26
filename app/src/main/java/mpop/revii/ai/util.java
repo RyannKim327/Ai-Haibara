@@ -82,7 +82,7 @@ public class util {
 			}
 			return new JSONObject(txt);
 		}catch(Exception e){
-			return  null;
+			return null;
 		}
 	}
 }
