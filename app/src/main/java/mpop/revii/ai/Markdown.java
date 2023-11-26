@@ -97,20 +97,4 @@ public class Markdown extends TextView {
 		
 		return html;
 	}
-	public static JSONObject getColors() {
-		try {
-			File file = new File("file://android_asset/a.json");
-			Scanner scan = new Scanner(file);
-			String txt = "";
-			while (scan.hasNext()){
-				txt += scan.nextLine();
-				if(scan.hasNext()){
-					txt += "\n";
-				}
-			}
-			return new JSONObject(txt);
-		}catch(Exception e){
-			return  null;
-		}
-	}
 }

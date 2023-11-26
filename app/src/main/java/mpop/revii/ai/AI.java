@@ -22,7 +22,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AI extends LinearLayout {
 	
@@ -73,7 +72,7 @@ public class AI extends LinearLayout {
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
-		sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
+		sc2.addView(chat(ctx, "Welcome bot:", util.mpop(welcome)));
 
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.parseColor("#75AAAAAA"));
@@ -99,10 +98,10 @@ public class AI extends LinearLayout {
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
 		iv.setEnabled(false);
-		if (AI.setResources(ctx, "send", "drawable") == 0) {
+		if (util.setResources(ctx, "send", "drawable") == 0) {
 			iv.setImageResource(android.R.drawable.ic_menu_send);
 		} else {
-			iv.setImageResource(AI.setResources(ctx, "send", "drawable"));
+			iv.setImageResource(util.setResources(ctx, "send", "drawable"));
 		}
 		iv.setOnClickListener(new OnClickListener() {
 			@Override
@@ -112,12 +111,12 @@ public class AI extends LinearLayout {
 				if (txt.toLowerCase().startsWith("set name to ")) {
 					String name = txt.substring("set name to ".length());
 					sp.edit().putString("mpop.revii.ai.NAME", name).apply();
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", mpop(creator)), txt));
+					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 					sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
 				} else if (txt.toLowerCase().startsWith("set text size to ")) {
-					int size = validator(txt.substring("set text size to ".length()));
+					int size = util.validator(txt.substring("set text size to ".length()), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
 					if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
-						show(ctx, "Nothing changed");
+						util.show(ctx, "Nothing changed");
 					}
 					Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
 					i.putExtra("mpop.revii.ai.DATA_SIZE", size);
@@ -129,11 +128,11 @@ public class AI extends LinearLayout {
 			} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
 				e.setText("");
 				sc2.removeAllViews();
-				sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
+				sc2.addView(chat(ctx, "Welcome bot:", util.mpop(welcome)));
 			} else {
-				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", mpop(creator)), txt));
+				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 				http h = new http(ctx);
-				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", mpop(creator)) + "\nMessage: " + e.getText().toString());
+				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
 				e.setText("");
 				iv.setEnabled(false);
 				replied = false;
@@ -195,7 +194,7 @@ public class AI extends LinearLayout {
 		final Markdown chat = new Markdown(ctx);
 		final TextView from = new TextView(ctx);
 		float f = 18, f2 = -20, f3 = f;
-		if(send.equals(sp.getString("mpop.revii.ai.NAME", mpop(creator)))){
+		if(send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))){
 			f2 = f;
 			f3 = -20;
 		}
@@ -205,7 +204,7 @@ public class AI extends LinearLayout {
 		}, null, null));
 		int size = sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
 
-		if(send.equals(sp.getString("mpop.revii.ai.NAME", mpop(creator)))){
+		if(send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))){
 			base.setGravity(Gravity.RIGHT);
 			base.setPadding(75, 5, 5, 5);
 			
@@ -251,62 +250,5 @@ public class AI extends LinearLayout {
 		base.addView(from);
 		base.addView(chat);
 		return base;
-	}
-
-	public static int setResources(Context ctx, String name, String type){
-		return ctx.getResources().getIdentifier(name, type, ctx.getPackageName());
-	}
-
-	public static Toast show(Context ctx, String msg){
-		Toast toast = new Toast(ctx);
-		float f = 25;
-		ShapeDrawable drawable = new ShapeDrawable(new RoundRectShape(new float[]{
-			f, f, f, f,
-			f, f, f, f
-		}, null, null));
-		TextView tv = new TextView(ctx);
-
-		drawable.getPaint().setColor(Color.parseColor("#FF0085EE"));
-
-		tv.setText(msg);
-		tv.setTypeface(Typeface.SERIF);
-		tv.setTextSize(15);
-		tv.setTextColor(Color.WHITE);
-		tv.setBackground(drawable);
-		tv.setPadding(13, 5, 13, 5);
-		toast.setView(tv);
-		toast.setDuration(Toast.LENGTH_LONG);
-		toast.show();
-		return toast;
-	}
-
-	public int validator(String num){
-		try{
-			int n = Integer.parseInt(num);
-			if(n > 50 || n < 5){
-				n = sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
-			}
-			return n;
-		}catch(Exception e){
-			return sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
-		}
-	}
-
-	public static String mpop(int[] x){
-		String s = "";
-		int[] t = new int[100];
-		int u = 0;
-		for(int i = 1; i <= 6; i++){
-			for(int j = 7; j <= 12; j++){
-				t[u] = i * j;
-				u++;
-			}
-		}
-		for(int i = 0; i < x.length; i++){
-			int v = x[i] / t[i % 26];
-			s += Character.toString((char) v);
-		}
-
-		return s.toString();
 	}
 }

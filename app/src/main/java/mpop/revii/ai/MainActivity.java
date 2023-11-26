@@ -8,7 +8,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getActionBar().setIcon(AI.setResources(this, "ic_launcher", "drawable"));
+		getActionBar().setIcon(util.setResources(this, "ic_launcher", "drawable"));
 		getActionBar().setTitle("Bebe ang AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(new AI(this));

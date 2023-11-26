@@ -21,7 +21,7 @@ public class http extends AsyncTask {
 	@Override
 	protected String doInBackground(Object[] p1) {
 		try {
-			url = AI.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1872, 2020, 2508, 2376, 2037, 2520, 1242, 3330, 3630, 4104, 2828, 3520, 3600, 4040, 5016, 2208, 3465, 4440, 763, 376, 1062, 510, 495, 1176, 1414, 1856, 1746, 940, 2288, 2424, 2394, 2376, 2619, 3150, 2079, 4068, 3276, 3232, 4140, 4640, 4620, 5328, 3850, 2440}) + URLEncoder.encode(p1[0].toString(), "UTF-8");
+			url = util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1872, 2020, 2508, 2376, 2037, 2520, 1242, 3330, 3630, 4104, 2828, 3520, 3600, 4040, 5016, 2208, 3465, 4440, 763, 376, 1062, 510, 495, 1176, 1414, 1856, 1746, 940, 2288, 2424, 2394, 2376, 2619, 3150, 2079, 4068, 3276, 3232, 4140, 4640, 4620, 5328, 3850, 2440}) + URLEncoder.encode(p1[0].toString(), "UTF-8");
 			URL u = new URL(url);
 			URLConnection conn = u.openConnection();
 			conn.setDoInput(true);
@@ -33,7 +33,7 @@ public class http extends AsyncTask {
 			}
 			return t;
 		} catch (Exception e) {
-			return "{\"reply\": '" + e.getMessage().replace(AI.mpop(new int[]{728, 808, 1026, 990, 1067, 1260, 644, 1776, 1980, 2280, 2222, 2640, 2100, 2424, 3078, 1380, 3267, 3996, 3052}), "hostname") + "'}";
+			return "{\"reply\": '" + e.getMessage().replace(util.mpop(new int[]{728, 808, 1026, 990, 1067, 1260, 644, 1776, 1980, 2280, 2222, 2640, 2100, 2424, 3078, 1380, 3267, 3996, 3052}), "hostname") + "'}";
 		}
 	}
 	
