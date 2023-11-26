@@ -107,38 +107,38 @@ public class AI extends LinearLayout {
 		iv.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View p1) {
-				String txt = e.getText().toString();
-				if (txt.toLowerCase().startsWith("set ")) {
-					if (txt.toLowerCase().startsWith("set name to ")) {
-						String name = txt.substring("set name to ".length());
-						sp.edit().putString("mpop.revii.ai.NAME", name).apply();
-						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", mpop(creator)), txt));
-						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
-					} else if (txt.toLowerCase().startsWith("set text size to ")) {
-						int size = validator(txt.substring("set text size to ".length()));
-						if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
-							show(ctx, "Nothing changed");
-						}
-						Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
-						i.putExtra("mpop.revii.ai.DATA_SIZE", size);
-						ctx.sendBroadcast(i);
-						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
-						sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Text size changed to `%d`", size)));
-					}
-					e.setText("");
-				} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
-					e.setText("");
-					sc2.removeAllViews();
-					sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
-				} else {
+			String txt = e.getText().toString();
+			if (txt.toLowerCase().startsWith("set ")) {
+				if (txt.toLowerCase().startsWith("set name to ")) {
+					String name = txt.substring("set name to ".length());
+					sp.edit().putString("mpop.revii.ai.NAME", name).apply();
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", mpop(creator)), txt));
-					http h = new http(ctx);
-					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", mpop(creator)) + "\nMessage: " + e.getText().toString());
-					e.setText("");
-					iv.setEnabled(false);
-					replied = false;
+					sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Name changed to `%s`", name)));
+				} else if (txt.toLowerCase().startsWith("set text size to ")) {
+					int size = validator(txt.substring("set text size to ".length()));
+					if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
+						show(ctx, "Nothing changed");
+					}
+					Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
+					i.putExtra("mpop.revii.ai.DATA_SIZE", size);
+					ctx.sendBroadcast(i);
+					sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
+					sc2.addView(chat(ctx, "Preferences [Name]:", String.format("Text size changed to `%d`", size)));
 				}
-				new Handler().postDelayed(new Runnable() {
+				e.setText("");
+			} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
+				e.setText("");
+				sc2.removeAllViews();
+				sc2.addView(chat(ctx, "Welcome bot:", mpop(welcome)));
+			} else {
+				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", mpop(creator)), txt));
+				http h = new http(ctx);
+				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", mpop(creator)) + "\nMessage: " + e.getText().toString());
+				e.setText("");
+				iv.setEnabled(false);
+				replied = false;
+			}
+			new Handler().postDelayed(new Runnable() {
 					@Override
 					public void run() {
 						sc.fullScroll(View.FOCUS_DOWN);

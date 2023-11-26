@@ -50,8 +50,10 @@ public class http extends AsyncTask {
 			Intent i = new Intent("mpop.revii.ai.DATA");
 			if(obj.getString("reply").equalsIgnoreCase(url)){
 				i.putExtra("DATA", "Something went wrong");
+				i.putExtra("SENDER", "AI");
 			}else{
 				i.putExtra("DATA", obj.getString("reply"));
+				i.putExtra("SENDER", "AI");
 			}
 			ctx.sendBroadcast(i);
 		} catch (JSONException e) {
