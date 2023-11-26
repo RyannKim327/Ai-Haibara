@@ -168,7 +168,7 @@ public class AI extends LinearLayout {
 		ctx.registerReceiver(new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context p1, Intent p2) {
-				sc2.addView(chat(ctx, "AI:", p2.getStringExtra("DATA")));
+				sc2.addView(chat(ctx, p2.getStringExtra("SENDER"), p2.getStringExtra("DATA")));
 				iv.setEnabled(true);
 				replied = true;
 				new Handler().postDelayed(new Runnable() {

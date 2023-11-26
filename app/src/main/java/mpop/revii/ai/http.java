@@ -59,6 +59,7 @@ public class http extends AsyncTask {
 		} catch (JSONException e) {
 			Intent i = new Intent("mpop.revii.ai.DATA");
 			i.putExtra("DATA", result.toString());
+			i.putExtra("SENDER", "Error");
 			ctx.sendBroadcast(i);
 		}
 	}
