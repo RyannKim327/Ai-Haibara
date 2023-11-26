@@ -41,7 +41,7 @@ public class Markdown extends TextView {
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
-				result += x ? "</font>" : "<font color=\"#bebebe\">";
+				result += x ? "</font>" : String.format("<font color=\"%s\">", "#bebebe");
 			}
 			if(x){
 				if(txt.startsWith("&gt; ") || txt.startsWith("> ")){
