@@ -114,6 +114,7 @@ public class AI extends LinearLayout {
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 					sc2.addView(chat(ctx, "Preferences [Name]", String.format("Name changed to `%s`", name)));
 				} else if (txt.toLowerCase().startsWith("set text size to ")) {
+					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 					int size = util.validator(txt.substring("set text size to ".length()), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
 					if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
 						util.show(ctx, "Nothing changed");
