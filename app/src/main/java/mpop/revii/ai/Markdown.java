@@ -4,10 +4,7 @@ import android.content.Context;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.util.Scanner;
 
