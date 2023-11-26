@@ -168,10 +168,10 @@ public class AI extends LinearLayout {
 		ctx.registerReceiver(new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context p1, Intent p2) {
-				sc2.addView(chat(ctx, p2.getStringExtra("SENDER"), p2.getStringExtra("DATA")));
-				iv.setEnabled(true);
-				replied = true;
-				new Handler().postDelayed(new Runnable() {
+			sc2.addView(chat(ctx, p2.getStringExtra("SENDER"), p2.getStringExtra("DATA")));
+			iv.setEnabled(true);
+			replied = true;
+			new Handler().postDelayed(new Runnable() {
 					@Override
 					public void run() {
 						sc.fullScroll(View.FOCUS_DOWN);
@@ -238,21 +238,13 @@ public class AI extends LinearLayout {
 		chat.setTypeface(Typeface.SERIF);
 		chat.setText(msg);
 		chat.setTextIsSelectable(true);
-		// chat.setOnLongClickListener(new OnLongClickListener(){
-		// 	@Override
-		// 	public boolean onLongClick(View p1) {
-		// 		((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(chat.getText().toString());
-		// 		AI.show(ctx, "Text copied to clipboard");
-		// 		return false;
-		// 	}
-		// });
 
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
 			public void onReceive(Context p1, Intent p2) {
-				int size = p2.getIntExtra("mpop.revii.ai.DATA_SIZE", 10);
-				from.setTextSize(size);
-				chat.setTextSize(size + (size / 2));
+			int size = p2.getIntExtra("mpop.revii.ai.DATA_SIZE", 10);
+			from.setTextSize(size);
+			chat.setTextSize(size + (size / 2));
 			}
 		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
 		
