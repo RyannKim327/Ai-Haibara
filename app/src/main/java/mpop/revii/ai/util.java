@@ -69,9 +69,9 @@ public class util {
 
 		return s.toString();
 	}
-	public static JSONObject getColors() {
+	public static JSONObject getColors(String filepath) {
 		try {
-			File file = new File("file://android_asset/a.json");
+			File file = new File(String.format("file://android_asset/%s", filepath));
 			Scanner scan = new Scanner(file);
 			String txt = "";
 			while (scan.hasNext()){
