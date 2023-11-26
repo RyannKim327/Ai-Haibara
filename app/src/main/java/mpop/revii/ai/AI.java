@@ -72,7 +72,7 @@ public class AI extends LinearLayout {
 
 		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
-		sc2.addView(chat(ctx, "AI [Welcome]", util.mpop(welcome)));
+		sc2.addView(chat(ctx, "Welcome [Bot]", util.mpop(welcome)));
 
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.parseColor("#75AAAAAA"));
@@ -122,13 +122,13 @@ public class AI extends LinearLayout {
 					i.putExtra("mpop.revii.ai.DATA_SIZE", size);
 					ctx.sendBroadcast(i);
 					sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
-					sc2.addView(chat(ctx, "Preferences [Name]", String.format("Text size changed to `%d`", size)));
+					sc2.addView(chat(ctx, "Preferences [Text size]", String.format("Text size changed to `%d`", size)));
 				}
 				e.setText("");
 			} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
 				e.setText("");
 				sc2.removeAllViews();
-				sc2.addView(chat(ctx, "AI [Welcome]", util.mpop(welcome)));
+				sc2.addView(chat(ctx, "Welcome [Bot]", util.mpop(welcome)));
 			} else {
 				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 				http h = new http(ctx);
