@@ -7,17 +7,17 @@
 
 ---
 ### Credits
-* John Paul Caigas > API Provider, Mentor
-* Mark Kevin Manalo > API Provider
-* John Roy Lapida Calimlim > Idea and features, Mentor
-* Salvador > Markdown idea [Head], Mentor
-* John Jeremy Antiguo > Tester, Mentor
-* Ronald Torrejos Limpiado > Java Mentor
-* Jerson Carin > RegEx
-* Rovie Francisco > RegEx
-* Soyunoion > No changed IDs
-* Hercai > API
-* ChatGPT > Markdown using Spanned Textview [Some codes]
+* John Paul Caigas -> API Provider, Mentor
+* Mark Kevin Manalo -> API Provider
+* John Roy Lapida Calimlim -> Idea and features, Mentor
+* Salvador -> Markdown idea [Head], Mentor
+* John Jeremy Antiguo -> Tester, Mentor
+* Ronald Torrejos Limpiado -> Java Mentor
+* Jerson Carin -> RegEx
+* Rovie Francisco -> RegEx
+* Soyunoion -> No changed IDs
+* Hercai -> API
+* ChatGPT -> Markdown using Spanned Textview [Some codes]
 * Earl Shine Sawir
 * Lester Navarra
 * Eljohn Mago
