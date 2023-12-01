@@ -1,2 +1,4 @@
-package mpop.revii.ai;public class drawer {
+package mpop.revii.ai;
+
+public class drawer extends View{
 }
