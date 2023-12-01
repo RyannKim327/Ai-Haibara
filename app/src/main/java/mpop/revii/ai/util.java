@@ -86,7 +86,7 @@ public class util {
 		}
 	}
 	public static String rgbtohex(int red, int green, int blue){
-		String hex = String.format("%20X", red) + String.format("%20X", green) + String.format("%20X", blue);
+		String hex = String.format("%02X", red) + String.format("%02X", green) + String.format("%02X", blue);
 		return hex;
 	}
 }
