@@ -91,7 +91,7 @@ public class AI extends LinearLayout {
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
 		e.setTextColor(Color.WHITE);
-		e.setHintTextColor(Color.parseColor("#FFFFFF"));
+		e.setHintTextColor(util.rgbtohex(255, 255, 255));
 		e.setPadding(8, 5, 8, 5);
 		e.setMaxLines(8);
 
