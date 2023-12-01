@@ -14,6 +14,5 @@ public class MainActivity extends Activity {
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(new AI(this));
 		// startService(new Intent(this, Overlay.class));
-		util.show(this, util.rgbtohex(0, 106, 255));
 	}
 }
