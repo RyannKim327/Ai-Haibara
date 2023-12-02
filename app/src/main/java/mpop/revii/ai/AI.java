@@ -13,6 +13,7 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
@@ -237,6 +238,9 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			@Override
 			public void onEvent(int i, Bundle bundle) {}
 		});
+
+		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+		sr.startListening();
 
 		input.addView(e);
 		input.addView(v);
