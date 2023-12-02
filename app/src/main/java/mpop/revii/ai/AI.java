@@ -143,10 +143,10 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 						String value = txt.toLowerCase().substring("set speech ".length());
 						if(value.equalsIgnoreCase("enable")){
 							sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", true).commit();
-							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is enabled `%d`", value)));
+							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is `%s`", value)));
 						}else if(value.equalsIgnoreCase("disable")){
 							sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false).commit();
-							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is enabled `%d`", value)));
+							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is `%s`", value)));
 						}else{
 							sc2.addView(chat(ctx, "Preferences [Speech]", "The only parameter we accept is either `enable` or `disable`"));
 						}
