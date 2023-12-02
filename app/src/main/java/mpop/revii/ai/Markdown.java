@@ -34,7 +34,7 @@ public class Markdown extends TextView {
 			if(txt.startsWith("```")){
 				if(!txt.equals("```")){
 					String[] languages = {
-						""
+						"html", "css"
 					};
 					char[] c = txt.substring("```".length()).toCharArray();
 					String code = String.valueOf(c[0]).toUpperCase();
