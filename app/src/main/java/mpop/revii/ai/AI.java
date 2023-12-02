@@ -265,7 +265,9 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onEvent(int i, Bundle bundle) {}
 		});
 
-		speak();
+		if(sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false)) {
+			speak();
+		}
 
 		input.addView(e);
 		input.addView(v);
