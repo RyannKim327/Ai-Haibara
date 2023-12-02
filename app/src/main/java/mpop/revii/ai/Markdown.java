@@ -41,6 +41,9 @@ public class Markdown extends TextView {
 					for(int i2 = 1; i2 < c.length; i2++){
 						code += String.valueOf(c[i2]);
 					}
+					if(code.contains(languages)){
+						code.toUpperCase();
+					}
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
