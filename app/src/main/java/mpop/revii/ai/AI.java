@@ -240,7 +240,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		});
 
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE);
+		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en_US");
+		intent.putExtra();
 		sr.startListening();
 
 		input.addView(e);
