@@ -138,6 +138,18 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 						ctx.sendBroadcast(i);
 						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
 						sc2.addView(chat(ctx, "Preferences [Text size]", String.format("Text size changed to `%d`", size)));
+					} else if (txt.toLowerCase().startsWith("set speech ")){
+						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
+						String value = txt.toLowerCase().substring("set speech ".length());
+						if(value.equalsIgnoreCase("enable")){
+							sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", true).commit();
+							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is enabled `%d`", value)));
+						}else if(value.equalsIgnoreCase("disable")){
+							sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false).commit();
+							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is enabled `%d`", value)));
+						}else{
+							sc2.addView(chat(ctx, "Preferences [Speech]", "The only parameter we accept is either `enable` or `disable`"));
+						}
 					}
 					e.setText("");
 				} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
@@ -356,8 +368,10 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
 
 		if(!send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))) {
-			String _chat = chat.getText().toString();
-			speak(_chat);
+			if(sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false)) {
+				String _chat = chat.getText().toString();
+				speak(_chat);
+			}
 		}
 		base.addView(from);
 		base.addView(chat);
