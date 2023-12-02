@@ -35,7 +35,7 @@ public class Markdown extends TextView {
 				if(!txt.equals("```")){
 					char[] c = txt.substring("```".length()).toCharArray();
 					String code = String.valueOf(c[0]).toUpperCase();
-					for(int i2 = 0; i2 < c.length; i2++){
+					for(int i2 = 1; i2 < c.length; i2++){
 						code += String.valueOf(c[i2]);
 					}
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
