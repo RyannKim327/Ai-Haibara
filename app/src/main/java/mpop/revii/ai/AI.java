@@ -207,7 +207,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
-		sr.setRecognitionListener(new RecognitionListener() {
+		/*sr.setRecognitionListener(new RecognitionListener() {
 			@Override
 			public void onReadyForSpeech(Bundle bundle) {
 				util.show(ctx, "You may now speak");
@@ -263,7 +263,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onPartialResults(Bundle bundle) {}
 			@Override
 			public void onEvent(int i, Bundle bundle) {}
-		});
+		});*/
 
 		speak();
 
