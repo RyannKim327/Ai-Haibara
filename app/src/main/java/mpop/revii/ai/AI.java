@@ -191,7 +191,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
-		sr.
+		sr.setRecognitionListener();
 
 		input.addView(e);
 		input.addView(v);
