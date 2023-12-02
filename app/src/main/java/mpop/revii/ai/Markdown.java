@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 import org.json.JSONObject;
 import java.io.File;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Markdown extends TextView {
@@ -41,8 +42,11 @@ public class Markdown extends TextView {
 					for(int i2 = 1; i2 < c.length; i2++){
 						code += String.valueOf(c[i2]);
 					}
-					if(code.contains(languages)){
-						code.toUpperCase();
+					for(int ii = 0; ii < languages.length; ii++){
+						if(languages[ii].equalsIgnoreCase(code)){
+							code = code.toUpperCase();
+							break;
+						}
 					}
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
