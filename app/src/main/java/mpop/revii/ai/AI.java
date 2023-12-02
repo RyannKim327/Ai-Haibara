@@ -113,7 +113,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onClick(View p1) {
 				if(tts.isSpeaking()) {
 					tts.stop();
-					tts.shutdown();
 				}
 				String txt = e.getText().toString();
 				if (txt.toLowerCase().startsWith("set ")) {
