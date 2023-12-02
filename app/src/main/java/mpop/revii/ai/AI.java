@@ -10,7 +10,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.os.Bundle;
 import android.os.Handler;
+import android.speech.RecognitionListener;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
@@ -191,7 +193,50 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
-		sr.setRecognitionListener();
+		sr.setRecognitionListener(new RecognitionListener() {
+			@Override
+			public void onReadyForSpeech(Bundle bundle) {
+				util.show(ctx, "You may now speak");
+			}
+			@Override
+			public void onBeginningOfSpeech() {
+				e.setEnabled(true);
+				e.setActivated(true);
+			}
+			@Override
+			public void onRmsChanged(float v) {}
+			@Override
+			public void onBufferReceived(byte[] bytes) {
+				util.show(ctx, "There's a buffering, please repeat your query.");
+				e.setText("");
+			}
+			@Override
+			public void onEndOfSpeech() {
+				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), e.getText().toString()));
+				http h = new http(ctx);
+				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
+				e.setText("");
+				iv.setEnabled(false);
+				replied = false;
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						sc.fullScroll(View.FOCUS_DOWN);
+					}
+				}, 100);
+			}
+			@Override
+			public void onError(int i) {
+				util.show(ctx, "Please try again");
+				e.setText("");
+			}
+			@Override
+			public void onResults(Bundle bundle) {}
+			@Override
+			public void onPartialResults(Bundle bundle) {}
+			@Override
+			public void onEvent(int i, Bundle bundle) {}
+		});
 
 		input.addView(e);
 		input.addView(v);
