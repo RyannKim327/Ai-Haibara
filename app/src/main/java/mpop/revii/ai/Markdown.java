@@ -47,7 +47,7 @@ public class Markdown extends TextView {
 							code = code.toUpperCase();
 							break;
 						}
-g					}
+g 					}
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
