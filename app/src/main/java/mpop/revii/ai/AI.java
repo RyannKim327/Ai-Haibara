@@ -191,6 +191,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 						sc.fullScroll(View.FOCUS_DOWN);
 					}
 				}, 100);
+				speak();
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
@@ -239,21 +240,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onEvent(int i, Bundle bundle) {}
 		});
 
-		if(sr != null) {
-			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en_US");
-			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-			intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en_US");
-			intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, "en_US");
-			intent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
-			intent.putExtra(RecognizerIntent.ACTION_VOICE_SEARCH_HANDS_FREE, true);
-			intent.putExtra(RecognizerIntent.EXTRA_SECURE, true);
-			intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 1000);
-			intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 500);
-			intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2500);
-			sr.startListening(intent);
-		}
+		speak();
+
 		input.addView(e);
 		input.addView(v);
 		input.addView(iv);
@@ -269,10 +257,28 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			int result = tts.setLanguage(Locale.US);
 			tts.setSpeechRate(0.8f);
 			if(result == TextToSpeech.LANG_MISSING_DATA){
-				util.show(getContext(), "Please check yout text to speech data on settings.");
+				util.show(getContext(), "Please check your text to speech data on settings.");
 			}
 		}else{
 			util.show(getContext(), "Failed to Initiate");
+		}
+	}
+
+	void speak(){
+		if(sr != null) {
+			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en_US");
+			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+			intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
+			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en_US");
+			intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, "en_US");
+			intent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
+			intent.putExtra(RecognizerIntent.ACTION_VOICE_SEARCH_HANDS_FREE, true);
+			intent.putExtra(RecognizerIntent.EXTRA_SECURE, true);
+			intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 1000);
+			intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 500);
+			intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2500);
+			sr.startListening(intent);
 		}
 	}
 
