@@ -233,7 +233,20 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				e.setText("");
 			}
 			@Override
-			public void onResults(Bundle bundle) {}
+			public void onResults(Bundle bundle) {
+				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), e.getText().toString()));
+				http h = new http(ctx);
+				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
+				e.setText("");
+				iv.setEnabled(false);
+				replied = false;
+				new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						sc.fullScroll(View.FOCUS_DOWN);
+					}
+				}, 100);
+			}
 			@Override
 			public void onPartialResults(Bundle bundle) {}
 			@Override
@@ -267,11 +280,11 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 	void speak(){
 		if(sr != null) {
 			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en_US");
+			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, Locale.getDefault());
 			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 			intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en_US");
-			intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, "en_US");
+			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+			intent.putExtra(RecognizerIntent.EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE, Locale.getDefault());
 			intent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
 			intent.putExtra(RecognizerIntent.ACTION_VOICE_SEARCH_HANDS_FREE, true);
 			intent.putExtra(RecognizerIntent.EXTRA_SECURE, true);
@@ -343,7 +356,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
 
 		if(!send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))) {
-			speak(chat.getText().toString());
+			String _chat = chat.getText().toString();
+			speak(_chat);
 		}
 		base.addView(from);
 		base.addView(chat);
