@@ -111,44 +111,48 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		iv.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View p1) {
-			String txt = e.getText().toString();
-			if (txt.toLowerCase().startsWith("set ")) {
-				if (txt.toLowerCase().startsWith("set name to ")) {
-					String name = txt.substring("set name to ".length());
-					sp.edit().putString("mpop.revii.ai.NAME", name).apply();
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-					sc2.addView(chat(ctx, "Preferences [Name]", String.format("Name changed to `%s`", name)));
-				} else if (txt.toLowerCase().startsWith("set text size to ")) {
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-					int size = util.validator(txt.substring("set text size to ".length()), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
-					if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
-						util.show(ctx, "Nothing changed");
-					}
-					Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
-					i.putExtra("mpop.revii.ai.DATA_SIZE", size);
-					ctx.sendBroadcast(i);
-					sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
-					sc2.addView(chat(ctx, "Preferences [Text size]", String.format("Text size changed to `%d`", size)));
+				if(tts.isSpeaking()) {
+					tts.stop();
+					tts.shutdown();
 				}
-				e.setText("");
-			} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
-				e.setText("");
-				sc2.removeAllViews();
-				sc2.addView(chat(ctx, "Welcome [Bot]", util.mpop(welcome)));
-			} else {
-				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-				http h = new http(ctx);
-				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
-				e.setText("");
-				iv.setEnabled(false);
-				replied = false;
-			}
-			new Handler().postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						sc.fullScroll(View.FOCUS_DOWN);
+				String txt = e.getText().toString();
+				if (txt.toLowerCase().startsWith("set ")) {
+					if (txt.toLowerCase().startsWith("set name to ")) {
+						String name = txt.substring("set name to ".length());
+						sp.edit().putString("mpop.revii.ai.NAME", name).apply();
+						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
+						sc2.addView(chat(ctx, "Preferences [Name]", String.format("Name changed to `%s`", name)));
+					} else if (txt.toLowerCase().startsWith("set text size to ")) {
+						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
+						int size = util.validator(txt.substring("set text size to ".length()), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
+						if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
+							util.show(ctx, "Nothing changed");
+						}
+						Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
+						i.putExtra("mpop.revii.ai.DATA_SIZE", size);
+						ctx.sendBroadcast(i);
+						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
+						sc2.addView(chat(ctx, "Preferences [Text size]", String.format("Text size changed to `%d`", size)));
 					}
-				}, 100);
+					e.setText("");
+				} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
+					e.setText("");
+					sc2.removeAllViews();
+					sc2.addView(chat(ctx, "Welcome [Bot]", util.mpop(welcome)));
+				} else {
+					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
+					http h = new http(ctx);
+					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
+					e.setText("");
+					iv.setEnabled(false);
+					replied = false;
+				}
+				new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							sc.fullScroll(View.FOCUS_DOWN);
+						}
+					}, 100);
 			}
 		});
 
@@ -176,7 +180,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				sc2.addView(chat(ctx, p2.getStringExtra("SENDER"), p2.getStringExtra("DATA")));
 				iv.setEnabled(true);
 				replied = true;
-				tts.speak(p2.getStringExtra("DATA"), TextToSpeech.QUEUE_FLUSH, null);
 				new Handler().postDelayed(new Runnable() {
 					@Override
 					public void run() {
@@ -266,9 +269,15 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			chat.setTextSize(size + (size / 2));
 			}
 		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
-		
+
+		if(!send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))) {
+			speak(chat.getText().toString());
+		}
 		base.addView(from);
 		base.addView(chat);
 		return base;
+	}
+	void speak(String text){
+		tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 	}
 }
