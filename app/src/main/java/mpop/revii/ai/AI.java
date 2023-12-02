@@ -139,7 +139,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					e.setText("");
 					sc2.removeAllViews();
 					sc2.addView(chat(ctx, "Welcome [Bot]", util.mpop(welcome)));
-				} else {
+				} else if(!txt.isEmpty()) {
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 					http h = new http(ctx);
 					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
@@ -202,6 +202,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 	public void onInit(int i) {
 		if(i == TextToSpeech.SUCCESS){
 			int result = tts.setLanguage(Locale.US);
+			tts.setSpeechRate(0.8f);
 			if(result == TextToSpeech.LANG_MISSING_DATA){
 				util.show(getContext(), "Please check yout text to speech data on settings.");
 			}
