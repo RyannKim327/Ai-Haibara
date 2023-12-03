@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 			}
 			@Override
 			public void onResults(Bundle bundle) {
-				List<String> l = 
+				List<String> l = bundle.get
 			}
 			@Override
 			public void onPartialResults(Bundle bundle) {}
