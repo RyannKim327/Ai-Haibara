@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 					break;
 					case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
 						util.show(MainActivity.this, "Speech Timeout");
-					break
+					break;
 				}
 			}
 			@Override
