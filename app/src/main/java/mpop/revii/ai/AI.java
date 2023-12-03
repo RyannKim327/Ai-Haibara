@@ -28,12 +28,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import java.util.Locale;
 
 public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 	Context context;
-	
 	ScrollView sc;
 	LinearLayout sc2;
 	EditText e;
@@ -230,7 +228,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 			@Override
 			public void onEndOfSpeech() {
-				String str = e.getText().toString();
+				Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+				String str = i.getStringExtra(RecognizerIntent.EXTRA_RESULTS);
 				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
 				http h = new http(ctx);
 				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
