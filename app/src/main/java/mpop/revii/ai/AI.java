@@ -196,22 +196,22 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				switch (i) {
 					case SpeechRecognizer.ERROR_AUDIO:
 						util.show(ctx, "Audio Error");
-						break;
+					break;
 					case SpeechRecognizer.ERROR_CLIENT:
 						util.show(ctx, "Client Error");
-						break;
+					break;
 					case SpeechRecognizer.ERROR_NETWORK:
 						util.show(ctx, "Network Error");
-						break;
+					break;
 					case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
 						util.show(ctx, "Speech Recognizer is busy");
-						break;
+					break;
 					case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
 						util.show(ctx, "Network Timeout");
-						break;
+					break;
 					case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
 						util.show(ctx, "Speech Timeout");
-						break;
+					break;
 				}
 			}
 			@Override
