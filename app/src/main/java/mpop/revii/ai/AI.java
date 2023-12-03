@@ -207,7 +207,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
-		/*sr.setRecognitionListener(new RecognitionListener() {
+		sr.setRecognitionListener(new RecognitionListener() {
 			@Override
 			public void onReadyForSpeech(Bundle bundle) {
 				util.show(ctx, "You may now speak");
@@ -241,7 +241,16 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 			@Override
 			public void onError(int i) {
-				util.show(ctx, "Please try again");
+				switch(i){
+					case SpeechRecognizer.ERROR_CLIENT:
+						util.show(ctx, "Client Error");
+					break;
+					case SpeechRecognizer.ERROR_AUDIO:
+						util.show(ctx, "Audio Error");
+					break;
+					
+				}
+				// util.show(ctx, "Please try again" + i);
 				e.setText("");
 			}
 			@Override
@@ -263,7 +272,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onPartialResults(Bundle bundle) {}
 			@Override
 			public void onEvent(int i, Bundle bundle) {}
-		});*/
+		});
 
 		speak();
 
@@ -280,7 +289,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 	public void onInit(int i) {
 		if(i == TextToSpeech.SUCCESS){
 			int result = tts.setLanguage(Locale.US);
-			tts.setSpeechRate(0.8f);
+			tts.setSpeechRate(1.2f);
 			if(result == TextToSpeech.LANG_MISSING_DATA){
 				util.show(getContext(), "Please check your text to speech data on settings.");
 			}
