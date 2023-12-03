@@ -93,10 +93,10 @@ public class MainActivity extends Activity {
 	void speak(){
 		Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-		i.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
 		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 		i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
 		try{
+			util.show(this, "Listening");
 			startActivityForResult(i, -1);
 		}catch (Exception e){
 			util.show(MainActivity.this, "Error: " + e.getMessage());
@@ -117,15 +117,17 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		switch(requestCode){
 			case -1:
-				ArrayList<String> l = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-				Intent i = new Intent("mpop.revii.ai.SEND_SPEECH");
-				i.putExtra("mpop.revii.ai.DATA_SPEECH", l.get(0));
-				sendBroadcast(i);
+				if(requestCode == RESULT_OK && data != null) {
+					ArrayList<String> l = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+					Intent i = new Intent("mpop.revii.ai.SEND_SPEECH");
+					i.putExtra("mpop.revii.ai.DATA_SPEECH", l.get(0));
+					sendBroadcast(i);
+				}
 			break;
 		}
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override
