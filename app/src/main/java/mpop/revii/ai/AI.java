@@ -231,7 +231,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				try {
 					Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 					String str = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0);
-					if(str.trim().isEmpty()) {
+					if(!str.trim().isEmpty()) {
 						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
 						http h = new http(ctx);
 						h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
@@ -399,6 +399,16 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		return base;
 	}
 	void speak(String text){
+		text = text.replaceAll("0", "zero");
+		text = text.replaceAll("1", "one");
+		text = text.replaceAll("2", "two");
+		text = text.replaceAll("3", "three");
+		text = text.replaceAll("4", "four");
+		text = text.replaceAll("5", "five");
+		text = text.replaceAll("6", "six");
+		text = text.replaceAll("7", "seven");
+		text = text.replaceAll("8", "eight");
+		text = text.replaceAll("9", "nine");
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
 		}else{
