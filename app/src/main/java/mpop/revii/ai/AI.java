@@ -115,7 +115,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
-		iv.setEnabled(false);
 		if (util.setResources(ctx, "send", "drawable") == 0) {
 			iv.setImageResource(android.R.drawable.ic_menu_send);
 		} else {
