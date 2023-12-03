@@ -323,7 +323,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 500);
 				sr.startListening(intent);*/
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-				intent.putExtra(RecognizerIntent.Extra)
+				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+				intent.putExtra(RecognizerIntent.ex)
 			}
 		}
 	}
