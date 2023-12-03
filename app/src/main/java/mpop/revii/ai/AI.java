@@ -230,7 +230,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 			@Override
 			public void onEndOfSpeech() {
-				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), RecognizerIntent.EXTRA_RESULTS));
+				String str = e.getText().toString();
+				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
 				http h = new http(ctx);
 				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
 				e.setText("");
@@ -325,6 +326,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 				intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say it now");
+				e.setText(intent.getStringExtra(RecognizerIntent.EXTRA_RESULTS));
 				sr.startListening(intent);
 			}
 		}
