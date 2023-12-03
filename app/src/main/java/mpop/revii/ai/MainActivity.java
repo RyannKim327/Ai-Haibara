@@ -69,7 +69,10 @@ public class MainActivity extends Activity {
 			}
 			@Override
 			public void onResults(Bundle bundle) {
-				List<String> l = bundle.get
+				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+				if(l != null && !l.isEmpty()){
+					
+				}
 			}
 			@Override
 			public void onPartialResults(Bundle bundle) {}
