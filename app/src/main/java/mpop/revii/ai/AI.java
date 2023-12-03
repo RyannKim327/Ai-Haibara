@@ -305,7 +305,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 	@Override
 	public void onInit(int i) {
 		if(i == TextToSpeech.SUCCESS){
-			int result = tts.setLanguage(Locale.US);
+			int result = tts.setLanguage(Locale.ENGLISH);
 			tts.setSpeechRate(1f);
 			if(result == TextToSpeech.LANG_MISSING_DATA){
 				util.show(context, "Please check your text to speech data on settings.");
