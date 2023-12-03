@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 public class MainActivity extends Activity {
@@ -39,7 +41,12 @@ public class MainActivity extends Activity {
 		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 		i.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
 		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, Locale.getDefault());
-		
+		i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
+		try{
+			startActivityForResult(i, -1);
+		}catch (Exception e){
+			util.show(MainActivity.this, "Error: " + e.getMessage());
+		}
 	}
 
 	@Override
@@ -52,6 +59,19 @@ public class MainActivity extends Activity {
 				}
 			break;
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch(requestCode){
+			case -1:
+				ArrayList l = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+				Intent i = new Intent("mpop.revii.ai.SEND_SPEECH");
+				i.putExtra(l.get(0));
+				
+			break;
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override
