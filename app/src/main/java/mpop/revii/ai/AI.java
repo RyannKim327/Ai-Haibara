@@ -228,20 +228,24 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 			@Override
 			public void onEndOfSpeech() {
-				Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-				String str = i.getStringExtra(RecognizerIntent.EXTRA_RESULTS);
-				sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
-				http h = new http(ctx);
-				h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
-				e.setText("");
-				iv.setEnabled(false);
-				replied = false;
-				new Handler().postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						sc.fullScroll(View.FOCUS_DOWN);
-					}
-				}, 100);
+				try {
+					Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+					String str = i.getStringExtra(RecognizerIntent.EXTRA_RESULTS);
+					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
+					http h = new http(ctx);
+					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
+					e.setText("");
+					iv.setEnabled(false);
+					replied = false;
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							sc.fullScroll(View.FOCUS_DOWN);
+						}
+					}, 100);
+				}catch (Exception e){
+					util.show(context, e.getMessage());
+				}
 			}
 			@Override
 			public void onError(int i) {
