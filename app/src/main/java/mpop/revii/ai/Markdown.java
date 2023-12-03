@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Markdown extends TextView {
+	String _text = "";
 	public Markdown(Context ctx){
 		super(ctx);
 		setup();
