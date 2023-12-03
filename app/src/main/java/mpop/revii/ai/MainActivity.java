@@ -105,7 +105,8 @@ public class MainActivity extends Activity {
 		i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
 		try{
 			util.show(this, "Listening");
-			startActivityForResult(i, -1);
+			// startActivityForResult(i, -1);
+			sr.startListening(i);
 		}catch (Exception e){
 			util.show(MainActivity.this, "Error: " + e.getMessage());
 		}
