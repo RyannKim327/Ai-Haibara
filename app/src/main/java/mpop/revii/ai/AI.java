@@ -60,12 +60,12 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		float f = 0f, f2 = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
-				f, f, f, f,
-				f, f, f, f
+			f, f, f, f,
+			f, f, f, f
 		}, null, null));
 		ShapeDrawable sd2 = new ShapeDrawable(new RoundRectShape(new float[]{
-				f2, f2, f2, f2,
-				f2, f2, f2, f2
+			f2, f2, f2, f2,
+			f2, f2, f2, f2
 		}, null, null));
 
 		LinearLayout input = new LinearLayout(ctx);
@@ -165,11 +165,11 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					replied = false;
 				}
 				new Handler().postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							sc.fullScroll(View.FOCUS_DOWN);
-						}
-					}, 100);
+					@Override
+					public void run() {
+						sc.fullScroll(View.FOCUS_DOWN);
+					}
+				}, 100);
 			}
 		});
 
@@ -196,6 +196,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onReceive(Context p1, Intent p2) {
 				sc2.addView(chat(ctx, p2.getStringExtra("SENDER"), p2.getStringExtra("DATA")));
 				iv.setEnabled(true);
+				e.setActivated(true);
 				replied = true;
 				new Handler().postDelayed(new Runnable() {
 					@Override
@@ -248,9 +249,16 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					case SpeechRecognizer.ERROR_AUDIO:
 						util.show(ctx, "Audio Error");
 					break;
-					
+					case SpeechRecognizer.ERROR_NETWORK:
+						util.show(ctx, "Network Error");
+					break;
+					case SpeechRecognizer.ERROR_SERVER:
+						util.show(ctx, "Server Error");
+					break;
+					case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+						util.show(ctx, "Speech recognizer is busy");
+					break;
 				}
-				// util.show(ctx, "Please try again" + i);
 				e.setText("");
 			}
 			@Override
@@ -314,6 +322,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 500);
 				intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2500);
 				sr.startListening(intent);
+				
 			}
 		}
 	}
