@@ -67,8 +67,8 @@ public class MainActivity extends Activity {
 			case -1:
 				ArrayList<String> l = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 				Intent i = new Intent("mpop.revii.ai.SEND_SPEECH");
-				i.putExtra(l.get(0));
-
+				i.putExtra("mpop.revii.ai.DATA_SPEECH", l.get(0));
+				sendBroadcast(i);
 			break;
 		}
 		super.onActivityResult(requestCode, resultCode, data);
