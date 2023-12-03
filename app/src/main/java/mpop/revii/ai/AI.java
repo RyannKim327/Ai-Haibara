@@ -205,7 +205,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 						sc.fullScroll(View.FOCUS_DOWN);
 					}
 				}, 100);
-				speak();
+				// speak();
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
@@ -291,7 +291,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onEvent(int i, Bundle bundle) {}
 		});
 
-		speak();
+		// speak();
 
 		input.addView(e);
 		input.addView(v);
