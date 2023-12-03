@@ -230,7 +230,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onEndOfSpeech() {
 				try {
 					Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-					String str = i.getStringExtra(RecognizerIntent.EXTRA_RESULTS);
+					String str = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0);
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
 					http h = new http(ctx);
 					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
