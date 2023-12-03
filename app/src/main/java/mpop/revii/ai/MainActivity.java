@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
 				}
 			}
 		}, new IntentFilter("mpop.revii.ai.CALLBACK_SPEECH"));
-
+		sendBroadcast(new Intent("mpop.revii.ai.CALLBACK_SPEECH"));
 	}
 
 	void speak(){
