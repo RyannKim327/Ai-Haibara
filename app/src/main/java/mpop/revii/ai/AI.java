@@ -112,6 +112,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		e.setHintTextColor(util.rgbtohex(255, 255, 255));
 		e.setPadding(8, 5, 8, 5);
 		e.setMaxLines(8);
+		e.setActivated(true);
 
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
