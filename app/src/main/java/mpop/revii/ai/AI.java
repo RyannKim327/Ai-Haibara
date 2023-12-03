@@ -227,7 +227,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				b.setAdapter(adapt, new DialogInterface.OnClickListener(){
 					@Override
 					public void onClick(View v){
-						
+
 					}
 				});
 				b.setNegativeButton("Close", null);
