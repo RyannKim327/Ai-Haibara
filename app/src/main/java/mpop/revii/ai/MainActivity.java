@@ -71,7 +71,9 @@ public class MainActivity extends Activity {
 			public void onResults(Bundle bundle) {
 				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 				if(l != null && !l.isEmpty()){
-					
+					Intent i = new Intent("mpop.revii.ai.SEND_SPEECH");
+					i.putExtra("mpop.revii.ai.DATA_SPEECH", l.get(0));
+					sendBroadcast(i);
 				}
 			}
 			@Override
