@@ -231,18 +231,20 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				try {
 					Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 					String str = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0);
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
-					http h = new http(ctx);
-					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
-					e.setText("");
-					iv.setEnabled(false);
-					replied = false;
-					new Handler().postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							sc.fullScroll(View.FOCUS_DOWN);
-						}
-					}, 100);
+					if(str.trim().isEmpty()) {
+						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), str));
+						http h = new http(ctx);
+						h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
+						e.setText("");
+						iv.setEnabled(false);
+						replied = false;
+						new Handler().postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								sc.fullScroll(View.FOCUS_DOWN);
+							}
+						}, 100);
+					}
 				}catch (Exception e){
 					util.show(context, e.getMessage());
 				}
