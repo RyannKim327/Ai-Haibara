@@ -18,6 +18,7 @@ import android.content.DialogInterface;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends Activity {
@@ -67,7 +68,9 @@ public class MainActivity extends Activity {
 				}
 			}
 			@Override
-			public void onResults(Bundle bundle) {}
+			public void onResults(Bundle bundle) {
+				List<String> l = 
+			}
 			@Override
 			public void onPartialResults(Bundle bundle) {}
 			@Override
