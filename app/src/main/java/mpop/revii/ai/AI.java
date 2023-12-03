@@ -221,10 +221,15 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			@Override
 			public void onResults(Bundle bundle) {
 				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-				ListAdapter adapt = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, l);
+				ArrayAdapter adapt = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, l);
 				AlertDialog.Builder b = new AlertDialog.Builder(context);
 				b.setTitle("Here's the options");
-				b.setAdapter(adapt, new DialogInterface.OnClickListener(){});
+				b.setAdapter(adapt, new DialogInterface.OnClickListener(){
+					@Override
+					public void onClick(View v){
+						
+					}
+				});
 				b.setNegativeButton("Close", null);
 				b.setCancelable(false);
 				b.show();
