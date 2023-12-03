@@ -28,6 +28,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import java.util.List;
 import java.util.Locale;
 
 public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
@@ -77,6 +79,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		View v = new View(ctx);
 		View v2 = new View(ctx);
 		tts = new TextToSpeech(ctx, this);
+		sr = SpeechRecognizer.createSpeechRecognizer(ctx);
 
 		sc.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
 		sc.setPadding(5, 10, 5, 10);
@@ -119,7 +122,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onClick(View p1) {
 				if(tts.isSpeaking()) {
 					tts.stop();
-					context.sendBroadcast(new Intent("mpop.revii.ai.CALLBACK_SPEECH"));
 				}
 				String txt = e.getText().toString();
 				if (txt.toLowerCase().startsWith("set ")) {
@@ -164,6 +166,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					e.setText("");
 					iv.setEnabled(false);
 					replied = false;
+				}else{
+					speak();
 				}
 				new Handler().postDelayed(new Runnable() {
 					@Override
@@ -172,6 +176,66 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					}
 				}, 100);
 			}
+		});
+
+		sr.setRecognitionListener(new RecognitionListener() {
+			@Override
+			public void onReadyForSpeech(Bundle bundle) {
+				util.show(ctx, "Starting");
+			}
+			@Override
+			public void onBeginningOfSpeech() {}
+			@Override
+			public void onRmsChanged(float v) {}
+			@Override
+			public void onBufferReceived(byte[] bytes) {}
+			@Override
+			public void onEndOfSpeech() {}
+			@Override
+			public void onError(int i) {
+				switch (i) {
+					case SpeechRecognizer.ERROR_AUDIO:
+						util.show(ctx, "Audio Error");
+						break;
+					case SpeechRecognizer.ERROR_CLIENT:
+						util.show(ctx, "Client Error");
+						break;
+					case SpeechRecognizer.ERROR_NETWORK:
+						util.show(ctx, "Network Error");
+						break;
+					case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+						util.show(ctx, "Speech Recognizer is busy");
+						break;
+					case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+						util.show(ctx, "Network Timeout");
+						break;
+					case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+						util.show(ctx, "Speech Timeout");
+						break;
+				}
+			}
+			@Override
+			public void onResults(Bundle bundle) {
+				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+				if(l != null && !l.isEmpty()){
+					sc2.addView(chat(context, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), l.get(0)));
+					http h = new http(context);
+					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
+					e.setText("");
+					iv.setEnabled(false);
+					replied = false;
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							sc.fullScroll(View.FOCUS_DOWN);
+						}
+					}, 100);
+				}
+			}
+			@Override
+			public void onPartialResults(Bundle bundle) {}
+			@Override
+			public void onEvent(int i, Bundle bundle) {}
 		});
 
 		e.addTextChangedListener(new TextWatcher() {
@@ -208,27 +272,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				context.sendBroadcast(new Intent("mpop.revii.ai.CALLBACK_SPEECH"));
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
-
-		ctx.registerReceiver(new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				String data = intent.getStringExtra("mpop.revii.ai.DATA_SPEECH");
-				if(!data.isEmpty()){
-					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), data));
-					http h = new http(ctx);
-					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
-					e.setText("");
-					iv.setEnabled(false);
-					replied = false;
-					new Handler().postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							sc.fullScroll(View.FOCUS_DOWN);
-						}
-					}, 100);
-				}
-			}
-		}, new IntentFilter("mpop.revii.ai.SEND_SPEECH"));
 
 		input.addView(e);
 		input.addView(v);
@@ -314,7 +357,16 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		return base;
 	}
 	void speak(){
-		
+		Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+		i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
+		try{
+			util.show(context, "Listening");
+			sr.startListening(i);
+		}catch (Exception e){
+			util.show(context, "Error: " + e.getMessage());
+		}
 	}
 	void speak(String text){
 		text = text.replaceAll("0", "zero");
