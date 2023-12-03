@@ -2,7 +2,10 @@ package mpop.revii.ai;
  
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,16 +27,67 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		sr = SpeechRecognizer.createSpeechRecognizer(this);
 		getActionBar().setIcon(util.setResources(this, "ic_launcher", "drawable"));
-		getActionBar().setTitle("Bebe ang AI");
+		getActionBar().setTitle("Talking AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(new AI(this));
-		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-			if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-				speak();
-			}else{
-				requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+		sr.setRecognitionListener(new RecognitionListener() {
+			@Override
+			public void onReadyForSpeech(Bundle bundle) {
+				util.show(MainActivity.this, "Starting");
 			}
-		}
+			@Override
+			public void onBeginningOfSpeech() {}
+			@Override
+			public void onRmsChanged(float v) {}
+			@Override
+			public void onBufferReceived(byte[] bytes) {}
+			@Override
+			public void onEndOfSpeech() {}
+			@Override
+			public void onError(int i) {
+				switch (i){
+					case SpeechRecognizer.ERROR_AUDIO:
+						util.show(MainActivity.this, "Audio Error");
+					break;
+					case SpeechRecognizer.ERROR_CLIENT:
+						util.show(MainActivity.this, "Client Error");
+					break;
+					case SpeechRecognizer.ERROR_NETWORK:
+						util.show(MainActivity.this, "Network Error");
+					break;
+					case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+						util.show(MainActivity.this, "Speech Recognizer is busy");
+					break;
+					case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+						util.show(MainActivity.this, "Network Timeout");
+					break;
+					case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+						util.show(MainActivity, "Speech Timeout");
+					break
+				}
+			}
+			@Override
+			public void onResults(Bundle bundle) {}
+			@Override
+			public void onPartialResults(Bundle bundle) {}
+			@Override
+			public void onEvent(int i, Bundle bundle) {}
+		});
+		registerReceiver(new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+					if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+						speak();
+					}else{
+						requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+					}
+				}else{
+					speak();
+				}
+			}
+		}, new IntentFilter("mpop.revii.ai.CALLBACK_SPEECH"));
+
 	}
 
 	void speak(){

@@ -118,6 +118,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onClick(View p1) {
 				if(tts.isSpeaking()) {
 					tts.stop();
+					context.sendBroadcast(new Intent("mpop.revii.ai.CALLBACK_SPEECH"));
 				}
 				String txt = e.getText().toString();
 				if (txt.toLowerCase().startsWith("set ")) {
@@ -203,7 +204,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 						sc.fullScroll(View.FOCUS_DOWN);
 					}
 				}, 100);
-				// speak();
+				context.sendBroadcast(new Intent("mpop.revii.ai.CALLBACK_SPEECH"));
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
