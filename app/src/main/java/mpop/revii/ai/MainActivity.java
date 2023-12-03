@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 		i.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
-		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, Locale.getDefault());
+		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 		i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
 		try{
 			startActivityForResult(i, -1);
