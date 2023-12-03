@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognitionListener;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
+	Context context;
 	
 	ScrollView sc;
 	LinearLayout sc2;
@@ -56,6 +58,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	public void ai(final Context ctx) {
 		ctx.setTheme(android.R.style.Theme_DeviceDefault);
+		context = ctx;
 
 		float f = 0f, f2 = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
@@ -299,10 +302,10 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			int result = tts.setLanguage(Locale.US);
 			tts.setSpeechRate(1.2f);
 			if(result == TextToSpeech.LANG_MISSING_DATA){
-				util.show(getContext(), "Please check your text to speech data on settings.");
+				util.show(context, "Please check your text to speech data on settings.");
 			}
 		}else{
-			util.show(getContext(), "Failed to Initiate");
+			util.show(context, "Failed to Initiate");
 		}
 	}
 
@@ -322,7 +325,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 500);
 				intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2500);
 				sr.startListening(intent);
-				getContext().startActivity(intent);
+				context.startActivity(intent);
 			}
 		}
 	}
@@ -346,47 +349,38 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))){
 			base.setGravity(Gravity.RIGHT);
 			base.setPadding(75, 5, 5, 5);
-			
 			from.setGravity(Gravity.RIGHT);
-			
 			chat.setTextColor(Color.WHITE);
 			chat.setGravity(Gravity.LEFT);
 			chat.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			
 			sd.getPaint().setColor(Color.parseColor("#006AFF"));
 			from.setText(String.format(" :%s ",send));
 		}else{
 			base.setPadding(5, 5, 75, 5);
 			base.setGravity(Gravity.LEFT);
-			
 			sd.getPaint().setColor(Color.parseColor("#303030"));
 			chat.setTextColor(Color.WHITE);
 			from.setText(String.format(" %s: ",send));
 		}
-
 		base.setOrientation(LinearLayout.VERTICAL);
 		base.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-
 		from.setPadding(10, 10, 10, 10);
 		from.setTextSize(size);
 		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
-		
 		chat.setPadding(15, 10, 15, 10);
 		chat.setBackground(sd);
 		chat.setTextSize(size + (size / 2));
 		chat.setTypeface(Typeface.SERIF);
 		chat.setText(msg);
 		chat.setTextIsSelectable(true);
-
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
 			public void onReceive(Context p1, Intent p2) {
-			int size = p2.getIntExtra("mpop.revii.ai.DATA_SIZE", 10);
-			from.setTextSize(size);
-			chat.setTextSize(size + (size / 2));
+				int size = p2.getIntExtra("mpop.revii.ai.DATA_SIZE", 10);
+				from.setTextSize(size);
+				chat.setTextSize(size + (size / 2));
 			}
 		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
-
 		if(!send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))) {
 			if(sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false)) {
 				String _chat = chat.getText().toString();
@@ -398,6 +392,10 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		return base;
 	}
 	void speak(String text){
-		tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+		}else{
+			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+		}
 	}
 }
