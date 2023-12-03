@@ -230,7 +230,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 						if(adapt.getItem(i) != null && adapt.getItem(i) != "") {
 							sc2.addView(chat(context, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), adapt.getItem(i).toString()));
 							http h = new http(context);
-							h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + e.getText().toString());
+							h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + adapt.getItem(i).toString());
 							e.setText("");
 							iv.setEnabled(false);
 							replied = false;
