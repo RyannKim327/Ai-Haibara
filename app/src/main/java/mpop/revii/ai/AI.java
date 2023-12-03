@@ -311,6 +311,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 
 	void speak(){
 		if(sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false)) {
+			util.show(context, String.valueOf(SpeechRecognizer.isRecognitionAvailable(context)));
 			if (sr != null) {
 				Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, Locale.getDefault());
