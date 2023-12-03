@@ -1,8 +1,10 @@
 package mpop.revii.ai;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -23,9 +25,11 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -217,6 +221,13 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			@Override
 			public void onResults(Bundle bundle) {
 				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+				ListAdapter adapt = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, l);
+				AlertDialog.Builder b = new AlertDialog.Builder(context);
+				b.setTitle("Here's the options");
+				b.setAdapter(adapt, new DialogInterface.OnClickListener(){});
+				b.setNegativeButton("Close", null);
+				b.setCancelable(false);
+				b.show();
 				if(l != null && !l.isEmpty()){
 					sc2.addView(chat(context, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), l.get(0)));
 					http h = new http(context);
