@@ -253,20 +253,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			public void onEvent(int i, Bundle bundle) {}
 		});
 
-		e.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4) {}
-
-			@Override
-			public void onTextChanged(CharSequence p1, int p2, int p3, int p4) {
-				String text = e.getText().toString().trim();
-				iv.setEnabled(!text.isEmpty() && replied);
-			}
-
-			@Override
-			public void afterTextChanged(Editable p1) {}
-		});
-
 		v.setLayoutParams(new LayoutParams(25, 1));
 		v2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 2));
 		v2.setBackgroundColor(Color.LTGRAY);
