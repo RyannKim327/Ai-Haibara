@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
 						util.show(MainActivity.this, "Network Timeout");
 					break;
 					case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-						util.show(MainActivity, "Speech Timeout");
+						util.show(MainActivity.this, "Speech Timeout");
 					break
 				}
 			}
@@ -135,7 +135,7 @@ public class MainActivity extends Activity {
 		a.setMessage("Are you sure you want to close the app?");
 		a.setPositiveButton("No", null);
 		a.setNegativeButton("Yes", new DialogInterface.OnClickListener(){
-			@Overrie
+			@Override
 			public void onClick(DialogInterface p1, int p2) {
 				finishAffinity();
 			}
