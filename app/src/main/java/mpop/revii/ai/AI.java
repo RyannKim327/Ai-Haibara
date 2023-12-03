@@ -325,7 +325,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 				intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say it now");
-				context.startActivity(intent);
+				sr.startListening(intent);
 			}
 		}
 	}
