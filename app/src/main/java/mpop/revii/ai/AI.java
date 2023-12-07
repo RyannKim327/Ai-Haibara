@@ -373,7 +373,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					dialog.setMessage("There is no codes here");
 				}
 				dialog.setPositiveButton("Close", null);
-				dialog.setCancelable(false);
+				dialog.setCancelable(chat.getAllCodes().size() > 0);
 				dialog.show();
 				return false;
 			}
