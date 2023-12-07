@@ -4,10 +4,7 @@ import android.content.Context;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import org.json.JSONObject;
-import java.io.File;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Markdown extends TextView {
 	String _text = "";
@@ -114,7 +111,7 @@ public class Markdown extends TextView {
 		
 		return html;
 	}
-	public static String[] getAllCodes(){
+	public ArrayList<String> getAllCodes(){
 		return codes;
 	}
 }

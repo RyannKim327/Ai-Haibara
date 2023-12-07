@@ -3,6 +3,7 @@ package mpop.revii.ai;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -353,6 +354,27 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				speak(_chat);
 			}
 		}
+
+		chat.setOnLongClickListener(new OnLongClickListener(){
+			@Override
+			public boolean onLongClick(View view) {
+				final ArrayAdapter<String> list = new ArrayAdapter<>(ctx, android.R.layout.simple_list_item_1, chat.getAllCodes());
+				AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
+				dialog.setTitle("Codes from this message");
+				dialog.setAdapter(list, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialogInterface, int i) {
+						((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(list.getItem(i));
+						util.show(ctx, "Text Copied");
+					}
+				});
+				dialog.setPositiveButton("Close", null);
+				dialog.setCancelable(false);
+				dialog.show();
+				return false;
+			}
+		});
+
 		base.addView(from);
 		base.addView(chat);
 		return base;
