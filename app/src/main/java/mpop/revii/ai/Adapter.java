@@ -1,6 +1,7 @@
 package mpop.revii.ai;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,7 +20,7 @@ public class Adapter extends ArrayAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LinearLayout layout = 
+		LinearLayout layout = LayoutInflater.from(ctx).inflate()
 		return super.getView(position, convertView, parent);
 	}
 }
