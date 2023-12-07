@@ -3,6 +3,8 @@ package mpop.revii.ai;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,18 +30,24 @@ public class Adapter extends ArrayAdapter<String> {
 		LinearLayout base = layout.findViewById(util.setResources(ctx, "baseLayout", "id"));
 		TextView number = layout.findViewById(util.setResources(ctx, "number", "id"));
 		TextView code = layout.findViewById(util.setResources(ctx, "code", "id"));
+		float f = 15f;
+		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
+			f, f, f, f,
+			f, f, f, f
+		}, null, null));
 		String data = list.get(position);
 
 		if((position % 2) == 0){
-			base.setBackgroundColor(Color.DKGRAY);
+			sd.getPaint().setColor(Color.DKGRAY);
 			number.setTextColor(Color.WHITE);
 			code.setTextColor(Color.WHITE);
 		}else{
-			base.setBackgroundColor(Color.LTGRAY);
+			sd.getPaint().setColor(Color.LTGRAY);
 			number.setTextColor(Color.BLACK);
 			code.setTextColor(Color.BLACK);
 		}
 
+		base.setBackground(sd);
 		number.setText(String.format("[%d]: %s Code", position + 1, lang.get(position)));
 		code.setText(data);
 		number.setTypeface(Typeface.SERIF);
