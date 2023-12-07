@@ -42,8 +42,8 @@ public class Adapter extends ArrayAdapter<String> {
 
 		number.setText(String.format("[%d]: %s Code", position + 1, lang.get(position)));
 		code.setText(data);
-		number.setTypeface(Typeface.SANS_SERIF);
-		code.setTypeface(Typeface.SERIF);
+		number.setTypeface(Typeface.SERIF);
+		code.setTypeface(Typeface.MONOSPACE);
 
 		return layout;
 	}
