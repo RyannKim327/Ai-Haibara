@@ -16,7 +16,7 @@ public class Adapter extends ArrayAdapter<String> {
 	ArrayList<String> list;
 	ArrayList<String> lang;
 	public Adapter(Context context, ArrayList languages, ArrayList arraylist){
-		super(context, util.setResources(context, "layout_list", "layout"));
+		super(context, util.setResources(context, "layout_list", "layout"), arraylist);
 		ctx = context;
 		list = arraylist;
 		lang = languages;
