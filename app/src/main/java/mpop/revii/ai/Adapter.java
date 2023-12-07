@@ -16,7 +16,7 @@ public class Adapter extends ArrayAdapter<String> {
 	ArrayList<String> list;
 	ArrayList<String> lang;
 	public Adapter(Context context, ArrayList languages, ArrayList arraylist){
-		super(context, util.setResources(context, "layout_list", "layout"), arraylist);
+		super(context, util.setResources(context, "layout_list", "layout"));
 		ctx = context;
 		list = arraylist;
 		lang = languages;
@@ -44,7 +44,7 @@ public class Adapter extends ArrayAdapter<String> {
 		code.setText(data);
 		number.setTypeface(Typeface.SANS_SERIF);
 		code.setTypeface(Typeface.SERIF);
-		
+
 		return layout;
 	}
 }
