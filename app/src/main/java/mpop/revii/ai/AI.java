@@ -361,7 +361,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				final ArrayAdapter<String> list = new ArrayAdapter<>(ctx, android.R.layout.simple_list_item_1, chat.getAllCodes());
 				AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
 				dialog.setTitle("Codes from this message");
-				if(list.)
+				if(chat.getAllCodes())
 				dialog.setAdapter(list, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialogInterface, int i) {
