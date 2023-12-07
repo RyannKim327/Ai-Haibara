@@ -339,7 +339,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		chat.setTextSize(size + (size / 2));
 		chat.setTypeface(Typeface.SERIF);
 		chat.setText(msg);
-		chat.setTextIsSelectable(true);
+		// chat.setTextIsSelectable(true);
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
 			public void onReceive(Context p1, Intent p2) {
