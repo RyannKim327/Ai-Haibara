@@ -20,7 +20,7 @@ public class Adapter extends ArrayAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LinearLayout layout = LayoutInflater.from(ctx).inflate(ctx, util.setResources(ctx, "layout_list", "layout"), false);
+		LinearLayout layout = LayoutInflater.from(ctx).inflate(util.setResources(ctx, "layout_list", "layout"), false);
 		return super.getView(position, convertView, parent);
 	}
 }
