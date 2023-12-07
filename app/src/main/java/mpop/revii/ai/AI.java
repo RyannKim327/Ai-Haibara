@@ -358,10 +358,13 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		chat.setOnLongClickListener(new OnLongClickListener(){
 			@Override
 			public boolean onLongClick(View view) {
-				final ArrayAdapter<String> list = new ArrayAdapter<>(ctx, android.R.layout.simple_list_item_1, chat.getAllCodes());
+				final ArrayAdapter<String> list = new ArrayAdapter<>(ctx, android.R.layout.simple_list_item_1);
 				AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
 				dialog.setTitle("Codes from this message");
 				if(chat.getAllCodes().size() > 0) {
+					for(int i = 0; i <  chat.getAllCodes().size(); i++){
+						list.add(String.format("[%d]: %s", i,  chat.getAllCodes().get(i)));
+					}
 					dialog.setAdapter(list, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialogInterface, int i) {
