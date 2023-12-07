@@ -39,11 +39,12 @@ public class Adapter extends ArrayAdapter<String> {
 			number.setTextColor(Color.BLACK);
 			code.setTextColor(Color.BLACK);
 		}
+
 		number.setText(String.format("[%d]: %s", position + 1, lang.get(position)));
 		code.setText(data);
-
 		number.setTypeface(Typeface.SANS_SERIF);
 		code.setTypeface(Typeface.SERIF);
+		
 		return layout;
 	}
 }
