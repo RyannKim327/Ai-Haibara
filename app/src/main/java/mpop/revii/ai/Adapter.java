@@ -30,7 +30,7 @@ public class Adapter extends ArrayAdapter<String> {
 		LinearLayout base = layout.findViewById(util.setResources(ctx, "baseLayout", "id"));
 		TextView number = layout.findViewById(util.setResources(ctx, "number", "id"));
 		TextView code = layout.findViewById(util.setResources(ctx, "code", "id"));
-		float f = 15f;
+		float f = 8f;
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 			f, f, f, f,
 			f, f, f, f
