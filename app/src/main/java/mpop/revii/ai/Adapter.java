@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class Adapter extends ArrayAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		
+		LinearLayout layout = 
 		return super.getView(position, convertView, parent);
 	}
 }
