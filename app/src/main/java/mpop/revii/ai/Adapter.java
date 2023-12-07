@@ -1,6 +1,7 @@
 package mpop.revii.ai;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Adapter extends ArrayAdapter {
+public class Adapter extends ArrayAdapter<String> {
 	Context ctx;
 	ArrayList<String> list;
 	public Adapter(Context context, ArrayList arraylist){
@@ -27,7 +28,13 @@ public class Adapter extends ArrayAdapter {
 		TextView code = layout.findViewById(util.setResources(ctx, "code", "id"));
 		String data = list.get(position);
 
-		
+		if((position % 2) == 0){
+			base.setBackgroundColor(Color.DKGRAY);
+		}else{
+			base.setBackgroundColor(Color.LTGRAY);
+		}
+		number.setText(String.valueOf(position + 1));
+		code.setText(data);
 
 		return layout;
 	}
