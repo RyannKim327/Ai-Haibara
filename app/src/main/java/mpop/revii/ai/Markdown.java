@@ -65,7 +65,7 @@ public class Markdown extends TextView {
 			}else{
 				if(!txt.startsWith("```")){
 					result += txt.replaceAll("\t", "&emsp;").replaceAll("    ", "&emsp;").replaceAll("  ", "&emsp;");
-					_code += txt + "\n";
+					_code += txt.replaceAll("&lt;", "<").replaceAll( "&gt;", ">") + "\n";
 				}
 			}
 			
