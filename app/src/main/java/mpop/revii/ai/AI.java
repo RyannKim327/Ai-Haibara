@@ -363,7 +363,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				dialog.setTitle("Codes from this message");
 				if(chat.getAllCodes().size() > 0) {
 					for(int i = 0; i <  chat.getAllCodes().size(); i++){
-						list.add(String.format("[%d]:\n %s", i,  chat.getAllCodes().get(i)));
+						list.add(String.format("[%d]:\n %s", (i + 1),  chat.getAllCodes().get(i)));
 					}
 					dialog.setAdapter(list, new DialogInterface.OnClickListener() {
 						@Override
