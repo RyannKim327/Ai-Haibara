@@ -2,6 +2,7 @@ package mpop.revii.ai;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +31,18 @@ public class Adapter extends ArrayAdapter<String> {
 
 		if((position % 2) == 0){
 			base.setBackgroundColor(Color.DKGRAY);
+			number.setTextColor(Color.WHITE);
+			code.setTextColor(Color.WHITE);
 		}else{
 			base.setBackgroundColor(Color.LTGRAY);
+			number.setTextColor(Color.BLACK);
+			code.setTextColor(Color.BLACK);
 		}
-		number.setText(String.valueOf(position + 1));
+		number.setText(String.format("[%d]", position + 1));
 		code.setText(data);
 
+		number.setTypeface(Typeface.SANS_SERIF);
+		code.setTypeface(Typeface.SERIF);
 		return layout;
 	}
 }
