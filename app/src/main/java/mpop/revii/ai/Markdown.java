@@ -21,9 +21,11 @@ public class Markdown extends TextView {
 	}
 
 	void setup(){
-		// setClickable(true);
-		// setTextIsSelectable(true);
-		// setLinksClickable(true);
+		if(codes.size() <= 0) {
+			setClickable(true);
+			setTextIsSelectable(true);
+			setLinksClickable(true);
+		}
 	}
 
 	public void setText(String txt){
