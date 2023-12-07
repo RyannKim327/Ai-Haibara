@@ -22,8 +22,10 @@ public class Adapter extends ArrayAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View layout = LayoutInflater.from(ctx).inflate(util.setResources(ctx, "layout_list", "layout"), null, false);
+		LinearLayout base = layout.findViewById(util.setResources(ctx, "baseLayout", "id"));
 		TextView number = layout.findViewById(util.setResources(ctx, "number", "id"));
 		TextView code = layout.findViewById(util.setResources(ctx, "code", "id"));
+		String data
 		return layout;
 	}
 }
