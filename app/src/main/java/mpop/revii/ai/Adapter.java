@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class Adapter extends ArrayAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LinearLayout layout = LayoutInflater.from(ctx).inflate(util.setResources(ctx, "layout_list", "layout"), false);
-		return super.getView(position, convertView, parent);
+		TextView number = 
+		return layout;
 	}
 }
