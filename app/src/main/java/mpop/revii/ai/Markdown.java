@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class Markdown extends TextView {
 	String _text = "";
+	ArrayList<String> codes = new ArrayList<>();
 	public Markdown(Context ctx){
 		super(ctx);
 		setup();
@@ -31,6 +32,7 @@ public class Markdown extends TextView {
 		String[] text = txt.split("\n");
 		String result = "";
 		boolean x = true;
+		String _code = "";
 		for(int i = 0; i < text.length; i++){
 			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
 			if(txt.startsWith("```")){
@@ -53,6 +55,9 @@ public class Markdown extends TextView {
 				}
 				x = !x;
 				result += x ? "</font>" : String.format("<font color=\"%s\">", "#bebebe");
+				if(x){
+					codes.add(_code);
+				}
 			}
 			if(x){
 				if(txt.startsWith("&gt; ") || txt.startsWith("> ")){
@@ -63,6 +68,7 @@ public class Markdown extends TextView {
 			}else{
 				if(!txt.startsWith("```")){
 					result += txt.replaceAll("\t", "&emsp;").replaceAll("    ", "&emsp;").replaceAll("  ", "&emsp;");
+					_code += txt + "\n";
 				}
 			}
 			
@@ -107,5 +113,8 @@ public class Markdown extends TextView {
 		html = html.replaceAll("\\* (.*)", "&ensp;•&ensp;$1<br>");
 		
 		return html;
+	}
+	public static String[] getAllCodes(){
+		return codes;
 	}
 }
