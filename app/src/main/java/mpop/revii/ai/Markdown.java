@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Markdown extends TextView {
 	String _text = "";
 	ArrayList<String> codes = new ArrayList<>();
+	ArrayList<String> lang = new ArrayList<>();
 	public Markdown(Context ctx){
 		super(ctx);
 		setup();
@@ -48,6 +49,7 @@ public class Markdown extends TextView {
 							break;
 						}
 					}
+					lang.add(code);
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
@@ -113,5 +115,8 @@ public class Markdown extends TextView {
 	}
 	public ArrayList<String> getAllCodes(){
 		return codes;
+	}
+	public ArrayList<String> getLanguage(){
+		return lang;
 	}
 }
