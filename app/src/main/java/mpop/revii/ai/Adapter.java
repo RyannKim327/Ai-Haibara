@@ -25,7 +25,8 @@ public class Adapter extends ArrayAdapter {
 		LinearLayout base = layout.findViewById(util.setResources(ctx, "baseLayout", "id"));
 		TextView number = layout.findViewById(util.setResources(ctx, "number", "id"));
 		TextView code = layout.findViewById(util.setResources(ctx, "code", "id"));
-		String data
+		String data = getView(position);
+
 		return layout;
 	}
 }
