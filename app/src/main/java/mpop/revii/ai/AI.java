@@ -371,8 +371,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 							String out = list.getItem(i);
 							String[] o = out.split("\n");
 							out = "";
-							for(int i = 1; i < o.length; i++){
-								out += o[i] + "\n";
+							for(int j = 1; j < o.length; j++){
+								out += o[j] + "\n";
 							}
 							((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(out);
 							util.show(ctx, "Text Copied");
