@@ -361,14 +361,17 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				final ArrayAdapter<String> list = new ArrayAdapter<>(ctx, android.R.layout.simple_list_item_1, chat.getAllCodes());
 				AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
 				dialog.setTitle("Codes from this message");
-				if(chat.getAllCodes())
-				dialog.setAdapter(list, new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialogInterface, int i) {
-						((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(list.getItem(i));
-						util.show(ctx, "Text Copied");
-					}
-				});
+				if(chat.getAllCodes().size() > 0) {
+					dialog.setAdapter(list, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int i) {
+							((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(list.getItem(i));
+							util.show(ctx, "Text Copied");
+						}
+					});
+				}else{
+					dialog.setMessage("There is no codes here");
+				}
 				dialog.setPositiveButton("Close", null);
 				dialog.setCancelable(false);
 				dialog.show();
