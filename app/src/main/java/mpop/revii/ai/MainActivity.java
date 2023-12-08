@@ -31,6 +31,11 @@ public class MainActivity extends Activity {
 		getActionBar().setTitle("Talking AI");
 		getActionBar().setSubtitle("Developed by RyannKim327");
 		setContentView(new AI(this));
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+				requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+			}
+		}
 	}
 
 	@Override
@@ -53,5 +58,29 @@ public class MainActivity extends Activity {
 	protected void onPause() {
 		super.onPause();
 		finishAffinity();
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		switch (requestCode){
+			case 0:
+				if(grantResults.length > 0 & grantResults[0] == PackageManager.PERMISSION_GRANTED){
+					util.show(this, "Your may now start");
+					recreate();
+				}else{
+					finishAffinity();
+				}
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+				requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 0);
+			}
+		}
 	}
 }
