@@ -32,12 +32,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
 
-public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
+public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
+	LinearLayout base;
 	Context context;
 	ScrollView sc;
 	LinearLayout sc2;
@@ -76,6 +78,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			f2, f2, f2, f2
 		}, null, null));
 
+		base = new LinearLayout(ctx)
 		LinearLayout input = new LinearLayout(ctx);
 		e = new EditText(ctx);
 		iv = new ImageButton(ctx);
@@ -96,10 +99,11 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		sd.getPaint().setColor(Color.DKGRAY);
 		sd2.getPaint().setColor(Color.parseColor("#75AAAAAA"));
 
-		setBackground(sd);
-		setOrientation(LinearLayout.VERTICAL);
-		setPadding(5, 10, 5, 10);
-		setVisibility(View.VISIBLE);
+		base.setBackground(sd);
+		base.setOrientation(LinearLayout.VERTICAL);
+		base.setPadding(5, 10, 5, 10);
+		base.setVisibility(View.VISIBLE);
+		base.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
 		input.setOrientation(LinearLayout.HORIZONTAL);
 		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -299,9 +303,10 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		input.addView(v);
 		input.addView(iv);
 		sc.addView(sc2);
-		addView(sc);
-		addView(v2);
-		addView(input);
+		base.addView(sc);
+		base.addView(v2);
+		base.addView(input);
+		addView(base);
 	}
 
 	@Override
