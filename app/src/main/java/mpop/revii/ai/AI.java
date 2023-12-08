@@ -271,6 +271,13 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			}
 		}, new IntentFilter("mpop.revii.ai.DATA"));
 
+		context.registerReceiver(new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				util.show(context, "Completed");
+			}
+		}, new IntentFilter(TextToSpeech.ACTION_TTS_QUEUE_PROCESSING_COMPLETED));
+
 		input.addView(e);
 		input.addView(v);
 		input.addView(iv);
@@ -405,14 +412,8 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		text = text.replaceAll("9", "nine");
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
-		}else{
+		}else {
 			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 		}
-		context.registerReceiver(new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				util.show(context, "Completed");
-			}
-		}, new IntentFilter(TextToSpeech.ACTION_TTS_QUEUE_PROCESSING_COMPLETED));
 	}
 }
