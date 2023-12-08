@@ -40,7 +40,7 @@ public class Markdown extends TextView {
 					String[] languages = {
 						"html", "css"
 					};
-					if(txt.substring("```".length()).trim() != "") {
+					if(txt.substring("```".length()) != null) {
 						char[] c = txt.substring("```".length()).toCharArray();
 						String code = String.valueOf(c[0]).toUpperCase();
 						if (txt.substring("```".length()).length() > 0) {
@@ -85,7 +85,7 @@ public class Markdown extends TextView {
 			if(i < text.length - 1){
 				if(!txt.startsWith("* ")){
 					result += "<br>";
-					_code += "\n";
+					_code += (x) ? "\n" : "";
 				}
 			}
 		}
