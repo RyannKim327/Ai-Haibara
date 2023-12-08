@@ -10,17 +10,19 @@ public class Markdown extends TextView {
 	String _text = "", noCode = "";
 	ArrayList<String> codes = new ArrayList<>();
 	ArrayList<String> lang = new ArrayList<>();
+	Context ctx;
 	public Markdown(Context ctx){
 		super(ctx);
-		setup();
+		setup(ctx);
 	}
 
 	public Markdown(Context ctx, AttributeSet attr){
 		super(ctx, attr);
-		setup();
+		setup(ctx);
 	}
 
-	void setup(){
+	void setup(Context context){
+		ctx = context;
 		if(codes.size() <= 0) {
 			setClickable(true);
 			setTextIsSelectable(true);
@@ -40,6 +42,7 @@ public class Markdown extends TextView {
 					String[] languages = {
 						"html", "css"
 					};
+					util.show(ctx, txt.substring("```".length()));
 					if(txt.substring("```".length()) != null) {
 						char[] c = txt.substring("```".length()).toCharArray();
 						String code = String.valueOf(c[0]).toUpperCase();
