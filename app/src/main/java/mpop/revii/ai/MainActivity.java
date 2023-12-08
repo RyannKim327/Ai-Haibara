@@ -48,4 +48,9 @@ public class MainActivity extends Activity {
 		a.setCancelable(true);
 		a.show();
 	}
+
+	@Override
+	protected void onPause() {
+		finishAffinity();;
+	}
 }
