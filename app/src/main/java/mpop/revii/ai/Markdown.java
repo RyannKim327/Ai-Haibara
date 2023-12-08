@@ -63,6 +63,10 @@ public class Markdown extends TextView {
 					}else{
 						lang.add("Unknown");
 					}
+				}else{
+					if(x) {
+						lang.add("Unknown");
+					}
 				}
 				x = !x;
 				result += x ? "</font>" : String.format("<font color=\"%s\">", "#bebebe");
