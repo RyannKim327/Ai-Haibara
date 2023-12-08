@@ -47,7 +47,7 @@ public class Adapter extends ArrayAdapter<String> {
 		}
 
 		base.setBackground(sd);
-		number.setText(String.format("[%d]: %s", position + 1, lang.get(position));
+		number.setText(String.format("[%d]: %s", position + 1, lang.get(position)));
 		code.setText(list.get(position));
 		number.setTypeface(Typeface.SERIF);
 		code.setTypeface(Typeface.SERIF);
