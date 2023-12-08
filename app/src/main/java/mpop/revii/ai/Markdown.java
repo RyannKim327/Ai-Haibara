@@ -37,13 +37,14 @@ public class Markdown extends TextView {
 		String _code = "";
 		for(int i = 0; i < text.length; i++){
 			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
+			util.show(ctx, String.valueOf(txt.substring("``".length()).length()));
 			if(txt.startsWith("```")){
 				if(!txt.equals("```")){
 					String[] languages = {
 						"html", "css"
 					};
 					util.show(ctx, String.valueOf(txt.substring("``".length()).length()));
-					if(txt.substring("```".length()) != null) {
+					if(txt.substring("``".length()).length() > 1) {
 						char[] c = txt.substring("```".length()).toCharArray();
 						String code = String.valueOf(c[0]).toUpperCase();
 						if (txt.substring("```".length()).length() > 0) {
