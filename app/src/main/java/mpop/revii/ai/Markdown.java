@@ -55,11 +55,11 @@ public class Markdown extends TextView {
 							}
 							lang.add(code);
 						} else {
-							lang.add("");
+							lang.add("Unknown");
 						}
 						result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 					}else{
-						lang.add("");
+						lang.add("Unknown");
 					}
 				}
 				x = !x;
