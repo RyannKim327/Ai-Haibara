@@ -392,20 +392,29 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		}
 	}
 	void speak(String text){
-		text = text.replaceAll("0", "zero");
-		text = text.replaceAll("1", "one");
-		text = text.replaceAll("2", "two");
-		text = text.replaceAll("3", "three");
-		text = text.replaceAll("4", "four");
-		text = text.replaceAll("5", "five");
-		text = text.replaceAll("6", "six");
-		text = text.replaceAll("7", "seven");
-		text = text.replaceAll("8", "eight");
-		text = text.replaceAll("9", "nine");
+		String txt = "";
+		String[] t = text.split("\\s");
+		for(int i = 0; i < t.length; i++) {
+			try {
+				txt += t[i] + " ";
+			}catch (Exception e){
+				String _text = txt.replaceAll("0", "zero");
+				_text = txt.replaceAll("1", "one");
+				_text = txt.replaceAll("2", "two");
+				_text = txt.replaceAll("3", "three");
+				_text = txt.replaceAll("4", "four");
+				_text = txt.replaceAll("5", "five");
+				_text = txt.replaceAll("6", "six");
+				_text = txt.replaceAll("7", "seven");
+				_text = txt.replaceAll("8", "eight");
+				_text = txt.replaceAll("9", "nine");
+				txt += _text + " ";
+			}
+		}
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+			tts.speak(txt, TextToSpeech.QUEUE_FLUSH, null, null);
 		}else {
-			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+			tts.speak(txt, TextToSpeech.QUEUE_FLUSH, null);
 		}
 	}
 }
