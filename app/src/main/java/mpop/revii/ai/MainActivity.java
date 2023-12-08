@@ -51,6 +51,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		finishAffinity();;
+		super.onPause();
+		finishAffinity();
 	}
 }
