@@ -41,22 +41,24 @@ public class Markdown extends TextView {
 						"html", "css"
 					};
 					char[] c = txt.substring("```".length()).toCharArray();
-					String code = String.valueOf(c[0]).toUpperCase();
-					if(txt.substring("```".length()).length() > 0) {
-						for (int i2 = 1; i2 < c.length; i2++) {
-							code += String.valueOf(c[i2]);
-						}
-						for (int ii = 0; ii < languages.length; ii++) {
-							if (languages[ii].equalsIgnoreCase(code)) {
-								code = code.toUpperCase();
-								break;
+					if(c.length > 0) {
+						String code = String.valueOf(c[0]).toUpperCase();
+						if (txt.substring("```".length()).length() > 0) {
+							for (int i2 = 1; i2 < c.length; i2++) {
+								code += String.valueOf(c[i2]);
 							}
+							for (int ii = 0; ii < languages.length; ii++) {
+								if (languages[ii].equalsIgnoreCase(code)) {
+									code = code.toUpperCase();
+									break;
+								}
+							}
+							lang.add(code);
+						} else {
+							lang.add("_");
 						}
-						lang.add(code);
-					}else{
-						lang.add("_");
+						result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 					}
-					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
 				result += x ? "</font>" : String.format("<font color=\"%s\">", "#bebebe");
