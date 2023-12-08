@@ -371,7 +371,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				}catch (Exception e){
 					util.show(ctx, e.getMessage());
 				}
-				return false;
+				return true;
 			}
 		});
 
