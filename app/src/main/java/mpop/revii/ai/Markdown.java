@@ -58,6 +58,7 @@ public class Markdown extends TextView {
 				result += x ? "</font>" : String.format("<font color=\"%s\">", "#bebebe");
 				if(x){
 					codes.add(_code);
+					_code = "";
 				}
 			}
 			if(x){
