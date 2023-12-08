@@ -408,5 +408,11 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		}else{
 			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 		}
+		context.registerReceiver(new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				util.show(context, "Completed");
+			}
+		}, new IntentFilter(TextToSpeech.ACTION_TTS_QUEUE_PROCESSING_COMPLETED));
 	}
 }
