@@ -40,8 +40,8 @@ public class Markdown extends TextView {
 					String[] languages = {
 						"html", "css"
 					};
-					char[] c = txt.substring("```".length()).toCharArray();
-					if(c.length > 0) {
+					if(txt.substring("```".length()).trim() != "") {
+						char[] c = txt.substring("```".length()).toCharArray();
 						String code = String.valueOf(c[0]).toUpperCase();
 						if (txt.substring("```".length()).length() > 0) {
 							for (int i2 = 1; i2 < c.length; i2++) {
@@ -79,7 +79,7 @@ public class Markdown extends TextView {
 			}else{
 				if(!txt.startsWith("```")){
 					result += txt.replaceAll("\t", "&emsp;").replaceAll("    ", "&emsp;").replaceAll("  ", "&emsp;");
-					_code += txt.replaceAll("&lt;", "<").replaceAll( "&gt;", ">") + "\n";
+					_code += txt.replaceAll("&lt;", "<").replaceAll( "&gt;", ">");
 				}
 			}
 			if(i < text.length - 1){
