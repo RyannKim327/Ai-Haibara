@@ -78,7 +78,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			f2, f2, f2, f2
 		}, null, null));
 
-		base = new LinearLayout(ctx)
+		base = new LinearLayout(ctx);
 		LinearLayout input = new LinearLayout(ctx);
 		e = new EditText(ctx);
 		iv = new ImageButton(ctx);
@@ -89,10 +89,10 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		tts = new TextToSpeech(ctx, this);
 		sr = SpeechRecognizer.createSpeechRecognizer(ctx);
 
-		sc.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
+		sc.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.9f));
 		sc.setPadding(5, 10, 5, 10);
 
-		sc2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.9f));
+		sc2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.9f));
 		sc2.setOrientation(LinearLayout.VERTICAL);
 		sc2.addView(chat(ctx, "Welcome [Bot]", util.mpop(welcome)));
 
@@ -103,14 +103,14 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		base.setOrientation(LinearLayout.VERTICAL);
 		base.setPadding(5, 10, 5, 10);
 		base.setVisibility(View.VISIBLE);
-		base.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+		base.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
 		input.setOrientation(LinearLayout.HORIZONTAL);
 		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		input.setGravity(Gravity.BOTTOM);
 		input.setPadding(5, 5, 5, 5);
 
-		e.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.9f));
+		e.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.9f));
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
 		e.setTextColor(Color.WHITE);
@@ -324,7 +324,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	public LinearLayout chat(final Context ctx, String send, String msg){
-		LinearLayout base = new LinearLayout(ctx);
+		LinearLayout base2 = new LinearLayout(ctx);
 		final Markdown chat = new Markdown(ctx);
 		final TextView from = new TextView(ctx);
 		float f = 18, f2 = -20, f3 = f;
@@ -339,23 +339,23 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		int size = sp.getInt("mpop.revii.ai.DATA_SIZE", 10);
 
 		if(send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))){
-			base.setGravity(Gravity.RIGHT);
-			base.setPadding(75, 5, 5, 5);
+			base2.setGravity(Gravity.RIGHT);
+			base2.setPadding(75, 5, 5, 5);
 			from.setGravity(Gravity.RIGHT);
 			chat.setTextColor(Color.WHITE);
 			chat.setGravity(Gravity.LEFT);
-			chat.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			chat.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			sd.getPaint().setColor(Color.parseColor("#006AFF"));
 			from.setText(String.format(" :%s ",send));
 		}else{
-			base.setPadding(5, 5, 75, 5);
-			base.setGravity(Gravity.LEFT);
+			base2.setPadding(5, 5, 75, 5);
+			base2.setGravity(Gravity.LEFT);
 			sd.getPaint().setColor(Color.parseColor("#303030"));
 			chat.setTextColor(Color.WHITE);
 			from.setText(String.format(" %s: ",send));
 		}
-		base.setOrientation(LinearLayout.VERTICAL);
-		base.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		base2.setOrientation(LinearLayout.VERTICAL);
+		base2.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		from.setPadding(10, 10, 10, 10);
 		from.setTextSize(size);
 		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
@@ -407,9 +407,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			}
 		});
 
-		base.addView(from);
-		base.addView(chat);
-		return base;
+		base2.addView(from);
+		base2.addView(chat);
+		return base2;
 	}
 	void speak(){
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
