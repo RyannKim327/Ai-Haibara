@@ -42,7 +42,7 @@ public class Markdown extends TextView {
 					String[] languages = {
 						"html", "css"
 					};
-					util.show(ctx, txt.substring("```".length()).length());
+					util.show(ctx, String.valueOf(txt.substring("```".length()).length()));
 					if(txt.substring("```".length()) != null) {
 						char[] c = txt.substring("```".length()).toCharArray();
 						String code = String.valueOf(c[0]).toUpperCase();
