@@ -41,8 +41,8 @@ public class Markdown extends TextView {
 						"html", "css"
 					};
 					char[] c = txt.substring("```".length()).toCharArray();
+					String code = String.valueOf(c[0]).toUpperCase();
 					if(txt.substring("```".length()).length() > 0) {
-						String code = String.valueOf(c[0]).toUpperCase();
 						for (int i2 = 1; i2 < c.length; i2++) {
 							code += String.valueOf(c[i2]);
 						}
@@ -82,6 +82,7 @@ public class Markdown extends TextView {
 			if(i < text.length - 1){
 				if(!txt.startsWith("* ")){
 					result += "<br>";
+					_code += "\n";
 				}
 			}
 		}
