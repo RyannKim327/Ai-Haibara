@@ -55,4 +55,7 @@ public class Adapter extends ArrayAdapter<String> {
 
 		return layout;
 	}
+	public String getItem(int position){
+		return list.get(position);
+	}
 }
