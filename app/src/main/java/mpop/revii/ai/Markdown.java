@@ -66,7 +66,7 @@ public class Markdown extends TextView {
 					txt = txt.replace("> (.*)", "&emsp;\"$1\"");
 				}
 				result += start(txt);
-				noCode += start(txt);
+				noCode += txt;
 			}else{
 				if(!txt.startsWith("```")){
 					result += txt.replaceAll("\t", "&emsp;").replaceAll("    ", "&emsp;").replaceAll("  ", "&emsp;");
