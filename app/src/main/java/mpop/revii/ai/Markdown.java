@@ -51,7 +51,7 @@ public class Markdown extends TextView {
 							break;
 						}
 					}
-					lang.add(code);
+					lang.add((code == null) ? "" : code);
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
