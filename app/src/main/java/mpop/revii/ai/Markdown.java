@@ -42,16 +42,18 @@ public class Markdown extends TextView {
 					};
 					char[] c = txt.substring("```".length()).toCharArray();
 					String code = String.valueOf(c[0]).toUpperCase();
-					for(int i2 = 1; i2 < c.length; i2++){
-						code += String.valueOf(c[i2]);
-					}
-					for(int ii = 0; ii < languages.length; ii++){
-						if(languages[ii].equalsIgnoreCase(code)){
-							code = code.toUpperCase();
-							break;
+					if(code != null) {
+						for (int i2 = 1; i2 < c.length; i2++) {
+							code += String.valueOf(c[i2]);
 						}
+						for (int ii = 0; ii < languages.length; ii++) {
+							if (languages[ii].equalsIgnoreCase(code)) {
+								code = code.toUpperCase();
+								break;
+							}
+						}
+						lang.add((code == null) ? "" : code);
 					}
-					lang.add((code == null) ? "" : code);
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
 				x = !x;
