@@ -47,10 +47,10 @@ public class Adapter extends ArrayAdapter<String> {
 		}
 
 		base.setBackground(sd);
-		number.setText(String.format("[%d]: %s", position + 1, (lang.get(position) == null ? lang.get(position) + " Code" : "")));
+		number.setText(String.format("[%d]: %s", position + 1, lang.get(position));
 		code.setText(list.get(position));
 		number.setTypeface(Typeface.SERIF);
-		code.setTypeface(Typeface.MONOSPACE);
+		code.setTypeface(Typeface.SERIF);
 
 		return layout;
 	}
