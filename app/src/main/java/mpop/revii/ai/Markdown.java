@@ -54,7 +54,7 @@ public class Markdown extends TextView {
 						}
 						lang.add(code);
 					}else{
-						lang.add("");
+						lang.add("_");
 					}
 					result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 				}
@@ -78,9 +78,6 @@ public class Markdown extends TextView {
 					_code += txt.replaceAll("&lt;", "<").replaceAll( "&gt;", ">") + "\n";
 				}
 			}
-			// We will going to search for the error which is
-			// the languge for each program or code
-			// we may get
 			if(i < text.length - 1){
 				if(!txt.startsWith("* ")){
 					result += "<br>";

@@ -228,11 +228,11 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					iv.setEnabled(false);
 					replied = false;
 					new Handler().postDelayed(new Runnable() {
-								@Override
-								public void run() {
-									sc.fullScroll(View.FOCUS_DOWN);
-								}
-							}, 100);
+						@Override
+						public void run() {
+							sc.fullScroll(View.FOCUS_DOWN);
+						}
+					}, 100);
 				}
 			}
 			@Override
