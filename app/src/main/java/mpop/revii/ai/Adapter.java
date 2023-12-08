@@ -18,7 +18,7 @@ public class Adapter extends ArrayAdapter<String> {
 	ArrayList<String> list;
 	ArrayList<String> lang;
 	public Adapter(Context context, ArrayList<String> languages, ArrayList<String> arraylist){
-		super(context, util.setResources(context, "layout_list", "layout"), arraylist);
+		super(context, util.setResources(context, "layout_list", "layout"));
 		ctx = context;
 		list = arraylist;
 		lang = languages;
@@ -35,7 +35,6 @@ public class Adapter extends ArrayAdapter<String> {
 			f, f, f, f,
 			f, f, f, f
 		}, null, null));
-		String data = list.get(position);
 
 		if((position % 2) == 0){
 			sd.getPaint().setColor(Color.DKGRAY);
@@ -49,12 +48,13 @@ public class Adapter extends ArrayAdapter<String> {
 
 		base.setBackground(sd);
 		number.setText(String.format("[%d]: %s Code", position + 1, lang.get(position)));
-		code.setText(data);
+		code.setText(list.get(position));
 		number.setTypeface(Typeface.SERIF);
 		code.setTypeface(Typeface.MONOSPACE);
 
 		return layout;
 	}
+	@Override
 	public String getItem(int position){
 		return list.get(position);
 	}
