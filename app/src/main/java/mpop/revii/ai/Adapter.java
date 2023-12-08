@@ -18,7 +18,7 @@ public class Adapter extends ArrayAdapter<String> {
 	ArrayList<String> list;
 	ArrayList<String> lang;
 	public Adapter(Context context, ArrayList<String> languages, ArrayList<String> arraylist){
-		super(context, util.setResources(context, "layout_list", "layout"));
+		super(context, util.setResources(context, "layout_list", "layout"), arraylist);
 		ctx = context;
 		list = arraylist;
 		lang = languages;
@@ -56,6 +56,6 @@ public class Adapter extends ArrayAdapter<String> {
 	}
 	@Override
 	public String getItem(int position){
-		return list.get(position);
+		return getItem(position);
 	}
 }
