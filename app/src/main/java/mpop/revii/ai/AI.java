@@ -35,6 +35,8 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -473,5 +475,11 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		}else {
 			tts.speak(txt, TextToSpeech.QUEUE_FLUSH, null);
 		}
+	}
+
+	LinearLayout menu(Context ctx, String text, ArrayList<String> lists){
+		LinearLayout a = new LinearLayout(ctx);
+		TextView b = new TextView(ctx);
+		
 	}
 }
