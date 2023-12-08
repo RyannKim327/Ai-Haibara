@@ -1,5 +1,6 @@
 package mpop.revii.ai;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -9,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
@@ -380,15 +382,33 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		return base;
 	}
 	void speak(){
-		Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-		i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-		i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
-		try{
-			util.show(context, "Listening");
-			sr.startListening(i);
-		}catch (Exception e){
-			util.show(context, "Error: " + e.getMessage());
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+				Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+				i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+				i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+				i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
+				try {
+					util.show(context, "Listening");
+					sr.startListening(i);
+				} catch (Exception e) {
+					util.show(context, "Error: " + e.getMessage());
+				}
+			} else {
+				util.show(context, "Please enable audio permission");
+				context.permission
+			}
+		}else{
+			Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+			i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+			i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+			i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
+			try {
+				util.show(context, "Listening");
+				sr.startListening(i);
+			} catch (Exception e) {
+				util.show(context, "Error: " + e.getMessage());
+			}
 		}
 	}
 	void speak(String text){
