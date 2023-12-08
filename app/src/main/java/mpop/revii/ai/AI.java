@@ -144,10 +144,18 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
-		if (util.setResources(ctx, "ic_send", "drawable") == 0) {
-			iv.setImageResource(android.R.drawable.ic_menu_send);
-		} else {
-			iv.setImageResource(util.setResources(ctx, "ic_send", "drawable"));
+		if(e.getText().toString().trim().length() > 0){
+			if (util.setResources(ctx, "ic_send", "drawable") == 0) {
+				iv.setImageResource(android.R.drawable.ic_menu_send);
+			} else {
+				iv.setImageResource(util.setResources(ctx, "ic_send", "drawable"));
+			}
+		}else{
+			if (util.setResources(ctx, "ic_microphone", "drawable") == 0) {
+				iv.setImageResource(android.R.drawable.ic_menu_send);
+			} else {
+				iv.setImageResource(util.setResources(ctx, "ic_microphone", "drawable"));
+			}
 		}
 		iv.setOnClickListener(new OnClickListener() {
 			@Override
