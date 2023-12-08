@@ -396,7 +396,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 				}
 			} else {
 				util.show(context, "Please enable audio permission");
-				context.permission
 			}
 		}else{
 			Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
