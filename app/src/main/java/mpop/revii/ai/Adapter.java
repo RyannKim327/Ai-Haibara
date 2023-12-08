@@ -55,6 +55,7 @@ public class Adapter extends ArrayAdapter<String> {
 		return layout;
 	}
 	public String fetchItem(int position){
-		return list.get(position);
+		return getItem(position);
 	}
+	
 }
