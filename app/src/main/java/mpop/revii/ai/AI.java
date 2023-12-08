@@ -350,23 +350,27 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		chat.setOnLongClickListener(new OnLongClickListener(){
 			@Override
 			public boolean onLongClick(View view) {
-				final Adapter list = new Adapter(ctx, chat.getLanguage(), chat.getAllCodes());
-				AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
-				dialog.setTitle("Codes from this message");
-				if(chat.getAllCodes().size() > 0) {
-					dialog.setAdapter(list, new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialogInterface, int i) {
-							((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(chat.getAllCodes().get(i));
-							util.show(ctx, "Text Copied" + i);
-						}
-					});
-				}else{
-					dialog.setMessage("There is no codes here");
+				try {
+					final Adapter list = new Adapter(ctx, chat.getLanguage(), chat.getAllCodes());
+					AlertDialog.Builder dialog = new AlertDialog.Builder(ctx);
+					dialog.setTitle("Codes from this message");
+					if (chat.getAllCodes().size() > 0) {
+						dialog.setAdapter(list, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(chat.getAllCodes().get(i));
+								util.show(ctx, "Text Copied" + i);
+							}
+						});
+					} else {
+						dialog.setMessage("There is no codes here");
+					}
+					dialog.setPositiveButton("Close", null);
+					dialog.setCancelable(chat.getAllCodes().size() > 0);
+					dialog.show();
+				}catch (Exception e){
+					util.show(ctx, e.getMessage());
 				}
-				dialog.setPositiveButton("Close", null);
-				dialog.setCancelable(chat.getAllCodes().size() > 0);
-				dialog.show();
 				return false;
 			}
 		});
