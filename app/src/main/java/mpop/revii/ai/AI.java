@@ -218,31 +218,20 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 			@Override
 			public void onResults(Bundle bundle) {
 				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-				final ArrayAdapter adapt = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, l);
-				AlertDialog.Builder b = new AlertDialog.Builder(context);
-				b.setTitle("Here's the options");
-				b.setAdapter(adapt, new DialogInterface.OnClickListener(){
-					@Override
-					public void onClick(DialogInterface dialogInterface, int i){
-						if(adapt.getItem(i) != null && adapt.getItem(i) != "") {
-							sc2.addView(chat(context, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), adapt.getItem(i).toString()));
-							http h = new http(context);
-							h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + adapt.getItem(i).toString());
-							e.setText("");
-							iv.setEnabled(false);
-							replied = false;
-							new Handler().postDelayed(new Runnable() {
+				if(l.get(0) != null && l.get(0) != "") {
+					sc2.addView(chat(context, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), l.get(0).toString()));
+					http h = new http(context);
+					h.execute("Name: " + sp.getString("mpop.revii.ai.NAME", util.mpop(creator)) + "\nMessage: " + l.get(0).toString());
+					e.setText("");
+					iv.setEnabled(false);
+					replied = false;
+					new Handler().postDelayed(new Runnable() {
 								@Override
 								public void run() {
 									sc.fullScroll(View.FOCUS_DOWN);
 								}
 							}, 100);
-						}
-					}
-				});
-				b.setNegativeButton("Close", null);
-				b.setCancelable(false);
-				b.show();
+				}
 			}
 			@Override
 			public void onPartialResults(Bundle bundle) {}
