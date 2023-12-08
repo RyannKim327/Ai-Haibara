@@ -7,7 +7,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class Markdown extends TextView {
-	String _text = "";
+	String _text = "", noCode = "";
 	ArrayList<String> codes = new ArrayList<>();
 	ArrayList<String> lang = new ArrayList<>();
 	public Markdown(Context ctx){
@@ -66,6 +66,7 @@ public class Markdown extends TextView {
 					txt = txt.replace("> (.*)", "&emsp;\"$1\"");
 				}
 				result += start(txt);
+				noCode += start(txt);
 			}else{
 				if(!txt.startsWith("```")){
 					result += txt.replaceAll("\t", "&emsp;").replaceAll("    ", "&emsp;").replaceAll("  ", "&emsp;");
@@ -81,7 +82,11 @@ public class Markdown extends TextView {
 		}
 		setText(Html.fromHtml(result));
 	}
-	
+
+	public String getWithoutCode(){
+		return noCode;
+	}
+
 	private String start(String markdown) {
 		String html = markdown;
 

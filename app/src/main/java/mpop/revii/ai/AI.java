@@ -263,6 +263,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		context.registerReceiver(new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
+
 				speak();
 			}
 		}, new IntentFilter(TextToSpeech.ACTION_TTS_QUEUE_PROCESSING_COMPLETED));
@@ -331,7 +332,6 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		chat.setTextSize(size + (size / 2));
 		chat.setTypeface(Typeface.SERIF);
 		chat.setText(msg);
-		// chat.setTextIsSelectable(true);
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
 			public void onReceive(Context p1, Intent p2) {
@@ -342,7 +342,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
 		if(!send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))) {
 			if(sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false)) {
-				String _chat = chat.getText().toString();
+				String _chat = chat.getWithoutCode();
 				speak(_chat);
 			}
 		}
