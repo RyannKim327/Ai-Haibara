@@ -37,30 +37,28 @@ public class Markdown extends TextView {
 		String _code = "";
 		for(int i = 0; i < text.length; i++){
 			txt = text[i].replaceAll("\\<", "&lt;").replaceAll("\\>", "&gt;");
-			util.show(ctx, String.valueOf(txt.substring("``".length()).length()));
+			boolean keyLanguage = false;
+			if(txt.startsWith("``")) {
+				keyLanguage = txt.substring("``".length()).length() > 1;
+			}
 			if(txt.startsWith("```")){
 				if(!txt.equals("```")){
 					String[] languages = {
 						"html", "css"
 					};
-					util.show(ctx, String.valueOf(txt.substring("``".length()).length()));
-					if(txt.substring("``".length()).length() > 1) {
+					if(keyLanguage) {
 						char[] c = txt.substring("```".length()).toCharArray();
 						String code = String.valueOf(c[0]).toUpperCase();
-						if (txt.substring("```".length()).length() > 0) {
-							for (int i2 = 1; i2 < c.length; i2++) {
-								code += String.valueOf(c[i2]);
-							}
-							for (int ii = 0; ii < languages.length; ii++) {
-								if (languages[ii].equalsIgnoreCase(code)) {
-									code = code.toUpperCase();
-									break;
-								}
-							}
-							lang.add(code);
-						} else {
-							lang.add("Unknown");
+						for (int i2 = 1; i2 < c.length; i2++) {
+							code += String.valueOf(c[i2]);
 						}
+						for (int ii = 0; ii < languages.length; ii++) {
+							if (languages[ii].equalsIgnoreCase(code)) {
+								code = code.toUpperCase();
+								break;
+							}
+						}
+						lang.add(code);
 						result += String.format("<h3><u><i>%s code</i></u></h3>", code);
 					}else{
 						lang.add("Unknown");
