@@ -54,8 +54,7 @@ public class Adapter extends ArrayAdapter<String> {
 
 		return layout;
 	}
-	@Override
-	public String getItem(int position){
+	public String fetchItem(int position){
 		return getItem(position);
 	}
 }
