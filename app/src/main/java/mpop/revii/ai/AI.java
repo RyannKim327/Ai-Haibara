@@ -357,8 +357,7 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 					dialog.setAdapter(list, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialogInterface, int i) {
-							String out = chat.getAllCodes().get(i);
-							((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(out);
+							((ClipboardManager) ctx.getSystemService(ctx.CLIPBOARD_SERVICE)).setText(chat.getAllCodes().get(i));
 							util.show(ctx, "Text Copied");
 						}
 					});
