@@ -85,7 +85,7 @@ public class Markdown extends TextView {
 			if(i < text.length - 1){
 				if(!txt.startsWith("* ")){
 					result += "<br>";
-					_code += (x) ? "\n" : "";
+					_code += (x) ? "" : "\n";
 				}
 			}
 		}
