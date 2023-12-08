@@ -22,6 +22,8 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -113,12 +115,35 @@ public class AI extends LinearLayout implements TextToSpeech.OnInitListener {
 		e.setMaxLines(8);
 		e.setActivated(true);
 
+		e.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+				if(e.getText().toString().trim().length() > 0){
+					if (util.setResources(ctx, "ic_send", "drawable") == 0) {
+						iv.setImageResource(android.R.drawable.ic_menu_send);
+					} else {
+						iv.setImageResource(util.setResources(ctx, "ic_send", "drawable"));
+					}
+				}else{
+					if (util.setResources(ctx, "ic_microphone", "drawable") == 0) {
+						iv.setImageResource(android.R.drawable.ic_menu_send);
+					} else {
+						iv.setImageResource(util.setResources(ctx, "ic_microphone", "drawable"));
+					}
+				}
+			}
+			@Override
+			public void afterTextChanged(Editable editable) {}
+		});
+
 		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
 		iv.setBackgroundColor(Color.TRANSPARENT);
 		if (util.setResources(ctx, "send", "drawable") == 0) {
 			iv.setImageResource(android.R.drawable.ic_menu_send);
 		} else {
-			iv.setImageResource(util.setResources(ctx, "send", "drawable"));
+			iv.setImageResource(util.setResources(ctx, "ic_send", "drawable"));
 		}
 		iv.setOnClickListener(new OnClickListener() {
 			@Override
