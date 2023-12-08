@@ -66,7 +66,7 @@ public class Markdown extends TextView {
 					txt = txt.replace("> (.*)", "&emsp;\"$1\"");
 				}
 				result += start(txt);
-				noCode += txt;
+				noCode += start(txt);
 			}else{
 				if(!txt.startsWith("```")){
 					result += txt.replaceAll("\t", "&emsp;").replaceAll("    ", "&emsp;").replaceAll("  ", "&emsp;");
@@ -84,7 +84,7 @@ public class Markdown extends TextView {
 	}
 
 	public String getWithoutCode(){
-		return noCode;
+		return Html.fromHtml(noCode).toString();
 	}
 
 	private String start(String markdown) {
