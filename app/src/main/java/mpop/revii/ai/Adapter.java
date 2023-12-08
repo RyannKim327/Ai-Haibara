@@ -47,7 +47,7 @@ public class Adapter extends ArrayAdapter<String> {
 		}
 
 		base.setBackground(sd);
-		number.setText(String.format("[%d]: %s Code", position + 1, lang.get(position)));
+		number.setText(String.format("[%d]: %s", position + 1, (lang.get(position) == null ? lang.get(position) + " Code" : "")));
 		code.setText(list.get(position));
 		number.setTypeface(Typeface.SERIF);
 		code.setTypeface(Typeface.MONOSPACE);
@@ -55,6 +55,6 @@ public class Adapter extends ArrayAdapter<String> {
 		return layout;
 	}
 	public String fetchItem(int position){
-		return getItem(position);
+		return list.get(position);
 	}
 }
