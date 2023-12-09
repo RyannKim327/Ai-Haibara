@@ -480,6 +480,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	LinearLayout menu(Context ctx, String text, ArrayList<String> lists){
 		LinearLayout a = new LinearLayout(ctx);
 		TextView b = new TextView(ctx);
-		
+
+		a.setOrientation(LinearLayout.VERTICAL);
+		b.setText("Please select an action:");
+		return a;
 	}
 }
