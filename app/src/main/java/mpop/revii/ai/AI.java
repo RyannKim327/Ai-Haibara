@@ -482,6 +482,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		LinearLayout a = new LinearLayout(ctx);
 		TextView b = new TextView(ctx);
 		Button copy = new Button(ctx);
+		Button codes = new Button(ctx);
 		
 
 		a.setOrientation(LinearLayout.VERTICAL);
