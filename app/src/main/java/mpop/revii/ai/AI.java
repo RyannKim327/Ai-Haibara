@@ -28,6 +28,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -480,6 +481,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	LinearLayout menu(Context ctx, String text, ArrayList<String> lists){
 		LinearLayout a = new LinearLayout(ctx);
 		TextView b = new TextView(ctx);
+		Button copy = new Button(ctx);
+		
 
 		a.setOrientation(LinearLayout.VERTICAL);
 		b.setText("Please select an action:");
