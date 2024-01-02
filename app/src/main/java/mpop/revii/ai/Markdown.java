@@ -96,7 +96,7 @@ public class Markdown extends TextView {
 				}
 			}
 		}
-		setText(Html.fromHtml(result));
+		setText(Html.fromHtml(result, Html.FROM_HTML_MODE_COMPACT));
 	}
 
 	public String getWithoutCode(){
@@ -106,24 +106,24 @@ public class Markdown extends TextView {
 	private String start(String markdown) {
 		String html = markdown;
 
-		html = html.replaceAll("###### (.*)", "<h6>$1</h6>");
-		html = html.replaceAll("##### (.*)", "<h5>$1</h5>");
-		html = html.replaceAll("#### (.*)", "<h4>$1</h4>");
-		html = html.replaceAll("### (.*)", "<h3>$1</h3>");
-		html = html.replaceAll("## (.*)", "<h2>$1</h2>");
-		html = html.replaceAll("# (.*)", "<h1>$1</h1>");
+		html = html.replaceAll("###### (.*)", "<h6 style=\"margin: 0; padding: 0;\">$1</h6>");
+		html = html.replaceAll("##### (.*)", "<h5 style=\"margin: 0; padding: 0;\">$1</h5>");
+		html = html.replaceAll("#### (.*)", "<h4 style=\"margin: 0; padding: 0;\">$1</h4>");
+		html = html.replaceAll("### (.*)", "<h3 style=\" margin: 0; padding: 0;\">$1</h3>");
+		html = html.replaceAll("## (.*)", "<h2 style=\"margin: 0; padding: 0;\">$1</h2>");
+		html = html.replaceAll("# (.*)", "<h1 style=\"margin: 0; padding: 0;\">$1</h1>");
 		
-		html = html.replaceAll("\\*\\*(.*?)\\*\\*", "<strong>$1</strong>");
-		html = html.replaceAll("__(.*?)__", "<strong>$1</strong>");
+		html = html.replaceAll("\\*\\*(.*?)\\*\\*", "<strong style=\"margin: 0; padding: 0;\">$1</strong>");
+		html = html.replaceAll("__(.*?)__", "<strong style=\"margin: 0; padding: 0;\">$1</strong>");
 
-		html = html.replaceAll("\\*(.*?)\\*", "<em>$1</em>");
-		html = html.replaceAll("_(.*?)_", "<em>$1</em>");
+		html = html.replaceAll("\\*(.*?)\\*", "<em style=\"margin: 0; padding: 0;\">$1</em>");
+		html = html.replaceAll("_(.*?)_", "<em style=\"margin: 0; padding: 0;\">$1</em>");
 
-		html = html.replaceAll("\\~\\~(.*?)\\~\\~", "<s>$1</s>");
+		html = html.replaceAll("\\~\\~(.*?)\\~\\~", "<s style=\"margin: 0; padding: 0;\">$1</s>");
 
-		html = html.replaceAll("\\[(.*?)\\]\\((.*?)\\)", "<a href=\"$2\">$1</a>");
-
-		html = html.replaceAll("`(.*?)`", "<font color=\"yellow\">$1</font>");
+		html = html.replaceAll("\\[(.*?)\\]\\((.*?)\\)", "<a href=\"$2\" style=\"margin: 0; padding: 0;\">$1</a>");
+		
+		html = html.replaceAll("`(.*?)`", "<font style=\"margin: 0; padding: 0;\" color=\"yellow\">$1</font>");
 		html = html.replaceAll("\t", "&emsp;");
 		html = html.replaceAll("    ", "&emsp;");
 		html = html.replaceAll("  ", "&emsp;");
@@ -131,6 +131,7 @@ public class Markdown extends TextView {
 		html = html.replaceAll("`", "");
 
 		html = html.replaceAll("\\-\\-\\-", "<hr>");
+		
 		
 		html = html.replaceAll("\\* (.*)", "&ensp;•&ensp;$1<br>");
 		
