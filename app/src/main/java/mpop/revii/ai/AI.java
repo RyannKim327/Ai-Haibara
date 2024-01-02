@@ -502,6 +502,6 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		Button codes = new Button(ctx);
 		a.setOrientation(LinearLayout.VERTICAL);
 		b.setText("Please select an action:");
-		return a
+		return a;
 	}
 }
