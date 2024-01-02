@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.widget.Toast;
 
 public class http extends AsyncTask {
 	Context ctx;
@@ -21,7 +22,9 @@ public class http extends AsyncTask {
 	@Override
 	protected String doInBackground(Object[] p1) {
 		try {
-			url = util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1872, 2020, 2508, 2376, 2037, 2520, 1242, 3330, 3630, 4104, 2828, 3520, 3600, 4040, 5016, 2208, 3465, 4440, 763, 376, 1062, 510, 495, 1176, 1414, 1856, 1746, 940, 2288, 2424, 2394, 2376, 2619, 3150, 2079, 4068, 3276, 3232, 4140, 4640, 4620, 5328, 3850, 2440}) + URLEncoder.encode(p1[0].toString(), "UTF-8");
+			String ai = "v3-beta";
+			// url = util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1872, 2020, 2508, 2376, 2037, 2520, 1242, 3330, 3630, 4104, 2828, 3520, 3600, 4040, 5016, 2208, 3465, 4440, 763, 376, 1062, 510, 495, 1176, 1414, 1856, 1746, 940, 2288, 2424, 2394, 2376, 2619, 3150, 2079, 4068, 3276, 3232, 4140, 4640, 4620, 5328, 3850, 2440}) + URLEncoder.encode(p1[0].toString(), "UTF-8");
+			url = String.format(util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1872, 2020, 2508, 2376, 2037, 2520, 1242, 3330, 3630, 4104, 2828, 3520, 3600, 4040, 5016, 2208, 3465, 4440, 763, 376, 333, 1150, 517, 1248, 1414, 1824, 1782, 1940, 2310, 1512, 2373, 2808, 2727, 3450, 3828, 3780, 3108, 3520, 2196, 1480, 5060}), ai, URLEncoder.encode(p1[0].toString(), "UTF-8"));
 			URL u = new URL(url);
 			URLConnection conn = u.openConnection();
 			conn.setDoInput(true);
@@ -45,6 +48,7 @@ public class http extends AsyncTask {
 	@Override
 	protected void onPostExecute(Object result) {
 		super.onPostExecute(result);
+		Toast.makeText(ctx, url, 1).show();
 		try {
 			JSONObject obj = new JSONObject(result.toString());
 			Intent i = new Intent("mpop.revii.ai.DATA");

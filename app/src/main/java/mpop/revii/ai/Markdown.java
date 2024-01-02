@@ -92,6 +92,7 @@ public class Markdown extends TextView {
 				if(!txt.startsWith("* ")){
 					result += "<br>";
 					_code += (x) ? "" : "\n";
+					noCode += "\n";
 				}
 			}
 		}
