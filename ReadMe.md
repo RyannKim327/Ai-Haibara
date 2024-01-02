@@ -1,27 +1,26 @@
-### Bebe ang AI
-#### MPOP Reverse II
+### My AI app
+#### Developed by RyannKim327
 
 ---
-### Introduction
-> This is just a simple program which connected to a server ***Hercai***. This application was build just to be a feature of an application for **Modding**.
+> Thank you for using this application, I hope this may help you to study and improve yourself.
 
----
 ### Credits
-* John Paul Caigas -> API Provider, Mentor
+* John Paul Caigas -> API Provider
 * Mark Kevin Manalo -> API Provider
-* John Roy Lapida Calimlim -> Idea and features, Mentor
-* Salvador -> Markdown idea [Head], Mentor
-* John Jeremy Antiguo -> Tester, Mentor
+* John Jeremy Antiguo -> Tester and Mentor
+* Salvador -> Markdown Idea
+* John Roy Lapida Calimlim -> Markdown and Encryption
 * Ronald Torrejos Limpiado -> Java Mentor
 * Jerson Carin -> RegEx
-* Rovie Francisco -> RegEx
-* Soyunoion -> No changed IDs
-* Hercai -> API
-* ChatGPT -> Markdown using Spanned Textview [Some codes]
+* Rovie Francisco -> RegEx and SpeechRecognizer
+* Soyuno Ion -> No Change IDs
+* Fortzkie Tuneskie -> SharedPreference
+* Herc.ai -> API
+* StartUp [Movie] -> Idea
+* Genesis Fernandez -> Special Credits
+* Isrrael Preak -> Special Credits
 * Earl Shine Sawir
 * Lester Navarra
-* Eljohn Mago
+* Eljohn Monzalez Mago
 
----
-### Notes
-> This application is build just to be a feature, and later on, this would be a simple application which is available to the public. Any kind of changes regarding to the credits are ***prohibited*** which we need to have some respect from the creator upto the people behind this project.
+> There are some changes applied to this program. I've added some commands, for you to easily change the preferences of this feature. You may use *cls* or **clear** to clear all the recent messages given by the AI. You may also use **set name as `your name`** to change your name, `your name` must be changed by what name you want to use. You can also modify the text size by executing **set text size to `number`** where number is a digit ranges from 5 to 50. The base size if this font size is based from the name you see on the top. Lastly, there's a feature called **set speech `toggle`** where `toggle` must be either enable or disable. This feature may help you to talk to the AI without typing any text. But you need first to activate the permission from the settings of the app and grant the permission RECORD_AUDIO.
