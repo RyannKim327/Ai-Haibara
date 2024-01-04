@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -28,21 +30,14 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import android.content.res.Resources;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ApplicationInfo;
 
 public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	LinearLayout base;
@@ -518,15 +513,5 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			message = String.format("> %s", message);
 		}
 		return String.format(util.mpop(welcome), appname, modder, message);
-	}
-	
-	LinearLayout menu(Context ctx, String text, ArrayList<String> lists){
-		LinearLayout a = new LinearLayout(ctx);
-		TextView b = new TextView(ctx);
-		Button copy = new Button(ctx);
-		Button codes = new Button(ctx);
-		a.setOrientation(LinearLayout.VERTICAL);
-		b.setText("Please select an action:");
-		return a;
 	}
 }
