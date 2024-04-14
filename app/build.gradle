@@ -8,8 +8,8 @@ android {
 		applicationId "mpop.revii.ai"
 		minSdkVersion 19
 		targetSdkVersion 29
-		versionCode 1
-		versionName "1.0"
+		versionCode 1293
+		versionName "0.1"
 	}
 
 	buildTypes {
@@ -22,5 +22,4 @@ android {
 
 dependencies {
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	// implementation "io.noties.markwon:core:latest_version"
 }

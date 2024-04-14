@@ -21,8 +21,8 @@ public class util {
 		Toast toast = new Toast(ctx);
 		float f = 25;
 		ShapeDrawable drawable = new ShapeDrawable(new RoundRectShape(new float[]{
-				f, f, f, f,
-				f, f, f, f
+			f, f, f, f,
+			f, f, f, f
 		}, null, null));
 		TextView tv = new TextView(ctx);
 
@@ -50,6 +50,13 @@ public class util {
 		}catch(Exception e){
 			return def;
 		}
+	}
+	
+	public static String tocolor(Context ctx, String color, String def){
+		if(util.setResources(ctx, color, "string") != 0){
+			return ctx.getResources().getString(util.setResources(ctx, color, "string"));
+		}
+		return def;
 	}
 
 	public static String mpop(int[] x){
