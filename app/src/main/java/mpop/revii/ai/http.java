@@ -41,7 +41,7 @@ public class http extends AsyncTask {
 			}
 			return t;
 		} catch (Exception e) {
-			return "{\"reply\": '" + e.getMessage().replace(util.mpop(new int[]{728, 808, 1026, 990, 1067, 1260, 644, 1776, 1980, 2280, 2222, 2640, 2100, 2424, 3078, 1380, 3267, 3996, 3052}), "hostname") + "'}";
+			return "{\"reply\": '" + "Something went wrong with the connection, please try again.";//e.getMessage().replace(util.mpop(new int[]{728, 808, 1026, 990, 1067, 1260, 644, 1776, 1980, 2280, 2222, 2640, 2100, 2424, 3078, 1380, 3267, 3996, 3052}), "hostname") + "'}";
 		}
 	}
 	
@@ -66,7 +66,7 @@ public class http extends AsyncTask {
 			ctx.sendBroadcast(i);
 		} catch (JSONException e) {
 			Intent i = new Intent("mpop.revii.ai.DATA");
-			i.putExtra("DATA", result.toString());
+			i.putExtra("DATA", "There's a problem with the connection, please try again."); //result.toString());
 			i.putExtra("SENDER", "Error [Bot]");
 			ctx.sendBroadcast(i);
 		}

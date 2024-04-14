@@ -543,9 +543,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		String appname = (String) context.getPackageManager().getApplicationLabel(info2);
 		String modder = (mod == 0) ? String.format("Developed by %s", util.mpop(creator)) : context.getResources().getString(mod);
 		String message = (msg == 0) ? util.mpop(msg_) : context.getResources().getString(msg);
-		String ai = "* v3 ~> (GPT-4)\n* v3-32k ~> (GPT-4 32k)\n* turbo ~> (GPT 3.5 Turbo)\n* turbo-16k ~> (GPT 3.5 Turbo 16k)\n* gemini ~> (Google Gemini Pro) [Uns5able]";
+		String ai = "* v3 ~> (GPT-4)\n* v3-32k ~> (GPT-4 32k)\n* turbo ~> (GPT 3.5 Turbo)\n* turbo-16k ~> (GPT 3.5 Turbo 16k)\n* gemini ~> (Google Gemini Pro) [Unstable]";
 		if(appname == ""){
-			appname = "Talking AI";
+			appname = "Ai Haibara";
 		}else{
 			appname = String.format("%s", appname);
 		}
