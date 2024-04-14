@@ -53,6 +53,7 @@ public class http extends AsyncTask {
 	@Override
 	protected void onPostExecute(Object result) {
 		super.onPostExecute(result);
+		
 		try {
 			JSONObject obj = new JSONObject(result.toString());
 			Intent i = new Intent("mpop.revii.ai.DATA");

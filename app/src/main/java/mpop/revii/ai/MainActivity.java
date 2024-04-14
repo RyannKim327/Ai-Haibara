@@ -80,19 +80,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		/*if(new GregorianCalendar().after(new GregorianCalendar(2024, 02, 30))){
-			AlertDialog.Builder b = new AlertDialog.Builder(this);
-			b.setTitle("Notice");
-			b.setMessage("Expired na po");
-			b.setPositiveButton("Close", new DialogInterface.OnClickListener(){
-				@Override
-				public void onClick(DialogInterface p1, int p2) {
-					finishAndRemoveTask();
-				}
-			});
-			b.setCancelable(false);
-			b.show();
-		}*/
+		
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
 				requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 0);

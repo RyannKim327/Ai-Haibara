@@ -19,7 +19,7 @@ public class Markdown extends TextView {
 	ArrayList<String> lang = new ArrayList<>();
 	Context ctx;
 	String blockquote = "",
-	mark = "#c6af2a",
+	mark = "#ccff20",
 	bgCode = "#303030",
 	quote = "#ffffff";
 	public Markdown(Context ctx){
@@ -62,8 +62,23 @@ public class Markdown extends TextView {
 			for(String s : strArr){
 				if(s.startsWith("```")){
 					if(!s.equals("```") || !trigger){
-						if(s.equals("```")){
-							lang.add(s.substring("```".length()));
+						if(!s.equals("```")){
+							String _ = s.substring("```".length());
+							String __ = "html css js";
+							if(__.contains(_)){
+								_.toUpperCase();
+							}else{
+								String x = "";
+								for(int i = 0; i < _.length(); i++){
+									if(x == ""){
+										x += String.valueOf(_.charAt(i)).toUpperCase();
+									}else{
+										x += String.valueOf(_.charAt(i));
+									}
+								}
+								_ = x;
+							}
+							lang.add(_);
 						}else{
 							lang.add("Unknown Language");
 						}
