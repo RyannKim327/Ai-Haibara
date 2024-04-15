@@ -62,7 +62,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	selfchat = "#84fcc4",
 	selfchatc = "#253649",
 	aichat = "#57aaa0",
-	aichatc = "#ffffff";
+	aichatc = "#ffffff",
+	fromcolor = "#007500";
 	
 	public AI(Context ctx){
 		super(ctx);
@@ -85,6 +86,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		selfchatc = util.tocolor(ctx, "selfchatc", selfchatc);
 		aichat = util.tocolor(ctx, "aichat", aichat);
 		aichatc = util.tocolor(ctx, "aichatc", aichatc);
+		fromcolor = util.tocolor(ctx, "sendercolor", fromcolor);
 		
 		float f = 0f, f2 = 15f;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
@@ -418,12 +420,13 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		base2.setOrientation(LinearLayout.VERTICAL);
 		base2.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		from.setPadding(10, 10, 10, 10);
-		from.setTextSize(size);
-		from.setTypeface(Typeface.SERIF, Typeface.BOLD_ITALIC);
+		from.setTextSize(size - (size / 3f));
+		from.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);
+		from.setTextColor(Color.parseColor(fromcolor));
 		chat.setPadding(15, 10, 15, 10);
 		chat.setBackground(sd);
-		chat.setTextSize(size + (size / 2));
-		chat.setTypeface(Typeface.SERIF);
+		chat.setTextSize(size);
+		chat.setTypeface(Typeface.SANS_SERIF);
 		chat.setText(msg);
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
@@ -546,7 +549,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		int msg = util.setResources(context, "message", "string");
 		
 		String appname = (String) context.getPackageManager().getApplicationLabel(info2);
-		String modder = (mod == 0) ? String.format("Developed by %s", util.mpop(creator)) : context.getResources().getString(mod);
+		String modder = (mod == 0) ? String.format("Developed by %s", util.mpop(creator)) : String.format("Modified by: %s", context.getResources().getString(mod));
 		String message = (msg == 0) ? util.mpop(msg_) : context.getResources().getString(msg);
 		String ai = "* v3 ~> (GPT-4)\n* v3-32k ~> (GPT-4 32k)\n* turbo ~> (GPT 3.5 Turbo)\n* turbo-16k ~> (GPT 3.5 Turbo 16k)\n* gemini ~> (Google Gemini Pro) [Unstable]";
 		if(appname == ""){

@@ -60,7 +60,23 @@ public class util {
 		if(!c.startsWith("#")){
 			c = String.format("#%s", c);
 		}
-		return c;
+		if(c.length() < 7){
+			for(int i = c.length(); i < 7; i++){
+				c += "0";
+			}
+		}else if(c.length() > 9){
+			int l = 9;
+			if(c.length() == 8){
+				l = 7;
+			}
+			c = c.substring(0, l);
+		}
+		try{
+			Color.parseColor(c);
+			return c;
+		}catch(Exception e){
+			return "#000000";
+		}
 	}
 
 	public static String mpop(int[] x){
