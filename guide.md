@@ -32,8 +32,13 @@
 4. selfchatc - your chat text color
 5. aichat - ai chat bubble color
 6. aichatc - ai chat text color
+7. sendercolor - sender text color
 
 #### Markdown Preference
 1. codebg - background color of the code
 2. mark - color of the highlighted text
 3. quote - color for blockquote left border
+
+---
+### Note
+> The application has its own default value or color scheme for modders, I will try to update soon if I can apply the use of JSON for us to manage and easily change some default preferences. For more, kindly give us your feedback and insight on [facebook](https://facebook.com/MPOP.ph).
