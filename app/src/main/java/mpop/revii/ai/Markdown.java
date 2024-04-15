@@ -188,6 +188,7 @@ public class Markdown extends TextView {
 
 	private Spanned scan(String str){
 		Spanned span = null;
+		
 		// Headers
 
 		str = str.replaceAll("^###### (.*)$", "<h6 style=\"margin: 0; padding: 0;\">$1</h6>");
@@ -226,6 +227,7 @@ public class Markdown extends TextView {
 		
 		str = str.replaceAll("`(.*?)`", String.format("<font color=\"%s\">$1</font>", mark));
 		
+		// HTML Anti Bypass
 		str = str.replaceAll("\\>", "&gt;");
 		str = str.replaceAll("\\<", "&lt;");
 		

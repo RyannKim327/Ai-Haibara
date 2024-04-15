@@ -53,10 +53,14 @@ public class util {
 	}
 	
 	public static String tocolor(Context ctx, String color, String def){
+		String c = def;
 		if(util.setResources(ctx, color, "string") != 0){
-			return ctx.getResources().getString(util.setResources(ctx, color, "string"));
+			c = ctx.getResources().getString(util.setResources(ctx, color, "string"));
 		}
-		return def;
+		if(!c.startsWith("#")){
+			c = String.format("#%s", c);
+		}
+		return c;
 	}
 
 	public static String mpop(int[] x){
