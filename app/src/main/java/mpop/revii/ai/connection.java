@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.Toast;
 
-public class http extends AsyncTask {
+public class connection extends AsyncTask {
 	Context ctx;
 	String url = "";
 	String ai = "v3";
@@ -21,7 +21,7 @@ public class http extends AsyncTask {
 	String relationship = "girlfriend";
 	String name = "Ai Haibara";
 	
-	public http(Context x){
+	public connection(Context x){
 		ctx = x;
 	}
 	

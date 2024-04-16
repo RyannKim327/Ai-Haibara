@@ -223,7 +223,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					sc2.addView(chat(ctx, "Welcome [Bot]", welcome()));
 				} else if(!txt.isEmpty()) {
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-					http h = new http(ctx);
+					connection h = new connection(ctx);
 					h.execute(sp.getString("mpop.revii.ai.AI_NAME", "v3"), sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), convo, txt.toString());
 					e.setText("");
 					convo += txt.toString() + "\n\n";
@@ -310,7 +310,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 				if(l.get(0) != null && l.get(0) != "") {
 					sc2.addView(chat(context, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), l.get(0).toString()));
-					http h = new http(context);
+					connection h = new connection(context);
 					h.execute(sp.getString("mpop.revii.ai.AI_NAME", "v3"), sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), convo, l.get(0).toString());
 					e.setText("");
 					convo += l.get(0).toString() + "\n\n";
