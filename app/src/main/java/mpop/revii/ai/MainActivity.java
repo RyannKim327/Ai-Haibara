@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		/*if(new GregorianCalendar().after(new GregorianCalendar(2024, 04, 20))){
+		/*if(new GregorianCalendar().after(new GregorianCalendar(2024, 05, 10))){
 			AlertDialog.Builder b = new AlertDialog.Builder(this);
 			b.setTitle("Notice");
 			b.setMessage("Expired na po");
