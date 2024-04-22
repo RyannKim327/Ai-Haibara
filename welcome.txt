@@ -1,0 +1,54 @@
+### %s
+
+%s
+
+> %s
+
+Credits
+
+* John Paul Caigas -> API Provider
+* Mark Kevin Manalo -> API Provider
+* John Jeremy Antiguo -> Tester and Mentor
+* Salvador -> Markdown Idea
+* John Roy Lapida Calimlim -> Markdown and Encryption
+* Ronald Torrejos Limpiado -> Java Mentor
+* Jerson Carin -> RegEx
+* Rovie Francisco -> RegEx and SpeechRecognizer
+* Soyuno Ion -> No Change IDs
+* Fortzkie Tuneskie -> SharedPreference
+* Herc.ai -> API
+* StartUp [Movie] -> Idea
+* Genesis Fernandez -> Special Credits
+* Isrrael Preak -> Special Credits
+* Bundas Andrian -> FB Clean Mod
+* Charloraigne
+* Jayson Ymata
+* Jayson Francisco
+* John Michael Arcena
+* Truong Mio
+* Earl Shine Sawir
+* Lester Navarra
+* Eljohn Monzalez Mago
+* DroidModificators
+* PinoyDen
+* XDA-Developers
+* Pinterest
+* Symbianize
+
+> There are changes happened, and the commands was changed for you to make your configurations easier. The commands starts with a colon **:**. The commands below are the preferences you may use:
+
+* `**:preferences**` - This command will popup the configuration, for you to make it easier to use.
+* `**:feedback**` - Since we want to make some improvement, you may send your feedback to us.
+
+
+> In addition, you may hold the mic or send button to select the version of AI you want to use. Here are the lists of AI Version that you may use:
+
+* v3 ~> (GPT-4)
+* v3-32k ~> (GPT-4 32k)
+* turbo ~> (GPT 3.5 Turbo)
+* turbo-16k ~> (GPT 3.5 Turbo 16k)
+* gemini ~> (Google Gemini Pro) [Unstable]
+
+> The development is still in progress, specially the AI is still in development. We from the DroidModifs would like to express our gratitude to you for supporting us, the developers and the modders of this application. Hoping you enjoy using this.
+
+Developed by **RyannKim327**
