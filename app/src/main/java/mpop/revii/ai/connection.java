@@ -2,6 +2,7 @@ package mpop.revii.ai;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,7 +11,6 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.widget.Toast;
 
 public class connection extends AsyncTask {
 	Context ctx;
@@ -20,9 +20,11 @@ public class connection extends AsyncTask {
 	int[] query = {560, 912, 909, 1160, 1111, 1320, 1400, 512, 2088, 2080, 2134, 2784, 672, 2904, 2997, 3510, 3762, 1152, 3080, 3104, 3924, 4040, 1408, 5040, 4025, 1280, 259, 920, 396, 320, 407, 1380, 448, 1776, 1836, 640, 814, 2760, 966, 768, 2106, 3330, 3927, 1584, 896, 3488, 4356, 1280, 4840, 4656, 3815, 4040, 224, 840, 1035, 320, 407, 1380, 448, 1552, 1980, 2000, 704, 2496, 2121, 2736, 2727, 1170, 3795, 1152, 3108, 3744, 4104, 1280, 4928, 4656, 4025, 4640, 224, 792, 999, 1100, 1298, 1212, 1596, 1840, 1746, 2320, 2310, 2664, 2310, 1392, 864, 1110, 3795, 1656, 896, 2496, 3996, 4760, 1408, 5280, 3535, 4800, 812, 256, 1017, 1170, 1111, 1380, 1624, 1680, 1998, 2200, 704, 2520, 2415, 1392, 864, 1110, 3795};
 	String relationship = "girlfriend";
 	String name = "Ai Haibara";
+	SharedPreferences sp;
 	
 	public connection(Context x){
 		ctx = x;
+		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
 	}
 	
 	@Override
@@ -59,10 +61,10 @@ public class connection extends AsyncTask {
 			Intent i = new Intent(String.format("%s_mpop.revii.ai.DATA", ctx.getPackageName()));
 			if(obj.getString("reply").equalsIgnoreCase(url)){
 				i.putExtra("DATA", "Something went wrong");
-				i.putExtra("SENDER", String.format("AI [%s]", ai));
+				i.putExtra("SENDER", String.format("AI [%s]", sp.getString("mpop.revii.ai.AI_ALIAS", "GPT-4")));
 			}else{
 				i.putExtra("DATA", obj.getString("reply"));
-				i.putExtra("SENDER", String.format("AI [%s]", ai));
+				i.putExtra("SENDER", String.format("AI [%s]", sp.getString("mpop.revii.ai.AI_ALIAS", "GPT-4")));
 			}
 			ctx.sendBroadcast(i);
 		} catch (JSONException e) {

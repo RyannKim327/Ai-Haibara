@@ -25,6 +25,7 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -187,44 +188,22 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				if(tts.isSpeaking()) {
 					tts.stop();
 				}
+				
 				String txt = e.getText().toString();
-				if (txt.toLowerCase().startsWith("set ")) {
-					if (txt.toLowerCase().startsWith("set name as ")) {
-						String name = txt.substring("set name as ".length());
-						sp.edit().putString("mpop.revii.ai.NAME", name).apply();
-						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-						sc2.addView(chat(ctx, "Preferences [Name]", String.format("Name changed to `%s`", name)));
-					} else if (txt.toLowerCase().startsWith("set text size to ")) {
-						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-						int size = util.validator(txt.substring("set text size to ".length()), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
-						if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
-							util.show(ctx, "Nothing changed");
-						}
-						Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
-						i.putExtra("mpop.revii.ai.DATA_SIZE", size);
-						ctx.sendBroadcast(i);
-						sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
-						sc2.addView(chat(ctx, "Preferences [Text size]", String.format("Text size changed to `%d`", size)));
-					} else if (txt.toLowerCase().startsWith("set speech ")){
-						sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
-						String value = txt.toLowerCase().substring("set speech ".length());
-						if(value.equalsIgnoreCase("enable")){
-							sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", true).commit();
-							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is `%s`", value)));
-						}else if(value.equalsIgnoreCase("disable")){
-							sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false).commit();
-							sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is `%s`", value)));
-						}else{
-							sc2.addView(chat(ctx, "Preferences [Speech]", "The only parameter we accept is either `enable` or `disable`"));
-						}
+				if(txt.startsWith(":")){
+					if(txt.equalsIgnoreCase(":preferences")){
+						preferences();
+					}else if(txt.equalsIgnoreCase(":clear") || txt.equalsIgnoreCase(":cls")){
+						convo = "";
+						sc2.removeAllViews();
+						sc2.addView(chat(ctx, "Welcome [Bot]", welcome()));
+					}else if(txt.equalsIgnoreCase(":speech")){
+						boolean speech = sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", true);
+						sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", !speech).commit();
+						sc2.addView(chat(ctx, "Preferences [Text to Speech]", String.format("Text to speech and speech to text is %s", (speech) ? "enabled" : "disabled")));
 					}
 					e.setText("");
-				} else if (txt.equalsIgnoreCase("clear") || txt.equalsIgnoreCase("cls")) {
-					e.setText("");
-					convo = "";
-					sc2.removeAllViews();
-					sc2.addView(chat(ctx, "Welcome [Bot]", welcome()));
-				} else if(!txt.isEmpty()) {
+				}else if(!txt.isEmpty()) {
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 					connection h = new connection(ctx);
 					h.execute(sp.getString("mpop.revii.ai.AI_NAME", "v3"), sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), convo, txt.toString());
@@ -256,6 +235,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					@Override
 					public void onClick(DialogInterface p1, int p2) {
 						sp.edit().putString("mpop.revii.ai.AI_NAME", ver[p2].toString()).commit();
+						sp.edit().putString("mpop.revii.ai.AI_ALIAS", ai[p2].toString()).commit();
 						sc2.addView(chat(ctx, "AI Version [Bot]", String.format("AI Version changed to: %s [%s]", ai[p2], ver[p2])));
 						new Handler().postDelayed(new Runnable() {
 							@Override
@@ -464,10 +444,10 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 							}
 						});
 					} else {
-						dialog.setMessage("There is no codes here");
+						dialog.setMessage("There is no codes here.");
 					}
 					dialog.setPositiveButton("Close", null);
-					dialog.setCancelable(chat.getAllCodes().size() > 0);
+					dialog.setCancelable(chat.getAllCodes().size() <= 0);
 					dialog.show();
 				}catch (Exception e){
 					util.show(ctx, e.getMessage());
@@ -568,5 +548,78 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			message = String.format("> %s", message);
 		}
 		return String.format(util.mpop(welcome), appname, modder, message, ai);
+	}
+	void preferences(){
+		AlertDialog.Builder d = new AlertDialog.Builder(context);
+		// ScrollView s = new ScrollView(context);
+		LinearLayout b = new LinearLayout(context);
+		
+		final EditText name = new EditText(context);
+		final EditText size = new EditText(context);
+		
+		b.setOrientation(LinearLayout.VERTICAL);
+		
+		name.setSingleLine();
+		name.setHint("Enter your prefered name");
+		name.setText(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)));
+		
+		size.setSingleLine();
+		size.setHint("Enter your prefered text size");
+		size.setText(String.valueOf(sp.getInt("mpop.revii.ai.DATA_SIZE", 10)));
+		size.setInputType(InputType.TYPE_CLASS_NUMBER);
+		
+		b.addView(name);
+		b.addView(size);
+		
+		d.setTitle("Preferences");
+		// s.addView(b);
+		d.setView(b);
+		d.setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface p1, int p2) {
+				sp.edit().putString("mpop.revii.ai.NAME", name.getText().toString()).apply();
+				int size_ = util.validator(size.getText().toString(), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
+				Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
+				i.putExtra("mpop.revii.ai.DATA_SIZE", size_);
+				context.sendBroadcast(i);
+				sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size_).commit();
+				sc2.addView(chat(context, "Preferences", String.format("Preference changed:\nName: `%s`\nText size: `%d`", name.getText().toString(), size_)));
+			}
+		});
+		d.setNegativeButton("Close", null);
+		d.setCancelable(false);
+		d.show();
+		/*if (txt.toLowerCase().startsWith("set ")) {
+		 if (txt.toLowerCase().startsWith("set name as ")) {
+		 String name = txt.substring("set name as ".length());
+		 sp.edit().putString("mpop.revii.ai.NAME", name).apply();
+		 sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
+		 sc2.addView(chat(ctx, "Preferences [Name]", String.format("Name changed to `%s`", name)));
+		 } else if (txt.toLowerCase().startsWith("set text size to ")) {
+		 sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
+		 int size = util.validator(txt.substring("set text size to ".length()), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
+		 if (size == sp.getInt("mpop.revii.ai.DATA_SIZE", 10)) {
+		 util.show(ctx, "Nothing changed");
+		 }
+		 Intent i = new Intent("mpop.revii.ai.TEXT_SIZE");
+		 i.putExtra("mpop.revii.ai.DATA_SIZE", size);
+		 ctx.sendBroadcast(i);
+		 sp.edit().putInt("mpop.revii.ai.DATA_SIZE", size).commit();
+		 sc2.addView(chat(ctx, "Preferences [Text size]", String.format("Text size changed to `%d`", size)));
+		 } else if (txt.toLowerCase().startsWith("set speech ")){
+		 sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
+		 String value = txt.toLowerCase().substring("set speech ".length());
+		 if(value.equalsIgnoreCase("enable")){
+		 sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", true).commit();
+		 sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is `%s`", value)));
+		 }else if(value.equalsIgnoreCase("disable")){
+		 sp.edit().putBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false).commit();
+		 sc2.addView(chat(ctx, "Preferences [Speech]", String.format("The text to speech is `%s`", value)));
+		 }else{
+		 sc2.addView(chat(ctx, "Preferences [Speech]", "The only parameter we accept is either `enable` or `disable`"));
+		 }
+		 }
+		 e.setText("");
+		 } else*/
 	}
 }
