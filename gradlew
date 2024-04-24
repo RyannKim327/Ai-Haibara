@@ -75,7 +75,7 @@ do
 	ls=$( ls -ld "$app_path" )
 	link=${ls#*' -> '}
 	case $link in             #(
-	  /*)   app_path=$link ;; #(
+		/*)   app_path=$link ;; #(
 	  *)    app_path=$APP_HOME$link ;;
 	esac
 done
@@ -108,10 +108,10 @@ msys=false
 darwin=false
 nonstop=false
 case "$( uname )" in                #(
-  CYGWIN* )         cygwin=true  ;; #(
-  Darwin* )         darwin=true  ;; #(
-  MSYS* | MINGW* )  msys=true    ;; #(
-  NONSTOP* )        nonstop=true ;;
+	CYGWIN* )         cygwin=true  ;; #(
+	Darwin* )         darwin=true  ;; #(
+	MSYS* | MINGW* )  msys=true    ;; #(
+	NONSTOP* )        nonstop=true ;;
 esac
 
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
@@ -142,12 +142,12 @@ fi
 # Increase the maximum file descriptors if we can.
 if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
 	case $MAX_FD in #(
-	  max*)
+		max*)
 		MAX_FD=$( ulimit -H -n ) ||
 			warn "Could not query maximum file descriptor limit"
 	esac
 	case $MAX_FD in  #(
-	  '' | soft) :;; #(
+		'' | soft) :;; #(
 	  *)
 		ulimit -n "$MAX_FD" ||
 			warn "Could not set maximum file descriptor limit to $MAX_FD"
@@ -173,8 +173,8 @@ if "$cygwin" || "$msys" ; then
 	for arg do
 		if
 			case $arg in                                #(
-			  -*)   false ;;                            # don't mess with options #(
-			  /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+				-*)   false ;;                            # don't mess with options #(
+				/?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
 					[ -e "$t" ] ;;                      #(
 			  *)    false ;;
 			esac
