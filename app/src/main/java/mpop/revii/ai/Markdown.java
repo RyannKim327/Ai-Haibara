@@ -83,6 +83,7 @@ public class Markdown extends TextView {
 							lang.add("Unknown Language");
 						}
 					}else{
+						code += "";
 						codes.add(code);
 						code = "";
 					}
@@ -225,7 +226,7 @@ public class Markdown extends TextView {
 		
 		// Mark
 		
-		str = str.replaceAll("`(.*?)`", String.format("<font color=\"%s\">$1</font>", mark));
+		str = str.replaceAll("`(.*?)`", String.format("<font face=\"serif\" color=\"%s\"><u>$1</u></font>", mark));
 		
 		// HTML Anti Bypass
 		str = str.replaceAll("\\>", "&gt;");

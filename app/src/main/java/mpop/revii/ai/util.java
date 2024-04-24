@@ -93,9 +93,9 @@ public class util {
 			int v = x[i] / t[i % 26];
 			s += Character.toString((char) v);
 		}
-
 		return s.toString();
 	}
+	
 	public static JSONObject json(String filepath) {
 		try {
 			File file = new File(String.format("file://android_asset/%s", filepath));

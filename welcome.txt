@@ -1,11 +1,8 @@
 ### %s
-
+#### %s
 %s
 
-> %s
-
 Credits
-
 * John Paul Caigas -> API Provider
 * Mark Kevin Manalo -> API Provider
 * John Jeremy Antiguo -> Tester and Mentor
@@ -29,6 +26,7 @@ Credits
 * Earl Shine Sawir
 * Lester Navarra
 * Eljohn Monzalez Mago
+* Clark Bandiola Guinto
 * DroidModificators
 * PinoyDen
 * XDA-Developers
@@ -36,13 +34,12 @@ Credits
 * Symbianize
 
 > There are changes happened, and the commands was changed for you to make your configurations easier. The commands starts with a colon **:**. The commands below are the preferences you may use:
-
 * `**:preferences**` - This command will popup the configuration, for you to make it easier to use.
 * `**:feedback**` - Since we want to make some improvement, you may send your feedback to us.
-
+* `**:cls**` or `**:clear**` - To clear the past message and to create a new conversation
+* `**:speech**` - To toggle the text to speech and speech to text recognition.
 
 > In addition, you may hold the mic or send button to select the version of AI you want to use. Here are the lists of AI Version that you may use:
-
 * v3 ~> (GPT-4)
 * v3-32k ~> (GPT-4 32k)
 * turbo ~> (GPT 3.5 Turbo)
