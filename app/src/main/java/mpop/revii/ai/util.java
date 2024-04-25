@@ -52,6 +52,15 @@ public class util {
 		}
 	}
 	
+	public static boolean isvalidnumber(String n){
+		try{
+			int x = Integer.parseInt(n);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
 	public static String tocolor(Context ctx, String color, String def){
 		String c = def;
 		if(util.setResources(ctx, color, "string") != 0){

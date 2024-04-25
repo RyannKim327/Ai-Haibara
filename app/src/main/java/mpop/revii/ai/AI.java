@@ -67,6 +67,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	aichat = "#57aaa0",
 	aichatc = "#ffffff",
 	fromcolor = "#007500";
+	String lq = "";
 	
 	public AI(Context ctx){
 		super(ctx);
@@ -208,6 +209,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					sc2.addView(chat(ctx, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), txt));
 					connection h = new connection(ctx);
 					h.execute(sp.getString("mpop.revii.ai.AI_NAME", "v3"), sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), convo, txt.toString());
+					lq = e.getText().toString();
 					e.setText("");
 					convo += String.format("", txt.toString());
 					iv.setEnabled(false);
@@ -296,6 +298,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					sc2.addView(chat(context, sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), l.get(0).toString()));
 					connection h = new connection(context);
 					h.execute(sp.getString("mpop.revii.ai.AI_NAME", "v3"), sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), convo, l.get(0).toString());
+					lq = e.getText().toString();
 					e.setText("");
 					convo += l.get(0).toString() + "\n\n";
 					iv.setEnabled(false);
@@ -321,6 +324,11 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		ctx.registerReceiver(new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context p1, Intent p2) {
+				for(int i = 0; i < 5 && p2.getStringExtra("DATA") == "Question Error!"; i++){
+					connection h = new connection(ctx);
+					h.execute(sp.getString("mpop.revii.ai.AI_NAME", "v3"), sp.getString("mpop.revii.ai.NAME", util.mpop(creator)), convo, lq);
+					// Question Error!
+				}
 				sc2.addView(chat(ctx, p2.getStringExtra("SENDER"), p2.getStringExtra("DATA")));
 				iv.setEnabled(true);
 				e.setActivated(true);
@@ -423,7 +431,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		}, new IntentFilter("mpop.revii.ai.TEXT_SIZE"));
 		
 		if(!send.equals(sp.getString("mpop.revii.ai.NAME", util.mpop(creator)))) {
-			if(sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false)) {
+			if(sp.getBoolean("mpop.revii.ai.TEXT_TO_SPEECH", false) && send.contains("AI ")) {
 				String _chat = chat.getWithoutCode();
 				speak(_chat);
 			}

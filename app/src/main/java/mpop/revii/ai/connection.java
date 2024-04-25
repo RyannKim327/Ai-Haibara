@@ -25,6 +25,7 @@ public class connection extends AsyncTask {
 	public connection(Context x){
 		ctx = x;
 		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
+		// name = sp.getString("mpop.revii.ai.AI_NAME", "AI Haibara");
 	}
 	
 	@Override
