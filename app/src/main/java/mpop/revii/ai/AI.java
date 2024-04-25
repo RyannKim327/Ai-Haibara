@@ -245,7 +245,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 						sp.edit().putString(util.key(context, "AI_ALIAS"), ai[p2].toString()).commit();
 						sc2.addView(chat(ctx, "AI Version [Bot]", String.format("AI Version changed to: %s [%s]", ai[p2], ver[p2])));
 						sc2.addView(chat(ctx, "Convo [Bot]", "All past conversation are all forgotten."));
-						convo = ""
+						convo = "";
 						new Handler().postDelayed(new Runnable() {
 							@Override
 							public void run() {
