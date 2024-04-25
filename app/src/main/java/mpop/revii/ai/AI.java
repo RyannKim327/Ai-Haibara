@@ -63,13 +63,14 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	String convo = "";
 	boolean replied = true;
 
-	String maincolor = "#8dc5b9",
-	mainchatbox = "#57aaa0",
-	selfchat = "#84fcc4",
-	selfchatc = "#253649",
-	aichat = "#57aaa0",
-	aichatc = "#ffffff",
-	fromcolor = "#007500";
+	String maincolor = util.tocolor(ctx, "maincolor", "#8dc5b9"),
+	mainchatbox = util.tocolor(ctx, "mainchatbox", "#57aaa0"),
+	selfchat = util.tocolor(ctx, "selfchat", "#84fcc4"),
+	selfchatc = util.tocolor(ctx, "selfchatc", "#253649"),
+	aichat = util.tocolor(ctx, "aichat", "#57aaa0"),
+	aichatc = util.tocolor(ctx, "aichatc", "#ffffff"),
+	fromcolor = util.tocolor(ctx, "sendercolor", "#007500");
+
 	String lq = "";
 
 	public AI(Context ctx){
@@ -88,13 +89,6 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	public void ai(final Context ctx) {
 		ctx.setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
 
-		maincolor = util.tocolor(ctx, "maincolor", maincolor);
-		mainchatbox = util.tocolor(ctx, "mainchatbox", mainchatbox);
-		selfchat = util.tocolor(ctx, "selfchat", selfchat);
-		selfchatc = util.tocolor(ctx, "selfchatc", selfchatc);
-		aichat = util.tocolor(ctx, "aichat", aichat);
-		aichatc = util.tocolor(ctx, "aichatc", aichatc);
-		fromcolor = util.tocolor(ctx, "sendercolor", fromcolor);
 		
 		float f = 0f, f2 = 15f;
 		sp = ctx.getSharedPreferences(util.key(context, "PREFERENCES"), ctx.MODE_PRIVATE);
@@ -244,7 +238,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 						sp.edit().putString(util.key(context, "AI_VERSION"), ver[p2].toString()).commit();
 						sp.edit().putString(util.key(context, "AI_ALIAS"), ai[p2].toString()).commit();
 						sc2.addView(chat(ctx, "AI Version [Bot]", String.format("AI Version changed to: %s [%s]", ai[p2], ver[p2])));
-						sc2.addView(chat(ctx, "Convo [Bot]", "All past conversation are all forgotten."));
+						sc2.addView(chat(ctx, "Conversation Manager [Bot]", "All past conversation are all forgotten."));
 						convo = "";
 						new Handler().postDelayed(new Runnable() {
 							@Override
@@ -337,8 +331,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				}
 				sc2.addView(chat(ctx, p2.getStringExtra(util.key(context, "CONNECTION_SENDER")), p2.getStringExtra(util.key(context, "CONNECTION_DATA"))));
 				iv.setEnabled(true);
-				e.setActivated(true);
 				e.setEnabled(true);
+				e.setActivated(true);
 				replied = true;
 				new Handler().postDelayed(new Runnable() {
 					@Override
