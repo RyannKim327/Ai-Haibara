@@ -93,7 +93,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		fromcolor = util.tocolor(ctx, "sendercolor", fromcolor);
 		
 		float f = 0f, f2 = 15f;
-		sp = ctx.getSharedPreferences(util.key(context, "PREFERENCES"), ctx.MODE_PRIVATE);
+		sp = ctx.getSharedPreferences(util.key(ctx, "PREFERENCES"), ctx.MODE_PRIVATE);
 		ShapeDrawable sd = new ShapeDrawable(new RoundRectShape(new float[]{
 			f, f, f, f,
 			f, f, f, f
@@ -173,8 +173,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					sc2.addView(chat(ctx, "Welcome [Bot]", welcome()));
 					e.setText("");
 				}else if(txt.equalsIgnoreCase(":speech")){
-					boolean speech = sp.getBoolean(util.key(context, "TEXT_TO_SPEECH"), true);
-					sp.edit().putBoolean(util.key(context, "TEXT_TO_SPEECH"), !speech).commit();
+					boolean speech = sp.getBoolean(util.key(ctx, "TEXT_TO_SPEECH"), true);
+					sp.edit().putBoolean(util.key(ctx, "TEXT_TO_SPEECH"), !speech).commit();
 					sc2.addView(chat(ctx, "Preferences [Text to Speech]", String.format("Text to speech and speech to text is %s", (!speech) ? "enabled" : "disabled")));
 					e.setText("");
 				}
@@ -206,9 +206,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				}
 				String txt = e.getText().toString();
 				if(!txt.isEmpty()) {
-					sc2.addView(chat(ctx, sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), txt));
+					sc2.addView(chat(ctx, sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)), txt));
 					connection h = new connection(ctx);
-					h.execute(sp.getString(util.key(context, "AI_VERSION"), "v3"), sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), convo, txt.toString());
+					h.execute(sp.getString(util.key(ctx, "AI_VERSION"), "v3"), sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)), convo, txt.toString());
 					lq = e.getText().toString();
 					e.setText("");
 					convo += String.format("", txt.toString());
@@ -237,8 +237,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				a.setAdapter(adapter1, new DialogInterface.OnClickListener(){
 					@Override
 					public void onClick(DialogInterface p1, int p2) {
-						sp.edit().putString(util.key(context, "AI_VERSION"), ver[p2].toString()).commit();
-						sp.edit().putString(util.key(context, "AI_ALIAS"), ai[p2].toString()).commit();
+						sp.edit().putString(util.key(ctx, "AI_VERSION"), ver[p2].toString()).commit();
+						sp.edit().putString(util.key(ctx, "AI_ALIAS"), ai[p2].toString()).commit();
 						sc2.addView(chat(ctx, "AI Version [Bot]", String.format("AI Version changed to: %s [%s]", ai[p2], ver[p2])));
 						new Handler().postDelayed(new Runnable() {
 							@Override
@@ -295,9 +295,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			public void onResults(Bundle bundle) {
 				List<String> l = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 				if(l.get(0) != null && l.get(0) != "") {
-					sc2.addView(chat(context, sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), l.get(0).toString()));
+					sc2.addView(chat(ctx, sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)), l.get(0).toString()));
 					connection h = new connection(context);
-					h.execute(sp.getString(util.key(context, "AI_VERSION"), "v3"), sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), convo, l.get(0).toString());
+					h.execute(sp.getString(util.key(ctx, "AI_VERSION"), "v3"), sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)), convo, l.get(0).toString());
 					lq = e.getText().toString();
 					e.setText("");
 					convo += l.get(0).toString() + "\n\n";
@@ -326,10 +326,10 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			public void onReceive(Context p1, Intent p2) {
 				for(int i = 0; i < 5 && p2.getStringExtra("DATA") == "Question Error!"; i++){
 					connection h = new connection(ctx);
-					h.execute(sp.getString(util.key(context, "AI_VERSION"), "v3"), sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), convo, lq);
+					h.execute(sp.getString(util.key(ctx, "AI_VERSION"), "v3"), sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)), convo, lq);
 					// Question Error!
 				}
-				sc2.addView(chat(ctx, p2.getStringExtra(util.key(context, "CONNECTION_SENDER")), p2.getStringExtra(util.key(context, "CONNECTION_DATA"))));
+				sc2.addView(chat(ctx, p2.getStringExtra(util.key(ctx, "CONNECTION_SENDER")), p2.getStringExtra(util.key(ctx, "CONNECTION_DATA"))));
 				iv.setEnabled(true);
 				e.setActivated(true);
 				e.setEnabled(true);
@@ -340,14 +340,14 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 						sc.fullScroll(View.FOCUS_DOWN);
 					}
 				}, 250);
-				// context.sendBroadcast(new Intent(util.key(context, "CALLBACK_SPEECH")));
+				// context.sendBroadcast(new Intent(util.key(ctx, "CALLBACK_SPEECH")));
 			}
-		}, new IntentFilter(util.key(context, "CONNECTION")));
+		}, new IntentFilter(util.key(ctx, "CONNECTION")));
 
 		context.registerReceiver(new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				if(sp.getBoolean(util.key(context, "TEXT_TO_SPEECH"), false)){
+				if(sp.getBoolean(util.key(ctx, "TEXT_TO_SPEECH"), false)){
 					speak();
 				}
 			}
@@ -369,10 +369,10 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			int result = tts.setLanguage(Locale.ENGLISH);
 			tts.setSpeechRate(1.2f);
 			if(result == TextToSpeech.LANG_MISSING_DATA){
-				util.show(context, "Please check your text to speech data on settings.");
+				util.show(ctx, "Please check your text to speech data on settings.");
 			}
 		}else{
-			util.show(context, "Failed to Initiate");
+			util.show(ctx, "Failed to Initiate");
 		}
 	}
 
@@ -382,7 +382,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		final Markdown chat = new Markdown(ctx);
 		final TextView from = new TextView(ctx);
 		float f = 10, f2 = -20, f3 = f;
-		if(send.equals(sp.getString(util.key(context, "USERNAME"), util.mpop(creator)))){
+		if(send.equals(sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)))){
 			f2 = f;
 			f3 = -20;
 		}
@@ -390,9 +390,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			f, f, f, f,
 			f3, f3, f2, f2
 		}, null, null));
-		int size = sp.getInt(util.key(context, "TEXTSIZE"), 10);
+		int size = sp.getInt(util.key(ctx, "TEXTSIZE"), 10);
 
-		if(send.equals(sp.getString(util.key(context, "USERNAME"), util.mpop(creator)))){
+		if(send.equals(sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)))){
 			base2.setGravity(Gravity.RIGHT);
 			base2.setPadding(85, 5, 5, 5);
 			from.setGravity(Gravity.RIGHT);
@@ -424,14 +424,14 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		ctx.registerReceiver(new BroadcastReceiver(){
 			@Override
 			public void onReceive(Context p1, Intent p2) {
-				int size = p2.getIntExtra(util.key(context, "TEXTSIZE"), 10);
+				int size = p2.getIntExtra(util.key(ctx, "TEXTSIZE"), 10);
 				from.setTextSize(size);
 				chat.setTextSize(size + (size / 2));
 			}
-		}, new IntentFilter(util.key(context, "TEXT_SIZE")));
+		}, new IntentFilter(util.key(ctx, "TEXT_SIZE")));
 		
-		if(!send.equals(sp.getString(util.key(context, "USERNAME"), util.mpop(creator)))) {
-			if(sp.getBoolean(util.key(context, "TEXT_TO_SPEECH"), false) && send.contains("AI ")) {
+		if(!send.equals(sp.getString(util.key(ctx, "USERNAME"), util.mpop(creator)))) {
+			if(sp.getBoolean(util.key(ctx, "TEXT_TO_SPEECH"), false) && send.contains("AI ")) {
 				String _chat = chat.getWithoutCode();
 				speak(_chat);
 			}
@@ -477,13 +477,13 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 				i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
 				try {
-					util.show(context, "Listening");
+					util.show(ctx, "Listening");
 					sr.startListening(i);
 				} catch (Exception e) {
-					util.show(context, "Error: " + e.getMessage());
+					util.show(ctx, "Error: " + e.getMessage());
 				}
 			} else {
-				util.show(context, "Please enable audio permission");
+				util.show(ctx, "Please enable audio permission");
 			}
 		}else{
 			Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -491,10 +491,10 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
 			i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something");
 			try {
-				util.show(context, "Listening");
+				util.show(ctx, "Listening");
 				sr.startListening(i);
 			} catch (Exception e) {
-				util.show(context, "Error: " + e.getMessage());
+				util.show(ctx, "Error: " + e.getMessage());
 			}
 		}
 	}
@@ -539,8 +539,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			e.printStackTrace();
 		}
 		
-		int mod = util.setResources(context, "modder", "string");
-		int msg = util.setResources(context, "message", "string");
+		int mod = util.setResources(ctx, "modder", "string");
+		int msg = util.setResources(ctx, "message", "string");
 		
 		String appname = (String) context.getPackageManager().getApplicationLabel(info2);
 		String modder = (mod == 0) ? String.format("Developed by %s", util.mpop(creator)) : String.format("Modified by: %s", context.getResources().getString(mod));
@@ -585,12 +585,12 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		d.setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(DialogInterface p1, int p2) {
-				sp.edit().putString(util.key(context, "USERNAME"), name.getText().toString()).apply();
+				sp.edit().putString(util.key(ctx, "USERNAME"), name.getText().toString()).apply();
 				final int size_ = util.validator(size.getText().toString(), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
-				Intent i = new Intent(util.key(context, "TEXT_SIZE"));
-				i.putExtra(util.key(context, "TEXTSIZE"), size_);
-				sp.edit().putInt(util.key(context, "TEXTSIZE"), size_).commit();
-				sc2.addView(chat(context, "Preferences", String.format("Preference changed:\nName: `%s`\nText size: `%d`", name.getText().toString(), size_)));
+				Intent i = new Intent(util.key(ctx, "TEXT_SIZE"));
+				i.putExtra(util.key(ctx, "TEXTSIZE"), size_);
+				sp.edit().putInt(util.key(ctx, "TEXTSIZE"), size_).commit();
+				sc2.addView(chat(ctx, "Preferences", String.format("Preference changed:\nName: `%s`\nText size: `%d`", name.getText().toString(), size_)));
 				context.sendBroadcast(i);
 			}
 		});
