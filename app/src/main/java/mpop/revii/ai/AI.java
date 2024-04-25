@@ -580,7 +580,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		
 		size.setSingleLine();
 		size.setHint("Enter your prefered text size");
-		size.setText(String.valueOf(sp.getInt("mpop.revii.ai.DATA_SIZE", 10)));
+		size.setText(String.valueOf(sp.getInt(util.key(context, "TEXTSIZE"), 10)));
 		size.setInputType(InputType.TYPE_CLASS_NUMBER);
 		
 		b.addView(name);
@@ -592,7 +592,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			@Override
 			public void onClick(DialogInterface p1, int p2) {
 				sp.edit().putString(util.key(context, "USERNAME"), name.getText().toString()).apply();
-				final int size_ = util.validator(size.getText().toString(), sp.getInt("mpop.revii.ai.DATA_SIZE", 10));
+				final int size_ = util.validator(size.getText().toString(), sp.getInt(util.key(context, "TEXTSIZE"), 10));
 				Intent i = new Intent(util.key(context, "TEXT_SIZE"));
 				i.putExtra(util.key(context, "TEXTSIZE"), size_);
 				sp.edit().putInt(util.key(context, "TEXTSIZE"), size_).commit();
