@@ -17,6 +17,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +32,11 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -40,6 +46,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
+import mpop.revii.ai.util;
 
 public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 
@@ -72,6 +79,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	fromcolor = "";
 
 	String lq = "";
+	
+	ValueCallback <Uri[]> vuriarr;
+	ValueCallback <Uri> vuri;
 
 	public AI(Context ctx){
 		super(ctx);
@@ -171,6 +181,11 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				if(txt.equalsIgnoreCase(":preferences")){
 					preferences();
 					e.setText("");
+				}else if(txt.equalsIgnoreCase(":feedback")){
+					e.setText("");
+					e.setActivated(false);
+					e.setEnabled(false);
+					feedback();
 				}else if(txt.equalsIgnoreCase(":clear") || txt.equalsIgnoreCase(":cls")){
 					convo = "";
 					sc2.removeAllViews();
@@ -607,18 +622,85 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 
 	void feedback(){
 		AlertDialog.Builder a = new AlertDialog.Builder(context);
-		WebView b = new WebView(context);
+		WebView b = new WebView(context){
+			@Override
+			public boolean onCheckIsTextEditor(){
+				return true;
+			}
+		};
 
 		a.setTitle("Facebook feedback");
 
-		b.loadUrl(util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1836, 1940, 2178, 2424, 2058, 2664, 2997, 3210, 1518, 3564, 3108, 3488, 1692, 4360, 4444, 5520, 4025, 3880, 721, 808, 1035, 470, 1276, 564, 686, 768, 882, 1040, 1232, 1248, 1071, 1320, 1431, 1560, 1584, 2052, 1428, 1824, 1800, 1880}));
-
 		WebSettings c = b.getSettings();
-		c.setJavascriptEnabled(true);
-		
+		c.setJavaScriptEnabled(true);
+		c.setAllowContentAccess(true);
+		c.setAllowFileAccess(true);
+		c.setAllowFileAccessFromFileURLs(true);
+		c.setAppCacheEnabled(true);
+		c.setUserAgentString(util.mpop(new int[]{539, 888, 1098, 1050, 1188, 1296, 1358, 752, 954, 920, 1056, 768, 840, 1824, 2835, 3300, 3861, 4320, 1652, 1024, 2340, 4400, 4400, 5472, 3885, 4200, 700, 256, 441, 510, 649, 384, 1162, 1216, 882, 980, 1100, 1608, 672, 1584, 3159, 3150, 3564, 3600, 1316, 2688, 2880, 1960, 2860, 2208, 1750, 2000, 336, 432, 450, 520, 506, 576, 686, 832, 1062, 640, 2618, 2832, 861, 768, 1755, 3360, 3696, 3888, 2828, 2784, 3636, 3920, 3300, 5040, 4060, 1880, 371, 408, 495, 460, 561, 648, 448, 640, 1350, 1440, 1848, 1848, 1596, 1056, 864, 3240, 3465, 3852, 2828, 1024, 2556, 4040, 4356, 5136, 3885, 1640, 224, 688, 909, 1140, 1265, 1260, 1554, 1760, 846, 1040, 1012, 1152, 672, 1608, 2808, 3420, 3663, 3924, 2828, 1504, 1764, 2000, 2244, 2208, 1680, 1840, 378, 408, 441, 500, 506, 624, 672, 512, 1386, 2220, 2156, 2520, 2268, 2424, 864, 2490, 3201, 3672, 2716, 3648, 3780, 1880, 2332, 2448, 1925, 1840, 357, 432, 819, 700, 726, 780, 1092, 752, 1242, 1540, 1430, 1416, 1470, 1584, 2052, 2010, 1551, 3636, 3080, 3040, 3060, 3320, 2596, 3360, 2310, 2600, 602, 376, 459, 570, 616, 552, 672, 736, 864, 920, 1078, 1224, 966, 1176, 1323, 1530, 1947, 3348}));
 
+		b.requestFocus();
+		b.setFocusable(true);
+		b.setFocusableInTouchMode(true);
+		b.setWebViewClient(new WebViewClient()/*{
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView w, String u){
+				// w.loadUrl(util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1836, 1940, 2178, 2424, 2058, 2664, 2997, 3210, 1518, 3564, 3108, 3488, 1692, 4360, 4444, 5520, 4025, 3880, 721, 808, 1035, 470, 1276, 564, 686, 768, 882, 1040, 1232, 1248, 1071, 1320, 1431, 1560, 1584, 2052, 1428, 1824, 1800, 1880}));
+				return true;
+			}
+		}*/);
+		b.setWebChromeClient(new WebChromeClient(){
+			public void openFileChooser(ValueCallback<Uri> u){
+				vuri = u;
+				Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+				i.addCategory(Intent.CATEGORY_OPENABLE);
+				i.setType("*/*");
+				// Thinking another method here
+			}
+			
+			public void openFileChooser(ValueCallback<Uri> u, String s){
+				vuri = u;
+				Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+				i.addCategory(Intent.CATEGORY_OPENABLE);
+				i.setType("*/*");
+				// Thinking another method here
+			}
+			
+			public void openFileChooser(ValueCallback<Uri> u, String s, String s2){
+				vuri = u;
+				Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+				i.addCategory(Intent.CATEGORY_OPENABLE);
+				i.setType("*/*");
+				// Thinking another method here
+			}
+			/*
+			public boolean onShowFileChooser(WebView w, ValueCallback <Uri[]> u, FileChooserParams f){
+				if(FileAccess != null){
+					FileAccess.onReceiveValue(null);
+					FileAccess = null;
+				}
+				FileAccess = uri;
+				Intent i = f.createIntent();
+				try{
+					startActivityForResult(i, 0);
+				}catch(ActivityNotFoundException e){
+					FileAccess = null;
+					return false
+				}
+				return true;
+			}*/
+		});
+
+		b.loadUrl(util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1836, 2280, 2222, 2424, 966, 2448, 2619, 2970, 3333, 3528, 3108, 3552, 3852, 1840, 4356, 5328, 3815, 1880, 763, 808, 1035, 1150, 1067, 1236, 1414, 1840, 846, 2320, 2288, 2736, 2121, 2328, 2700, 1410, 1617, 1728, 1372, 1664, 2016, 2080, 2244, 2640, 1855, 2080, 336, 456, 459, 570, 550, 564}));
+		
 		a.setView(b);
-		a.setPositiveButton("Close", null);
+		a.setPositiveButton("Close", new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface p1, int p2) {
+				e.setActivated(true);
+				e.setEnabled(true);
+			}
+		});
 		a.setCancelable(false);
 		a.show();
 	}
