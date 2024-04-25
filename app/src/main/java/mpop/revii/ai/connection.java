@@ -24,7 +24,7 @@ public class connection extends AsyncTask {
 	
 	public connection(Context x){
 		ctx = x;
-		sp = ctx.getSharedPreferences("mpop.revii.ai.PREFERENCES", ctx.MODE_PRIVATE);
+		sp = ctx.getSharedPreferences(util.key(context, "PREFERENCES"), ctx.MODE_PRIVATE);
 		// name = sp.getString("mpop.revii.ai.AI_NAME", "AI Haibara");
 	}
 	
@@ -59,19 +59,19 @@ public class connection extends AsyncTask {
 		super.onPostExecute(result);
 		try {
 			JSONObject obj = new JSONObject(result.toString());
-			Intent i = new Intent(String.format("%s_mpop.revii.ai.DATA", ctx.getPackageName()));
+			Intent i = new Intent(util.key(context, "CONNECTION"));
 			if(obj.getString("reply").equalsIgnoreCase(url)){
-				i.putExtra("DATA", "Something went wrong");
-				i.putExtra("SENDER", String.format("AI [%s]", sp.getString("mpop.revii.ai.AI_ALIAS", "GPT-4")));
+				i.putExtra(util.key(context, "CONNECTION_DATA"), "Something went wrong");
+				i.putExtra(util.key(context, "CONNECTION_SENDER"), String.format("AI [%s]", sp.getString(util.key(context, "AI_ALIAS"), "GPT-4")));
 			}else{
-				i.putExtra("DATA", obj.getString("reply"));
-				i.putExtra("SENDER", String.format("AI [%s]", sp.getString("mpop.revii.ai.AI_ALIAS", "GPT-4")));
+				i.putExtra(util.key(context, "CONNECTION_DATA"), obj.getString("reply"));
+				i.putExtra(util.key(context, "CONNECTION_SENDER"), String.format("AI [%s]", sp.getString(util.key(context, "AI_ALIAS"), "GPT-4")));
 			}
 			ctx.sendBroadcast(i);
 		} catch (JSONException e) {
-			Intent i = new Intent(String.format("%s_mpop.revii.ai.DATA", ctx.getPackageName()));
-			i.putExtra("DATA", result.toString());
-			i.putExtra("SENDER", "Error [Bot]");
+			Intent i = new Intent(util.key(context, "CONNECTION"));
+			i.putExtra(util.key(context, "CONNECTION_DATA"), result.toString());
+			i.putExtra(util.key(context, "CONNECTION_SENDER"), "Error [Bot]");
 			ctx.sendBroadcast(i);
 		}
 	}
