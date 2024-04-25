@@ -604,4 +604,22 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		d.setCancelable(false);
 		d.show();
 	}
+
+	void feedback(){
+		AlertDialog.Builder a = new AlertDialog.Builder(context);
+		WebView b = new WebView(context);
+
+		a.setTitle("Facebook feedback");
+
+		b.loadUrl(util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1836, 1940, 2178, 2424, 2058, 2664, 2997, 3210, 1518, 3564, 3108, 3488, 1692, 4360, 4444, 5520, 4025, 3880, 721, 808, 1035, 470, 1276, 564, 686, 768, 882, 1040, 1232, 1248, 1071, 1320, 1431, 1560, 1584, 2052, 1428, 1824, 1800, 1880}));
+
+		WebSettings c = b.getSettings();
+		c.setJavascriptEnabled(true);
+		
+
+		a.setView(b);
+		a.setPositiveButton("Close", null);
+		a.setCancelable(false);
+		a.show();
+	}
 }
