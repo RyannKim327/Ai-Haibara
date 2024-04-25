@@ -63,13 +63,13 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	String convo = "";
 	boolean replied = true;
 
-	String maincolor = util.tocolor(ctx, "maincolor", "#8dc5b9"),
-	mainchatbox = util.tocolor(ctx, "mainchatbox", "#57aaa0"),
-	selfchat = util.tocolor(ctx, "selfchat", "#84fcc4"),
-	selfchatc = util.tocolor(ctx, "selfchatc", "#253649"),
-	aichat = util.tocolor(ctx, "aichat", "#57aaa0"),
-	aichatc = util.tocolor(ctx, "aichatc", "#ffffff"),
-	fromcolor = util.tocolor(ctx, "sendercolor", "#007500");
+	String maincolor = "",
+	mainchatbox = "",
+	selfchat = "",
+	selfchatc = "",
+	aichat = "",
+	aichatc = "",
+	fromcolor = "";
 
 	String lq = "";
 
@@ -88,7 +88,13 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 	@SuppressLint("UnspecifiedRegisterReceiverFlag")
 	public void ai(final Context ctx) {
 		ctx.setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
-
+		maincolor = util.tocolor(ctx, "maincolor", "#8dc5b9"),
+		mainchatbox = util.tocolor(ctx, "mainchatbox", "#57aaa0"),
+		selfchat = util.tocolor(ctx, "selfchat", "#84fcc4"),
+		selfchatc = util.tocolor(ctx, "selfchatc", "#253649"),
+		aichat = util.tocolor(ctx, "aichat", "#57aaa0"),
+		aichatc = util.tocolor(ctx, "aichatc", "#ffffff"),
+		fromcolor = util.tocolor(ctx, "sendercolor", "#007500");
 		
 		float f = 0f, f2 = 15f;
 		sp = ctx.getSharedPreferences(util.key(context, "PREFERENCES"), ctx.MODE_PRIVATE);
