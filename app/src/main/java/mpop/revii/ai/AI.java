@@ -230,7 +230,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					h.execute(sp.getString(util.key(context, "AI_VERSION"), "v3"), sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), convo, txt.toString());
 					lq = e.getText().toString();
 					e.setText("");
-					convo += String.format("", txt.toString());
+					convo += String.format("%s: %s\n\n", sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), txt.toString());
 					iv.setEnabled(false);
 					replied = false;
 				}else{
@@ -321,7 +321,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					h.execute(sp.getString(util.key(context, "AI_VERSION"), "v3"), sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), convo, l.get(0).toString());
 					lq = e.getText().toString();
 					e.setText("");
-					convo += l.get(0).toString() + "\n\n";
+					// convo += l.get(0).toString() + "\n\n";
+					convo += String.format("%s: %s\n\n", sp.getString(util.key(context, "USERNAME"), util.mpop(creator)), l.get(0).toString());
 					iv.setEnabled(false);
 					replied = false;
 					new Handler().postDelayed(new Runnable() {
@@ -351,6 +352,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 					// Question Error!
 				}
 				sc2.addView(chat(ctx, p2.getStringExtra(util.key(context, "CONNECTION_SENDER")), p2.getStringExtra(util.key(context, "CONNECTION_DATA"))));
+				convo += String.format("%s: %s\n\n", sp.getString(util.key(context, "AI_ALIAS"), util.mpop(creator)), p2.getStringExtra(util.key(context, "CONNECTION_DATA")));
 				iv.setEnabled(true);
 				e.setEnabled(true);
 				e.setActivated(true);

@@ -62,15 +62,18 @@ public class connection extends AsyncTask {
 			Intent i = new Intent(util.key(ctx, "CONNECTION"));
 			if(obj.getString("reply").equalsIgnoreCase(url)){
 				i.putExtra(util.key(ctx, "CONNECTION_DATA"), "Something went wrong");
+				i.putExtra(util.key(ctx, "CONNECTION_RETURN"), true);
 				i.putExtra(util.key(ctx, "CONNECTION_SENDER"), String.format("AI [%s]", sp.getString(util.key(ctx, "AI_ALIAS"), "GPT-4")));
 			}else{
 				i.putExtra(util.key(ctx, "CONNECTION_DATA"), obj.getString("reply"));
+				i.putExtra(util.key(ctx, "CONNECTION_RETURN"), true);
 				i.putExtra(util.key(ctx, "CONNECTION_SENDER"), String.format("AI [%s]", sp.getString(util.key(ctx, "AI_ALIAS"), "GPT-4")));
 			}
 			ctx.sendBroadcast(i);
 		} catch (JSONException e) {
 			Intent i = new Intent(util.key(ctx, "CONNECTION"));
 			i.putExtra(util.key(ctx, "CONNECTION_DATA"), result.toString());
+			i.putExtra(util.key(ctx, "CONNECTION_RETURN"), true);
 			i.putExtra(util.key(ctx, "CONNECTION_SENDER"), "Error [Bot]");
 			ctx.sendBroadcast(i);
 		}
