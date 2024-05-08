@@ -22,6 +22,7 @@ public class Markdown extends TextView {
 	mark = "#ccff20",
 	bgCode = "#303030",
 	quote = "#ffffff";
+	
 	public Markdown(Context ctx){
 		super(ctx);
 		setup(ctx);
