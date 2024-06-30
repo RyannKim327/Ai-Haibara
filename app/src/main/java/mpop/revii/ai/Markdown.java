@@ -41,7 +41,7 @@ public class Markdown extends TextView {
 			setLinksClickable(true);
 		}
 		
-		// Setup for colors from resources
+		// INFO: Setup for colors from resources
 		
 		blockquote = util.tocolor(ctx, "blockquote", blockquote);
 		mark = util.tocolor(ctx, "mark", mark);

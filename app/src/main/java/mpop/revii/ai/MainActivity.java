@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
 		// getActionBar().setTitle("Ai Haibara");
 		// getActionBar().setSubtitle("Developed by RyannKim327");
 		// setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+		// NOTE: This nothing more special than applying the AI.java into the setContentView
 		setContentView(new AI(this));
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if(checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
