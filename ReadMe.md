@@ -34,4 +34,3 @@
 ### Notes
 > If you're a modder and you want to apply this to your app, kindly visit [GUIDE](guide.md)
 
-
