@@ -19,21 +19,21 @@ public class util {
 
 	public static Toast show(Context ctx, String msg){
 		Toast toast = new Toast(ctx);
-		float f = 25;
+		float f = 15;
 		ShapeDrawable drawable = new ShapeDrawable(new RoundRectShape(new float[]{
 			f, f, f, f,
 			f, f, f, f
 		}, null, null));
 		TextView tv = new TextView(ctx);
 
-		drawable.getPaint().setColor(Color.parseColor("#FF0085EE"));
+		drawable.getPaint().setColor(hextoargb("#ff0085EE"));
 
 		tv.setText(msg);
 		tv.setTypeface(Typeface.SERIF);
 		tv.setTextSize(15);
 		tv.setTextColor(Color.WHITE);
 		tv.setBackground(drawable);
-		tv.setPadding(13, 5, 13, 5);
+		tv.setPadding(15, 5, 15, 5);
 		toast.setView(tv);
 		toast.setDuration(Toast.LENGTH_LONG);
 		toast.show();
@@ -129,4 +129,26 @@ public class util {
 		String hex = "#" + String.format("%02X", red) + String.format("%02X", green) + String.format("%02X", blue);
 		return Color.parseColor(hex);
 	}
+  public static int hextoargb(String hex){
+    try{
+      hex = hex.substring(1);
+      if(hex.length() >= 7){
+        int[] c = new int[4];
+        for(int i = 0; i < c.length; i++){
+          String s = String.valueOf(hex.charAt((i * 2))) + String.valueOf(hex.charAt((i * 2) + 1));
+          c[i] = Integer.parseInt(s, 16);
+        }
+        return Color.argb(c[0], c[1], c[2], c[3]);
+      }else{
+        int[] c = new int[3];
+        for(int i = 0; i < c.length; i++){
+          String s = String.valueOf(hex.charAt((i * 2))) + String.valueOf(hex.charAt((i * 2) + 1));
+          c[i] = Integer.parseInt(s, 16);
+        }
+        return Color.argb(255, c[0], c[1], c[2]);
+      }
+    }catch(Exception e){
+      return Color.parseColor(hex);
+    }
+  }
 }

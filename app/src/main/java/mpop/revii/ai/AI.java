@@ -106,9 +106,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		ctx.setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
 		maincolor = util.tocolor(ctx, "maincolor", "#8dc5b9");
 		mainchatbox = util.tocolor(ctx, "mainchatbox", "#57aaa0");
-		selfchat = util.tocolor(ctx, "selfchat", "#84fcc4");
+		selfchat = util.tocolor(ctx, "selfchat", "#10000000");
 		selfchatc = util.tocolor(ctx, "selfchatc", "#253649");
-		aichat = util.tocolor(ctx, "aichat", "#57aaa0");
+		aichat = util.tocolor(ctx, "aichat", "#25000000");
 		aichatc = util.tocolor(ctx, "aichatc", "#ffffff");
 		fromcolor = util.tocolor(ctx, "sendercolor", "#007500");
 		
@@ -445,16 +445,18 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			chat.setTextColor(Color.parseColor(selfchatc));
 			chat.setGravity(Gravity.LEFT);
 			chat.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-			sd.getPaint().setColor(Color.parseColor(selfchat));
-			sd.getPaint().setShadowLayer(10f, 5f, 5f, Color.parseColor("#ff0000"));
-			from.setText(String.format(" :%s ",send));
+			sd.getPaint().setColor(util.hextoargb(selfchat)); // Color.parseColor(selfchat));
+			// sd.getPaint().setShadowLayer(10f, 5f, 5f, Color.parseColor("#ff0000"));
+			chat.setBackground(sd);
+      from.setText(String.format(" :%s ", send));
 		}else{
 			// INFO: Sent from AI
 			base2.setPadding(5, 5, 85, 5);
 			base2.setGravity(Gravity.LEFT);
-			sd.getPaint().setColor(Color.parseColor(aichat));
+			sd.getPaint().setColor(util.hextoargb(aichat)); // Color.parseColor(aichat));
 			chat.setTextColor(Color.parseColor(aichatc));
-			from.setText(String.format(" %s: ",send));
+			chat.setBackground(sd);
+      from.setText(String.format(" %s: ", send));
 		}
 		
 		// INFO: Other preferences
@@ -465,7 +467,6 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		from.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD_ITALIC);
 		from.setTextColor(Color.parseColor(fromcolor));
 		chat.setPadding(15, 10, 15, 10);
-		chat.setBackground(sd);
 		chat.setTextSize(size);
 		chat.setTypeface(Typeface.SANS_SERIF);
 		chat.setText(msg);
@@ -600,7 +601,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		String appname = (String) context.getPackageManager().getApplicationLabel(info2);
 		String modder = (mod == 0) ? String.format("Developed by %s", util.mpop(creator)) : String.format("Modified by: %s", context.getResources().getString(mod));
 		String message = (msg == 0) ? util.mpop(msg_) : context.getResources().getString(msg);
-		String ai = "* v3 ~> (GPT-4)\n* v3-32k ~> (GPT-4 32k)\n* turbo ~> (GPT 3.5 Turbo)\n* turbo-16k ~> (GPT 3.5 Turbo 16k)\n* gemini ~> (Google Gemini Pro) [Unstable]";
+		String ai = "* v3 -> (GPT-4)\n* v3-32k -> (GPT-4 32k)\n* turbo -> (GPT 3.5 Turbo)\n* turbo-16k -> (GPT 3.5 Turbo 16k)\n* gemini -> (Google Gemini Pro) [Unstable]";
 		if(appname == ""){
 			appname = "Ai Haibara";
 		}else{
