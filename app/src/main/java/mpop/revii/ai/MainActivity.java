@@ -15,8 +15,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-    util.show(this, String.valueOf(Integer.parseInt("ff", 16)));
-		sr = SpeechRecognizer.createSpeechRecognizer(this);
+   	sr = SpeechRecognizer.createSpeechRecognizer(this);
 		// getActionBar().setIcon(util.setResources(this, "ic_launcher", "drawable"));
 		// getActionBar().setTitle("Ai Haibara");
 		// getActionBar().setSubtitle("Developed by RyannKim327");
