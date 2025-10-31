@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="baseLayout">false</item>
+    <item type="id" name="number">false</item>
+    <item type="id" name="code">false</item>
+</resources>
