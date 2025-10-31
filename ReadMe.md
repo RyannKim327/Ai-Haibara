@@ -15,7 +15,7 @@
 * Rovie Francisco -> RegEx and SpeechRecognizer
 * Soyuno Ion -> No Change IDs
 * Fortzkie Tuneskie -> SharedPreference
-* Herc.ai -> API Owner
+* Pollinations.ai -> API Owner
 * StartUp [Movie] -> Idea
 * Genesis Fernandez -> Special Credits
 * Isrrael Preak -> Special Credits
