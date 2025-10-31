@@ -15,8 +15,6 @@ import org.json.JSONObject;
 public class connection extends AsyncTask {
 	Context ctx;
 	String url = "";
-	// String ai = "v3";
-	// int[] query = {560, 912, 909, 1160, 1111, 1320, 1400, 512, 2088, 2080, 2134, 2784, 672, 2904, 2997, 3510, 1287, 4104, 2828, 1024, 1332, 4600, 1936, 1536, 1295, 4600, 273, 920, 288, 370, 1265, 552, 448, 1168, 576, 1940, 2398, 768, 777, 2760, 864, 2160, 3333, 4104, 2828, 1248, 4140, 1280, 4884, 5616, 3990, 1280, 784, 776, 1035, 1160, 352, 1188, 1554, 1760, 2124, 2020, 2508, 2760, 2037, 2784, 2835, 3330, 3630, 2088, 896, 1184, 4140, 1840, 1408, 3744, 3885, 4760, 224, 872, 1089, 320, 1243, 1404, 1414, 1840, 2088, 2100, 2442, 2640, 672, 2520, 3105, 1740, 1056, 1332, 3220};
 	int[] query = {560, 912, 909, 1160, 1111, 1320, 1400, 512, 2088, 2080, 2134, 2784, 672, 2904, 2997, 3510, 3762, 1152, 3080, 3104, 3924, 4040, 1408, 5040, 4025, 1280, 259, 920, 396, 320, 407, 1380, 448, 1776, 1836, 640, 814, 2760, 966, 768, 2106, 3330, 3927, 1584, 896, 3488, 4356, 1280, 4840, 4656, 3815, 4040, 224, 840, 1035, 320, 407, 1380, 644, 512, 1404, 2220, 2618, 768, 2184, 2424, 3078, 3030, 1287, 4140, 896, 3488, 4356, 1280, 4840, 4848, 4200, 4640, 224, 912, 909, 1150, 1232, 1332, 1540, 1840, 1818, 1160, 704, 888, 2415};
 	String relationship = "girlfriend";
 	String name = "Ai Haibara";
@@ -79,7 +77,7 @@ public class connection extends AsyncTask {
 			if(obj.getString("response").equalsIgnoreCase(url)){
 				i.putExtra(util.key(ctx, "CONNECTION_DATA"), "Something went wrong");
 				i.putExtra(util.key(ctx, "CONNECTION_RETURN"), true);
-				i.putExtra(util.key(ctx, "CONNECTION_SENDER"), String.format("AI [%s]", sp.getString(util.key(ctx, "AI_ALIAS"), "AI")));
+				i.putExtra(util.key(ctx, "CONNECTION_SENDER"), String.format("Chat [%s]", sp.getString(util.key(ctx, "AI_ALIAS"), "AI")));
 			}else{
         if(userID.length() <= 0){
             sp.edit().putString(util.key(ctx, "USER_ID"), obj.getString("user")).apply();
@@ -87,7 +85,7 @@ public class connection extends AsyncTask {
         i.putExtra("url", url);
         i.putExtra(util.key(ctx, "CONNECTION_DATA"), obj.getString("response"));
 				i.putExtra(util.key(ctx, "CONNECTION_RETURN"), true);
-				i.putExtra(util.key(ctx, "CONNECTION_SENDER"), String.format("AI [%s]", sp.getString(util.key(ctx, "AI_ALIAS"), "AI")));
+				i.putExtra(util.key(ctx, "CONNECTION_SENDER"), String.format("Chat [%s]", sp.getString(util.key(ctx, "AI_ALIAS"), "AI")));
 			}
 			ctx.sendBroadcast(i);
 		} catch (JSONException e) {

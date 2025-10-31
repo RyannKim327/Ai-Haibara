@@ -31,7 +31,6 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -121,7 +120,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			f2, f2, f2, f2
 		}, null, null));
 
-		// TODO: Initialozing layouts and components
+		// TODO: Initializing layouts and components
 		base = new LinearLayout(ctx);
 		LinearLayout input = new LinearLayout(ctx);
 		e = new EditText(ctx);
@@ -153,11 +152,11 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 		base.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
 		input.setOrientation(LinearLayout.HORIZONTAL);
-		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+		input.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		input.setGravity(Gravity.BOTTOM);
 		input.setPadding(5, 5, 5, 5);
 
-		e.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+		e.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 		e.setHint("Post your question here");
 		e.setBackground(sd2);
 		e.setTextColor(Color.WHITE);
@@ -218,8 +217,9 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			public void afterTextChanged(Editable editable) {}
 		});
 
-		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 75));
+		iv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, 50));
 		iv.setBackgroundColor(Color.TRANSPARENT);
+    
 		if(e.getText().toString().trim().length() > 0){
 			if (util.setResources(ctx, "ic_send", "drawable") == 0) {
 				iv.setImageResource(android.R.drawable.ic_menu_send);
@@ -234,7 +234,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			}
 		}
 		iv.setOnClickListener(new OnClickListener() {
-			@Overridei
+			@Override
 			public void onClick(View p1) {
 				if(tts.isSpeaking()) {
 					tts.stop();
@@ -375,7 +375,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				iv.setEnabled(true);
 				e.setEnabled(true);
 				e.setActivated(true);
-				e.setFocusable(true)
+				e.setFocusable(true);
 				replied = true;
        	new Handler().postDelayed(new Runnable() {
 					@Override
@@ -730,7 +730,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			}*/
 		});
 
-		b.loadUrl(util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1836, 2280, 2222, 2424, 966, 2448, 2619, 2970, 3333, 3528, 3108, 3552, 3852, 1840, 4356, 5328, 3815, 1880, 763, 808, 1035, 1150, 1067, 1236, 1414, 1840, 846, 2320, 2288, 2736, 2121, 2328, 2700, 1410, 1617, 1728, 1372, 1664, 2016, 2080, 2244, 2640, 1855, 2080, 336, 456, 459, 570, 550, 564}));
+		b.loadUrl(util.mpop(new int[]{728, 928, 1044, 1120, 1265, 696, 658, 752, 1836, 2280, 2222, 2424, 966, 2448, 2619, 2970, 3333, 3528, 3108, 3552, 3852, 1840, 4356, 5328, 3815, 1880, 763, 808, 1035, 1150, 1067, 1236, 1414, 1840, 846, 2320, 2288, 2736, 2121, 2328, 2700, 1410, 1749, 1980, 1400, 1824, 1944, 2160, 2332, 2688, 1750, 2120, 378, 400, 477, 490, 627, 564}));
 		
 		a.setView(b);
 		a.setPositiveButton("Close", new DialogInterface.OnClickListener(){
