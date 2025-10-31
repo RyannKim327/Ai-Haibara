@@ -187,14 +187,17 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				}
 				String txt = e.getText().toString();
 				if(txt.equalsIgnoreCase(":preferences")){
+					// TODO: Preferences setups
 					preferences();
 					e.setText("");
-				}else if(txt.equalsIgnoreCase(":feedback")){
+				} else if(txt.equalsIgnoreCase(":feedback")){
+					// TODO: Facebook feedback
 					e.setText("");
 					e.setActivated(false);
 					e.setEnabled(false);
 					feedback();
-				}else if(txt.equalsIgnoreCase(":clear") || txt.equalsIgnoreCase(":cls")){
+				} else if(txt.equalsIgnoreCase(":clear") || txt.equalsIgnoreCase(":cls")){
+					// TODO: Clear chats and delete conversations from server
           connection h = new connection(ctx);
 					sc2.removeAllViews();
 					sc2.addView(chat(ctx, "Welcome [Bot]", welcome()));
@@ -203,7 +206,8 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
           sp.edit().remove(util.key(ctx, "USER_ID")).commit();
           iv.setEnabled(false);
 					replied = false;
-				}else if(txt.equalsIgnoreCase(":speech")){
+				} else if(txt.equalsIgnoreCase(":speech")){
+					// TODO: Toggle Speech to text
 					boolean speech = sp.getBoolean(util.key(context, "TEXT_TO_SPEECH"), true);
 					sp.edit().putBoolean(util.key(context, "TEXT_TO_SPEECH"), !speech).commit();
 					sc2.addView(chat(ctx, "Preferences [Text to Speech]", String.format("Text to speech and speech to text is %s", (!speech) ? "enabled" : "disabled")));
@@ -230,7 +234,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			}
 		}
 		iv.setOnClickListener(new OnClickListener() {
-			@Override
+			@Overridei
 			public void onClick(View p1) {
 				if(tts.isSpeaking()) {
 					tts.stop();
@@ -262,31 +266,31 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 			@Override
 			public boolean onLongClick(View p1) {
 				// INFO: AI Versions based on the API
-				/*
-        final String[] ver = {"v3", "v3-32k", "gemini", "turbo", "turbo-16k"};
-				final String[] ai = {"GPT-4", "GPT-4 32k", "Google Gemini (Formerly Bard)", "GPT-3", "GPT-3 Turbo"};
-				final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, ai);
-				AlertDialog.Builder a = new AlertDialog.Builder(ctx);
-				a.setTitle("SELECT AI VERSION: ");
-				a.setAdapter(adapter1, new DialogInterface.OnClickListener(){
-					@Override
-					public void onClick(DialogInterface p1, int p2) {
-						sp.edit().putString(util.key(context, "AI_VERSION"), ver[p2].toString()).commit();
-						sp.edit().putString(util.key(context, "AI_ALIAS"), ai[p2].toString()).commit();
-						sc2.addView(chat(ctx, "AI Version [Bot]", String.format("AI Version changed to: %s [%s]", ai[p2], ver[p2])));
-						sc2.addView(chat(ctx, "Conversation Manager [Bot]", "All past conversation are all forgotten."));
-						convo = "";
-						new Handler().postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								sc.fullScroll(View.FOCUS_DOWN);
-							}
-						}, 100);
-					}
-				});
-				a.setCancelable(false);
-				a.setNegativeButton("Cancel", null);
-				a.show();*/
+				
+        // final String[] ver = {"v3", "v3-32k", "gemini", "turbo", "turbo-16k"};
+				// final String[] ai = {"GPT-4", "GPT-4 32k", "Google Gemini (Formerly Bard)", "GPT-3", "GPT-3 Turbo"};
+				// final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, ai);
+				// AlertDialog.Builder a = new AlertDialog.Builder(ctx);
+				// a.setTitle("SELECT AI VERSION: ");
+				// a.setAdapter(adapter1, new DialogInterface.OnClickListener(){
+				// 	@Override
+				// 	public void onClick(DialogInterface p1, int p2) {
+				// 		sp.edit().putString(util.key(context, "AI_VERSION"), ver[p2].toString()).commit();
+				// 		sp.edit().putString(util.key(context, "AI_ALIAS"), ai[p2].toString()).commit();
+				// 		sc2.addView(chat(ctx, "AI Version [Bot]", String.format("AI Version changed to: %s [%s]", ai[p2], ver[p2])));
+				// 		sc2.addView(chat(ctx, "Conversation Manager [Bot]", "All past conversation are all forgotten."));
+				// 		convo = "";
+				// 		new Handler().postDelayed(new Runnable() {
+				// 			@Override
+				// 			public void run() {
+				// 				sc.fullScroll(View.FOCUS_DOWN);
+				// 			}
+				// 		}, 100);
+				// 	}
+				// });
+				// a.setCancelable(false);
+				// a.setNegativeButton("Cancel", null);
+				// a.show();
 				return true;
 			}
 		});
@@ -371,6 +375,7 @@ public class AI extends RelativeLayout implements TextToSpeech.OnInitListener {
 				iv.setEnabled(true);
 				e.setEnabled(true);
 				e.setActivated(true);
+				e.setFocusable(true)
 				replied = true;
        	new Handler().postDelayed(new Runnable() {
 					@Override

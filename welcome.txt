@@ -3,7 +3,6 @@
 %s
 
 
-
 Credits
 * John Paul Caigas -> API Provider
 * Mark Kevin Manalo -> API Provider
@@ -15,8 +14,7 @@ Credits
 * Rovie Francisco -> RegEx and SpeechRecognizer
 * Soyuno Ion -> No Change IDs
 * Fortzkie Tuneskie -> SharedPreference
-* Herc.ai -> API
-* Deku -> API
+* Pollinations.AI -> API
 * StartUp [Movie] -> Idea
 * Genesis Fernandez -> Special Credits
 * Isrrael Preak -> Special Credits
@@ -42,14 +40,6 @@ Credits
 * `**:cls**` or `**:clear**` - To clear the past message and to create a new conversation
 * `**:speech**` - To toggle the text to speech and speech to text recognition.
 
-> In addition, you may hold the mic or send button to select the version of AI you want to use. Here are the lists of AI Version that you may use:
-* v3 ~> (GPT-4)
-* v3-32k ~> (GPT-4 32k)
-* turbo ~> (GPT 3.5 Turbo)
-* turbo-16k ~> (GPT 3.5 Turbo 16k)
-* gemini ~> (Google Gemini Pro) [Unstable]
-
 > The development is still in progress, specially the AI is still in development. We from the DroidModifs would like to express our gratitude to you for supporting us, the developers and the modders of this application. Hoping you enjoy using this.
 
 Developed by **RyannKim327**
-
